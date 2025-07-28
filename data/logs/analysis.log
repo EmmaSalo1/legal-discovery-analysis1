@@ -364,3 +364,314 @@ A detailed migration guide is available here: https://github.com/openai/openai-p
 2025-07-28 09:40:23,331 - app.services.vector_store - INFO - Searching with query: 'have i uploaded'
 2025-07-28 09:40:23,561 - app.services.vector_store - INFO - Raw search returned 39 results
 2025-07-28 09:40:26,559 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-28 09:42:53,654 - app.main - INFO - Created case: Test01
+2025-07-28 09:43:08,373 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-28 09:43:08,376 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/2_13 Timeline.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:08,376 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-28 09:43:08,617 - app.services.document_processor - INFO - Successfully extracted 134457 characters from ./discovery_sets/Test01/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-28 09:43:09,001 - app.services.vector_store - INFO - Successfully added document doc_Test01_2_13 Timeline.docx to vector store
+2025-07-28 09:43:09,001 - app.main - INFO - Added document doc_Test01_2_13 Timeline.docx to vector store for case Test01
+2025-07-28 09:43:09,004 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-28 09:43:11,581 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/image/3 girls_ we “just missed” the girls on Feb 13, 2017.png
+2025-07-28 09:43:11,581 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/image/3 girls_ we “just missed” the girls on Feb 13, 2017.png (type: image/png, ext: .png)
+2025-07-28 09:43:11,582 - app.services.image_processor - INFO - Processing image file: ./discovery_sets/Test01/plaintiff_production/image/3 girls_ we “just missed” the girls on Feb 13, 2017.png
+2025-07-28 09:43:11,706 - app.services.image_processor - WARNING - Tesseract OCR failed: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-28 09:43:11,951 - app.services.vector_store - INFO - Successfully added document image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png to vector store
+2025-07-28 09:43:11,951 - app.main - INFO - Added document image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png to vector store for case Test01
+2025-07-28 09:43:11,952 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/image/3 girls_ we “just missed” the girls on Feb 13, 2017.png
+2025-07-28 09:43:17,527 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Anna Williams February 13, 2017 interview.docx
+2025-07-28 09:43:17,528 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Anna Williams February 13, 2017 interview.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:17,528 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Anna Williams February 13, 2017 interview.docx
+2025-07-28 09:43:17,534 - app.services.document_processor - INFO - Successfully extracted 194 characters from ./discovery_sets/Test01/plaintiff_production/documents/Anna Williams February 13, 2017 interview.docx
+2025-07-28 09:43:17,780 - app.services.vector_store - INFO - Successfully added document doc_Test01_Anna Williams February 13, 2017 interview.docx to vector store
+2025-07-28 09:43:17,780 - app.main - INFO - Added document doc_Test01_Anna Williams February 13, 2017 interview.docx to vector store for case Test01
+2025-07-28 09:43:17,780 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Anna Williams February 13, 2017 interview.docx
+2025-07-28 09:43:20,677 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Appellate CCS.docx
+2025-07-28 09:43:20,677 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Appellate CCS.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:20,677 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Appellate CCS.docx
+2025-07-28 09:43:20,695 - app.services.document_processor - INFO - Successfully extracted 3285 characters from ./discovery_sets/Test01/plaintiff_production/documents/Appellate CCS.docx
+2025-07-28 09:43:20,929 - app.services.vector_store - INFO - Successfully added document doc_Test01_Appellate CCS.docx to vector store
+2025-07-28 09:43:20,929 - app.main - INFO - Added document doc_Test01_Appellate CCS.docx to vector store for case Test01
+2025-07-28 09:43:20,929 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Appellate CCS.docx
+2025-07-28 09:43:24,453 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Autopsies in Terre Haute on Feb 15, 2017.docx
+2025-07-28 09:43:24,453 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Autopsies in Terre Haute on Feb 15, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:24,453 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Autopsies in Terre Haute on Feb 15, 2017.docx
+2025-07-28 09:43:24,468 - app.services.document_processor - INFO - Successfully extracted 8501 characters from ./discovery_sets/Test01/plaintiff_production/documents/Autopsies in Terre Haute on Feb 15, 2017.docx
+2025-07-28 09:43:24,749 - app.services.vector_store - INFO - Successfully added document doc_Test01_Autopsies in Terre Haute on Feb 15, 2017.docx to vector store
+2025-07-28 09:43:24,749 - app.main - INFO - Added document doc_Test01_Autopsies in Terre Haute on Feb 15, 2017.docx to vector store for case Test01
+2025-07-28 09:43:24,749 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Autopsies in Terre Haute on Feb 15, 2017.docx
+2025-07-28 09:43:27,258 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Becky Patty February 13, 2017 interview.docx
+2025-07-28 09:43:27,258 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Becky Patty February 13, 2017 interview.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:27,258 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Becky Patty February 13, 2017 interview.docx
+2025-07-28 09:43:27,265 - app.services.document_processor - INFO - Successfully extracted 179 characters from ./discovery_sets/Test01/plaintiff_production/documents/Becky Patty February 13, 2017 interview.docx
+2025-07-28 09:43:27,491 - app.services.vector_store - INFO - Successfully added document doc_Test01_Becky Patty February 13, 2017 interview.docx to vector store
+2025-07-28 09:43:27,491 - app.main - INFO - Added document doc_Test01_Becky Patty February 13, 2017 interview.docx to vector store for case Test01
+2025-07-28 09:43:27,491 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Becky Patty February 13, 2017 interview.docx
+2025-07-28 09:43:30,279 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-28 09:43:30,279 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:30,279 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-28 09:43:30,285 - app.services.document_processor - INFO - Successfully extracted 1270 characters from ./discovery_sets/Test01/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-28 09:43:30,510 - app.services.vector_store - INFO - Successfully added document doc_Test01_Blocher report re_ AT&T pings on Feb 13, 2017.docx to vector store
+2025-07-28 09:43:30,510 - app.main - INFO - Added document doc_Test01_Blocher report re_ AT&T pings on Feb 13, 2017.docx to vector store for case Test01
+2025-07-28 09:43:30,511 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-28 09:43:33,169 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 09:43:33,169 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:33,169 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 09:43:33,178 - app.services.document_processor - INFO - Successfully extracted 1938 characters from ./discovery_sets/Test01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 09:43:33,415 - app.services.vector_store - INFO - Successfully added document doc_Test01_Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx to vector store
+2025-07-28 09:43:33,415 - app.main - INFO - Added document doc_Test01_Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx to vector store for case Test01
+2025-07-28 09:43:33,416 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 09:43:36,244 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-28 09:43:36,244 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Bunner 2_15 copy.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:36,244 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-28 09:43:36,306 - app.services.document_processor - INFO - Successfully extracted 15826 characters from ./discovery_sets/Test01/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-28 09:43:36,539 - app.services.vector_store - INFO - Successfully added document doc_Test01_Bunner 2_15 copy.docx to vector store
+2025-07-28 09:43:36,539 - app.main - INFO - Added document doc_Test01_Bunner 2_15 copy.docx to vector store for case Test01
+2025-07-28 09:43:36,539 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-28 09:43:39,774 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Feb 15, 2017.docx
+2025-07-28 09:43:39,775 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Feb 15, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:39,775 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Feb 15, 2017.docx
+2025-07-28 09:43:39,814 - app.services.document_processor - INFO - Successfully extracted 13811 characters from ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Feb 15, 2017.docx
+2025-07-28 09:43:40,043 - app.services.vector_store - INFO - Successfully added document doc_Test01_Bunner report re_ LG phone on Feb 15, 2017.docx to vector store
+2025-07-28 09:43:40,043 - app.main - INFO - Added document doc_Test01_Bunner report re_ LG phone on Feb 15, 2017.docx to vector store for case Test01
+2025-07-28 09:43:40,043 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Feb 15, 2017.docx
+2025-07-28 09:43:42,885 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Oct 12, 2017.docx
+2025-07-28 09:43:42,885 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Oct 12, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:42,885 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Oct 12, 2017.docx
+2025-07-28 09:43:42,948 - app.services.document_processor - INFO - Successfully extracted 23132 characters from ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Oct 12, 2017.docx
+2025-07-28 09:43:43,179 - app.services.vector_store - INFO - Successfully added document doc_Test01_Bunner report re_ LG phone on Oct 12, 2017.docx to vector store
+2025-07-28 09:43:43,179 - app.main - INFO - Added document doc_Test01_Bunner report re_ LG phone on Oct 12, 2017.docx to vector store for case Test01
+2025-07-28 09:43:43,180 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Oct 12, 2017.docx
+2025-07-28 09:43:46,225 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Sept 15, 2017.docx
+2025-07-28 09:43:46,225 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Sept 15, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:46,225 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Sept 15, 2017.docx
+2025-07-28 09:43:46,273 - app.services.document_processor - INFO - Successfully extracted 15233 characters from ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Sept 15, 2017.docx
+2025-07-28 09:43:46,486 - app.services.vector_store - INFO - Successfully added document doc_Test01_Bunner report re_ LG phone on Sept 15, 2017.docx to vector store
+2025-07-28 09:43:46,486 - app.main - INFO - Added document doc_Test01_Bunner report re_ LG phone on Sept 15, 2017.docx to vector store for case Test01
+2025-07-28 09:43:46,487 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ LG phone on Sept 15, 2017.docx
+2025-07-28 09:43:50,495 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ Logan Holder’s phone on Feb 14, 2017.docx
+2025-07-28 09:43:50,496 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ Logan Holder’s phone on Feb 14, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:50,496 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ Logan Holder’s phone on Feb 14, 2017.docx
+2025-07-28 09:43:50,504 - app.services.document_processor - INFO - Successfully extracted 653 characters from ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ Logan Holder’s phone on Feb 14, 2017.docx
+2025-07-28 09:43:50,731 - app.services.vector_store - INFO - Successfully added document doc_Test01_Bunner report re_ Logan Holder’s phone on Feb 14, 2017.docx to vector store
+2025-07-28 09:43:50,731 - app.main - INFO - Added document doc_Test01_Bunner report re_ Logan Holder’s phone on Feb 14, 2017.docx to vector store for case Test01
+2025-07-28 09:43:50,731 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Bunner report re_ Logan Holder’s phone on Feb 14, 2017.docx
+2025-07-28 09:43:54,793 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/CCS.docx
+2025-07-28 09:43:54,793 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/CCS.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:54,793 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/CCS.docx
+2025-07-28 09:43:54,992 - app.services.document_processor - INFO - Successfully extracted 247387 characters from ./discovery_sets/Test01/plaintiff_production/documents/CCS.docx
+2025-07-28 09:43:55,457 - app.services.vector_store - INFO - Successfully added document doc_Test01_CCS.docx to vector store
+2025-07-28 09:43:55,457 - app.main - INFO - Added document doc_Test01_CCS.docx to vector store for case Test01
+2025-07-28 09:43:55,464 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/CCS.docx
+2025-07-28 09:43:59,016 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Copy of 2_13 Timeline.docx
+2025-07-28 09:43:59,016 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Copy of 2_13 Timeline.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:43:59,016 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Copy of 2_13 Timeline.docx
+2025-07-28 09:43:59,109 - app.services.document_processor - INFO - Successfully extracted 103828 characters from ./discovery_sets/Test01/plaintiff_production/documents/Copy of 2_13 Timeline.docx
+2025-07-28 09:43:59,408 - app.services.vector_store - INFO - Successfully added document doc_Test01_Copy of 2_13 Timeline.docx to vector store
+2025-07-28 09:43:59,408 - app.main - INFO - Added document doc_Test01_Copy of 2_13 Timeline.docx to vector store for case Test01
+2025-07-28 09:43:59,410 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Copy of 2_13 Timeline.docx
+2025-07-28 09:44:03,645 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Copy of 2_13 Timeline.docx
+2025-07-28 09:44:03,645 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Copy of 2_13 Timeline.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:03,645 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Copy of 2_13 Timeline.docx
+2025-07-28 09:44:03,739 - app.services.document_processor - INFO - Successfully extracted 103828 characters from ./discovery_sets/Test01/plaintiff_production/documents/Copy of 2_13 Timeline.docx
+2025-07-28 09:44:04,021 - app.services.vector_store - INFO - Successfully added document doc_Test01_Copy of 2_13 Timeline.docx to vector store
+2025-07-28 09:44:04,021 - app.main - INFO - Added document doc_Test01_Copy of 2_13 Timeline.docx to vector store for case Test01
+2025-07-28 09:44:04,024 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Copy of 2_13 Timeline.docx
+2025-07-28 09:44:08,420 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/David Riley July 2017 interview.docx
+2025-07-28 09:44:08,420 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/David Riley July 2017 interview.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:08,420 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/David Riley July 2017 interview.docx
+2025-07-28 09:44:08,430 - app.services.document_processor - INFO - Successfully extracted 2014 characters from ./discovery_sets/Test01/plaintiff_production/documents/David Riley July 2017 interview.docx
+2025-07-28 09:44:08,660 - app.services.vector_store - INFO - Successfully added document doc_Test01_David Riley July 2017 interview.docx to vector store
+2025-07-28 09:44:08,660 - app.main - INFO - Added document doc_Test01_David Riley July 2017 interview.docx to vector store for case Test01
+2025-07-28 09:44:08,660 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/David Riley July 2017 interview.docx
+2025-07-28 09:44:13,308 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Diener Order re_ LG’s iCloud data from Apple On Oct 23, 2017.docx
+2025-07-28 09:44:13,308 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Diener Order re_ LG’s iCloud data from Apple On Oct 23, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:13,308 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Diener Order re_ LG’s iCloud data from Apple On Oct 23, 2017.docx
+2025-07-28 09:44:13,315 - app.services.document_processor - INFO - Successfully extracted 1313 characters from ./discovery_sets/Test01/plaintiff_production/documents/Diener Order re_ LG’s iCloud data from Apple On Oct 23, 2017.docx
+2025-07-28 09:44:13,543 - app.services.vector_store - INFO - Successfully added document doc_Test01_Diener Order re_ LG’s iCloud data from Apple On Oct 23, 2017.docx to vector store
+2025-07-28 09:44:13,543 - app.main - INFO - Added document doc_Test01_Diener Order re_ LG’s iCloud data from Apple On Oct 23, 2017.docx to vector store for case Test01
+2025-07-28 09:44:13,543 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Diener Order re_ LG’s iCloud data from Apple On Oct 23, 2017.docx
+2025-07-28 09:44:19,099 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/DNA report re_ person who worked in the forensic lab on Apr 11, 2017.docx
+2025-07-28 09:44:19,099 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/DNA report re_ person who worked in the forensic lab on Apr 11, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:19,099 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/DNA report re_ person who worked in the forensic lab on Apr 11, 2017.docx
+2025-07-28 09:44:19,104 - app.services.document_processor - INFO - Successfully extracted 702 characters from ./discovery_sets/Test01/plaintiff_production/documents/DNA report re_ person who worked in the forensic lab on Apr 11, 2017.docx
+2025-07-28 09:44:19,330 - app.services.vector_store - INFO - Successfully added document doc_Test01_DNA report re_ person who worked in the forensic lab on Apr 11, 2017.docx to vector store
+2025-07-28 09:44:19,330 - app.main - INFO - Added document doc_Test01_DNA report re_ person who worked in the forensic lab on Apr 11, 2017.docx to vector store for case Test01
+2025-07-28 09:44:19,330 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/DNA report re_ person who worked in the forensic lab on Apr 11, 2017.docx
+2025-07-28 09:44:24,960 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Dynamic CCS.docx
+2025-07-28 09:44:24,960 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Dynamic CCS.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:24,960 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Dynamic CCS.docx
+2025-07-28 09:44:25,197 - app.services.document_processor - INFO - Successfully extracted 261739 characters from ./discovery_sets/Test01/plaintiff_production/documents/Dynamic CCS.docx
+2025-07-28 09:44:25,667 - app.services.vector_store - INFO - Successfully added document doc_Test01_Dynamic CCS.docx to vector store
+2025-07-28 09:44:25,667 - app.main - INFO - Added document doc_Test01_Dynamic CCS.docx to vector store for case Test01
+2025-07-28 09:44:25,675 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Dynamic CCS.docx
+2025-07-28 09:44:29,943 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Elvis Fields 2nd confession on Oct 23, 2017.docx
+2025-07-28 09:44:29,943 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Elvis Fields 2nd confession on Oct 23, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:29,943 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Elvis Fields 2nd confession on Oct 23, 2017.docx
+2025-07-28 09:44:29,949 - app.services.document_processor - INFO - Successfully extracted 1040 characters from ./discovery_sets/Test01/plaintiff_production/documents/Elvis Fields 2nd confession on Oct 23, 2017.docx
+2025-07-28 09:44:30,195 - app.services.vector_store - INFO - Successfully added document doc_Test01_Elvis Fields 2nd confession on Oct 23, 2017.docx to vector store
+2025-07-28 09:44:30,195 - app.main - INFO - Added document doc_Test01_Elvis Fields 2nd confession on Oct 23, 2017.docx to vector store for case Test01
+2025-07-28 09:44:30,195 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Elvis Fields 2nd confession on Oct 23, 2017.docx
+2025-07-28 09:44:35,207 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Investigative Thread 12253 re_ Mary Jacobs contacting Misty Moore in Dec 2017.docx
+2025-07-28 09:44:35,207 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Investigative Thread 12253 re_ Mary Jacobs contacting Misty Moore in Dec 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:35,207 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Investigative Thread 12253 re_ Mary Jacobs contacting Misty Moore in Dec 2017.docx
+2025-07-28 09:44:35,217 - app.services.document_processor - INFO - Successfully extracted 1785 characters from ./discovery_sets/Test01/plaintiff_production/documents/Investigative Thread 12253 re_ Mary Jacobs contacting Misty Moore in Dec 2017.docx
+2025-07-28 09:44:35,454 - app.services.vector_store - INFO - Successfully added document doc_Test01_Investigative Thread 12253 re_ Mary Jacobs contacting Misty Moore in Dec 2017.docx to vector store
+2025-07-28 09:44:35,454 - app.main - INFO - Added document doc_Test01_Investigative Thread 12253 re_ Mary Jacobs contacting Misty Moore in Dec 2017.docx to vector store for case Test01
+2025-07-28 09:44:35,455 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Investigative Thread 12253 re_ Mary Jacobs contacting Misty Moore in Dec 2017.docx
+2025-07-28 09:44:39,964 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/LE contacts Cheyenne 6 months later in August 2017.docx
+2025-07-28 09:44:39,966 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/LE contacts Cheyenne 6 months later in August 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:39,966 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/LE contacts Cheyenne 6 months later in August 2017.docx
+2025-07-28 09:44:39,979 - app.services.document_processor - INFO - Successfully extracted 1285 characters from ./discovery_sets/Test01/plaintiff_production/documents/LE contacts Cheyenne 6 months later in August 2017.docx
+2025-07-28 09:44:40,219 - app.services.vector_store - INFO - Successfully added document doc_Test01_LE contacts Cheyenne 6 months later in August 2017.docx to vector store
+2025-07-28 09:44:40,219 - app.main - INFO - Added document doc_Test01_LE contacts Cheyenne 6 months later in August 2017.docx to vector store for case Test01
+2025-07-28 09:44:40,219 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/LE contacts Cheyenne 6 months later in August 2017.docx
+2025-07-28 09:44:45,243 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/LE shows up at Cheyenne’s home after receiving her letter after contacting her 6 months later.docx
+2025-07-28 09:44:45,243 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/LE shows up at Cheyenne’s home after receiving her letter after contacting her 6 months later.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:45,243 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/LE shows up at Cheyenne’s home after receiving her letter after contacting her 6 months later.docx
+2025-07-28 09:44:45,249 - app.services.document_processor - INFO - Successfully extracted 1458 characters from ./discovery_sets/Test01/plaintiff_production/documents/LE shows up at Cheyenne’s home after receiving her letter after contacting her 6 months later.docx
+2025-07-28 09:44:45,547 - app.services.vector_store - INFO - Successfully added document doc_Test01_LE shows up at Cheyenne’s home after receiving her letter after contacting her 6 months later.docx to vector store
+2025-07-28 09:44:45,547 - app.main - INFO - Added document doc_Test01_LE shows up at Cheyenne’s home after receiving her letter after contacting her 6 months later.docx to vector store for case Test01
+2025-07-28 09:44:45,548 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/LE shows up at Cheyenne’s home after receiving her letter after contacting her 6 months later.docx
+2025-07-28 09:44:50,584 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/letter from Cheyenne to LE “about everything”.docx
+2025-07-28 09:44:50,584 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/letter from Cheyenne to LE “about everything”.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:50,584 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/letter from Cheyenne to LE “about everything”.docx
+2025-07-28 09:44:50,588 - app.services.document_processor - INFO - Successfully extracted 1240 characters from ./discovery_sets/Test01/plaintiff_production/documents/letter from Cheyenne to LE “about everything”.docx
+2025-07-28 09:44:50,816 - app.services.vector_store - INFO - Successfully added document doc_Test01_letter from Cheyenne to LE “about everything”.docx to vector store
+2025-07-28 09:44:50,816 - app.main - INFO - Added document doc_Test01_letter from Cheyenne to LE “about everything”.docx to vector store for case Test01
+2025-07-28 09:44:50,816 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/letter from Cheyenne to LE “about everything”.docx
+2025-07-28 09:44:55,932 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Mary Jacobs interview #1 re_ CJIS-4466 sometime 2 to 3 weeks after the murders.docx
+2025-07-28 09:44:55,932 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Mary Jacobs interview #1 re_ CJIS-4466 sometime 2 to 3 weeks after the murders.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:44:55,932 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Mary Jacobs interview #1 re_ CJIS-4466 sometime 2 to 3 weeks after the murders.docx
+2025-07-28 09:44:55,937 - app.services.document_processor - INFO - Successfully extracted 1060 characters from ./discovery_sets/Test01/plaintiff_production/documents/Mary Jacobs interview #1 re_ CJIS-4466 sometime 2 to 3 weeks after the murders.docx
+2025-07-28 09:44:56,176 - app.services.vector_store - INFO - Successfully added document doc_Test01_Mary Jacobs interview #1 re_ CJIS-4466 sometime 2 to 3 weeks after the murders.docx to vector store
+2025-07-28 09:44:56,176 - app.main - INFO - Added document doc_Test01_Mary Jacobs interview #1 re_ CJIS-4466 sometime 2 to 3 weeks after the murders.docx to vector store for case Test01
+2025-07-28 09:44:56,177 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Mary Jacobs interview #1 re_ CJIS-4466 sometime 2 to 3 weeks after the murders.docx
+2025-07-28 09:45:01,398 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Mullin discovers 1st DVR malfunction on Aug 10, 2017.docx
+2025-07-28 09:45:01,398 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Mullin discovers 1st DVR malfunction on Aug 10, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:45:01,398 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Mullin discovers 1st DVR malfunction on Aug 10, 2017.docx
+2025-07-28 09:45:01,405 - app.services.document_processor - INFO - Successfully extracted 2027 characters from ./discovery_sets/Test01/plaintiff_production/documents/Mullin discovers 1st DVR malfunction on Aug 10, 2017.docx
+2025-07-28 09:45:01,649 - app.services.vector_store - INFO - Successfully added document doc_Test01_Mullin discovers 1st DVR malfunction on Aug 10, 2017.docx to vector store
+2025-07-28 09:45:01,651 - app.main - INFO - Added document doc_Test01_Mullin discovers 1st DVR malfunction on Aug 10, 2017.docx to vector store for case Test01
+2025-07-28 09:45:01,651 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Mullin discovers 1st DVR malfunction on Aug 10, 2017.docx
+2025-07-28 09:45:06,315 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Mullin discovers 2nd DVR malfunction on Sept 20, 2017.docx
+2025-07-28 09:45:06,315 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Mullin discovers 2nd DVR malfunction on Sept 20, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:45:06,315 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Mullin discovers 2nd DVR malfunction on Sept 20, 2017.docx
+2025-07-28 09:45:06,318 - app.services.document_processor - INFO - Successfully extracted 364 characters from ./discovery_sets/Test01/plaintiff_production/documents/Mullin discovers 2nd DVR malfunction on Sept 20, 2017.docx
+2025-07-28 09:45:06,559 - app.services.vector_store - INFO - Successfully added document doc_Test01_Mullin discovers 2nd DVR malfunction on Sept 20, 2017.docx to vector store
+2025-07-28 09:45:06,559 - app.main - INFO - Added document doc_Test01_Mullin discovers 2nd DVR malfunction on Sept 20, 2017.docx to vector store for case Test01
+2025-07-28 09:45:06,559 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Mullin discovers 2nd DVR malfunction on Sept 20, 2017.docx
+2025-07-28 09:45:11,545 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Murphy report re_ alibis of Rod Abrams, Ned Smith, Elvis Fields on Feb 13, 2017.docx
+2025-07-28 09:45:11,545 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Murphy report re_ alibis of Rod Abrams, Ned Smith, Elvis Fields on Feb 13, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:45:11,545 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Murphy report re_ alibis of Rod Abrams, Ned Smith, Elvis Fields on Feb 13, 2017.docx
+2025-07-28 09:45:11,552 - app.services.document_processor - INFO - Successfully extracted 1243 characters from ./discovery_sets/Test01/plaintiff_production/documents/Murphy report re_ alibis of Rod Abrams, Ned Smith, Elvis Fields on Feb 13, 2017.docx
+2025-07-28 09:45:11,780 - app.services.vector_store - INFO - Successfully added document doc_Test01_Murphy report re_ alibis of Rod Abrams, Ned Smith, Elvis Fields on Feb 13, 2017.docx to vector store
+2025-07-28 09:45:11,780 - app.main - INFO - Added document doc_Test01_Murphy report re_ alibis of Rod Abrams, Ned Smith, Elvis Fields on Feb 13, 2017.docx to vector store for case Test01
+2025-07-28 09:45:11,780 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Murphy report re_ alibis of Rod Abrams, Ned Smith, Elvis Fields on Feb 13, 2017.docx
+2025-07-28 09:45:18,358 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx
+2025-07-28 09:45:18,359 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:45:18,359 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx
+2025-07-28 09:45:18,365 - app.services.document_processor - INFO - Successfully extracted 2233 characters from ./discovery_sets/Test01/plaintiff_production/documents/phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx
+2025-07-28 09:45:18,599 - app.services.vector_store - INFO - Successfully added document doc_Test01_phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx to vector store
+2025-07-28 09:45:18,600 - app.main - INFO - Added document doc_Test01_phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx to vector store for case Test01
+2025-07-28 09:45:18,600 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx
+2025-07-28 09:45:25,361 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/phone records re_ Elvis Fields for Feb 13, 2017.docx
+2025-07-28 09:45:25,361 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/phone records re_ Elvis Fields for Feb 13, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:45:25,362 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/phone records re_ Elvis Fields for Feb 13, 2017.docx
+2025-07-28 09:45:25,365 - app.services.document_processor - INFO - Successfully extracted 472 characters from ./discovery_sets/Test01/plaintiff_production/documents/phone records re_ Elvis Fields for Feb 13, 2017.docx
+2025-07-28 09:45:25,589 - app.services.vector_store - INFO - Successfully added document doc_Test01_phone records re_ Elvis Fields for Feb 13, 2017.docx to vector store
+2025-07-28 09:45:25,589 - app.main - INFO - Added document doc_Test01_phone records re_ Elvis Fields for Feb 13, 2017.docx to vector store for case Test01
+2025-07-28 09:45:25,589 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/phone records re_ Elvis Fields for Feb 13, 2017.docx
+2025-07-28 09:45:31,556 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Police release sketch of Delphi suspect.docx
+2025-07-28 09:45:31,556 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Police release sketch of Delphi suspect.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:45:31,556 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Police release sketch of Delphi suspect.docx
+2025-07-28 09:45:31,561 - app.services.document_processor - INFO - Successfully extracted 2387 characters from ./discovery_sets/Test01/plaintiff_production/documents/Police release sketch of Delphi suspect.docx
+2025-07-28 09:45:31,791 - app.services.vector_store - INFO - Successfully added document doc_Test01_Police release sketch of Delphi suspect.docx to vector store
+2025-07-28 09:45:31,791 - app.main - INFO - Added document doc_Test01_Police release sketch of Delphi suspect.docx to vector store for case Test01
+2025-07-28 09:45:31,791 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Police release sketch of Delphi suspect.docx
+2025-07-28 09:45:38,132 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Police_ Delphi murder victims spoke of man behind them in audio played for family.docx
+2025-07-28 09:45:38,132 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Police_ Delphi murder victims spoke of man behind them in audio played for family.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:45:38,132 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Police_ Delphi murder victims spoke of man behind them in audio played for family.docx
+2025-07-28 09:45:38,136 - app.services.document_processor - INFO - Successfully extracted 3614 characters from ./discovery_sets/Test01/plaintiff_production/documents/Police_ Delphi murder victims spoke of man behind them in audio played for family.docx
+2025-07-28 09:45:38,370 - app.services.vector_store - INFO - Successfully added document doc_Test01_Police_ Delphi murder victims spoke of man behind them in audio played for family.docx to vector store
+2025-07-28 09:45:38,370 - app.main - INFO - Added document doc_Test01_Police_ Delphi murder victims spoke of man behind them in audio played for family.docx to vector store for case Test01
+2025-07-28 09:45:38,371 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Police_ Delphi murder victims spoke of man behind them in audio played for family.docx
+2025-07-28 09:45:44,668 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Pulaski Sheriff Deputy Fred Rodgers Report re_ “attempt to” verify Brad Holder’s alibi on Apr 13, 2017.docx
+2025-07-28 09:45:44,668 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Pulaski Sheriff Deputy Fred Rodgers Report re_ “attempt to” verify Brad Holder’s alibi on Apr 13, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:45:44,668 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Pulaski Sheriff Deputy Fred Rodgers Report re_ “attempt to” verify Brad Holder’s alibi on Apr 13, 2017.docx
+2025-07-28 09:45:44,676 - app.services.document_processor - INFO - Successfully extracted 1192 characters from ./discovery_sets/Test01/plaintiff_production/documents/Pulaski Sheriff Deputy Fred Rodgers Report re_ “attempt to” verify Brad Holder’s alibi on Apr 13, 2017.docx
+2025-07-28 09:45:44,911 - app.services.vector_store - INFO - Successfully added document doc_Test01_Pulaski Sheriff Deputy Fred Rodgers Report re_ “attempt to” verify Brad Holder’s alibi on Apr 13, 2017.docx to vector store
+2025-07-28 09:45:44,913 - app.main - INFO - Added document doc_Test01_Pulaski Sheriff Deputy Fred Rodgers Report re_ “attempt to” verify Brad Holder’s alibi on Apr 13, 2017.docx to vector store for case Test01
+2025-07-28 09:45:44,913 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Pulaski Sheriff Deputy Fred Rodgers Report re_ “attempt to” verify Brad Holder’s alibi on Apr 13, 2017.docx
+2025-07-28 09:45:51,368 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Search + CSI – according to Trial.docx
+2025-07-28 09:45:51,368 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Search + CSI – according to Trial.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:45:51,368 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Search + CSI – according to Trial.docx
+2025-07-28 09:45:51,402 - app.services.document_processor - INFO - Successfully extracted 23044 characters from ./discovery_sets/Test01/plaintiff_production/documents/Search + CSI – according to Trial.docx
+2025-07-28 09:45:51,646 - app.services.vector_store - INFO - Successfully added document doc_Test01_Search + CSI – according to Trial.docx to vector store
+2025-07-28 09:45:51,646 - app.main - INFO - Added document doc_Test01_Search + CSI – according to Trial.docx to vector store for case Test01
+2025-07-28 09:45:51,647 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Search + CSI – according to Trial.docx
+2025-07-28 09:45:56,034 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Shelby Duncan August 2017 interview #2.docx
+2025-07-28 09:45:56,034 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Shelby Duncan August 2017 interview #2.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:45:56,034 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Shelby Duncan August 2017 interview #2.docx
+2025-07-28 09:45:56,039 - app.services.document_processor - INFO - Successfully extracted 1179 characters from ./discovery_sets/Test01/plaintiff_production/documents/Shelby Duncan August 2017 interview #2.docx
+2025-07-28 09:45:56,278 - app.services.vector_store - INFO - Successfully added document doc_Test01_Shelby Duncan August 2017 interview #2.docx to vector store
+2025-07-28 09:45:56,278 - app.main - INFO - Added document doc_Test01_Shelby Duncan August 2017 interview #2.docx to vector store for case Test01
+2025-07-28 09:45:56,278 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Shelby Duncan August 2017 interview #2.docx
+2025-07-28 09:46:00,626 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Shelby Duncan February 2017 interview #1.docx
+2025-07-28 09:46:00,626 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Shelby Duncan February 2017 interview #1.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:46:00,626 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Shelby Duncan February 2017 interview #1.docx
+2025-07-28 09:46:00,631 - app.services.document_processor - INFO - Successfully extracted 971 characters from ./discovery_sets/Test01/plaintiff_production/documents/Shelby Duncan February 2017 interview #1.docx
+2025-07-28 09:46:00,887 - app.services.vector_store - INFO - Successfully added document doc_Test01_Shelby Duncan February 2017 interview #1.docx to vector store
+2025-07-28 09:46:00,887 - app.main - INFO - Added document doc_Test01_Shelby Duncan February 2017 interview #1.docx to vector store for case Test01
+2025-07-28 09:46:00,887 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Shelby Duncan February 2017 interview #1.docx
+2025-07-28 09:46:09,531 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Tip report CJIS-262 re_ Brad Holder on Apr 14, 2017.docx
+2025-07-28 09:46:09,531 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Tip report CJIS-262 re_ Brad Holder on Apr 14, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:46:09,531 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Tip report CJIS-262 re_ Brad Holder on Apr 14, 2017.docx
+2025-07-28 09:46:09,535 - app.services.document_processor - INFO - Successfully extracted 281 characters from ./discovery_sets/Test01/plaintiff_production/documents/Tip report CJIS-262 re_ Brad Holder on Apr 14, 2017.docx
+2025-07-28 09:46:09,771 - app.services.vector_store - INFO - Successfully added document doc_Test01_Tip report CJIS-262 re_ Brad Holder on Apr 14, 2017.docx to vector store
+2025-07-28 09:46:09,771 - app.main - INFO - Added document doc_Test01_Tip report CJIS-262 re_ Brad Holder on Apr 14, 2017.docx to vector store for case Test01
+2025-07-28 09:46:09,771 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Tip report CJIS-262 re_ Brad Holder on Apr 14, 2017.docx
+2025-07-28 09:46:13,371 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx
+2025-07-28 09:46:13,371 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:46:13,371 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx
+2025-07-28 09:46:13,376 - app.services.document_processor - INFO - Successfully extracted 473 characters from ./discovery_sets/Test01/plaintiff_production/documents/Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx
+2025-07-28 09:46:13,608 - app.services.vector_store - INFO - Successfully added document doc_Test01_Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx to vector store
+2025-07-28 09:46:13,608 - app.main - INFO - Added document doc_Test01_Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx to vector store for case Test01
+2025-07-28 09:46:13,609 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx
+2025-07-28 09:46:17,406 - app.main - INFO - Starting background processing for ./discovery_sets/Test01/plaintiff_production/documents/Winters report 17ISPC001748 re_ Ryan Boucher on Apr 12, 2017.docx
+2025-07-28 09:46:17,406 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test01/plaintiff_production/documents/Winters report 17ISPC001748 re_ Ryan Boucher on Apr 12, 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-28 09:46:17,406 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test01/plaintiff_production/documents/Winters report 17ISPC001748 re_ Ryan Boucher on Apr 12, 2017.docx
+2025-07-28 09:46:17,415 - app.services.document_processor - INFO - Successfully extracted 3365 characters from ./discovery_sets/Test01/plaintiff_production/documents/Winters report 17ISPC001748 re_ Ryan Boucher on Apr 12, 2017.docx
+2025-07-28 09:46:17,662 - app.services.vector_store - INFO - Successfully added document doc_Test01_Winters report 17ISPC001748 re_ Ryan Boucher on Apr 12, 2017.docx to vector store
+2025-07-28 09:46:17,663 - app.main - INFO - Added document doc_Test01_Winters report 17ISPC001748 re_ Ryan Boucher on Apr 12, 2017.docx to vector store for case Test01
+2025-07-28 09:46:17,663 - app.main - INFO - Background processing completed for ./discovery_sets/Test01/plaintiff_production/documents/Winters report 17ISPC001748 re_ Ryan Boucher on Apr 12, 2017.docx
+2025-07-28 09:46:32,153 - app.main - INFO - Received chat message for case Test01: Tell me about this case
+2025-07-28 09:46:32,188 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:46:32,188 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:46:32,188 - app.services.vector_store - INFO - Searching with query: 'tell me about this case'
+2025-07-28 09:46:32,291 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 09:46:38,169 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-28 09:47:05,183 - app.main - INFO - Received chat message for case Test01: What have I uploaded
+2025-07-28 09:47:05,185 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:47:05,185 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:47:05,185 - app.services.vector_store - INFO - Searching with query: 'have i uploaded'
+2025-07-28 09:47:05,287 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 09:47:07,355 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-28 09:47:58,524 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:47:58,897 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:48:02,359 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:48:02,711 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:48:06,862 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:48:07,222 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:48:45,160 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:48:45,525 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:48:48,830 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:48:49,178 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:48:53,210 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:48:53,563 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:49:59,597 - app.main - INFO - Received chat message for case Test01: What files have I uploaded
+2025-07-28 09:49:59,623 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:49:59,623 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:49:59,623 - app.services.vector_store - INFO - Searching with query: 'files have i uploaded'
+2025-07-28 09:49:59,744 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 09:50:01,536 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
