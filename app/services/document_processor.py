@@ -16,50 +16,43 @@ class DocumentProcessor:
         self.video_processor = VideoProcessor()
         self.image_processor = ImageProcessor()
         
-    # Update the process_document method in app/services/document_processor.py
-
-async def process_document(self, file_path: str, case_id: str) -> Dict[str, Any]:
-    """Enhanced document processor supporting multimedia"""
+    async def process_document(self, file_path: str, case_id: str) -> Dict[str, Any]:
+        """FIXED document processor - handles PDFs properly"""
+        
+        # Determine file type
+        file_extension = os.path.splitext(file_path)[1].lower()
+        
+        logger.info(f"Processing file: {file_path} (ext: {file_extension})")
+        
+        # FIXED: PDF files should be processed as documents, not images
+        if file_extension == '.pdf':
+            return await self._process_traditional_document(file_path, case_id)
+        
+        # Route to appropriate processor
+        elif self._is_audio_file(file_extension):
+            return await self.audio_processor.process_audio_file(file_path, case_id)
+        
+        elif self._is_video_file(file_extension):
+            return await self.video_processor.process_video_file(file_path, case_id)
+        
+        elif self._is_image_file(file_extension):
+            return await self.image_processor.process_image_file(file_path, case_id)
+        
+        else:
+            # Process traditional documents
+            return await self._process_traditional_document(file_path, case_id)
     
-    # Determine file type
-    mime_type, _ = mimetypes.guess_type(file_path)
-    file_extension = os.path.splitext(file_path)[1].lower()
+    def _is_audio_file(self, extension: str) -> bool:
+        return extension in settings.supported_audio_formats
     
-    logger.info(f"Processing file: {file_path} (type: {mime_type}, ext: {file_extension})")
+    def _is_video_file(self, extension: str) -> bool:
+        return extension in settings.supported_video_formats
     
-    # FIX: Handle PDF files properly - they should be documents, not images
-    if file_extension == '.pdf':
-        return await self._process_traditional_document(file_path, case_id)
-    
-    # Route to appropriate processor
-    elif self._is_audio_file(file_extension, mime_type):
-        return await self.audio_processor.process_audio_file(file_path, case_id)
-    
-    elif self._is_video_file(file_extension, mime_type):
-        return await self.video_processor.process_video_file(file_path, case_id)
-    
-    elif self._is_image_file(file_extension, mime_type):
-        return await self.image_processor.process_image_file(file_path, case_id)
-    
-    else:
-        # Process traditional documents
-        return await self._process_traditional_document(file_path, case_id)
-
-
-    
-    def _is_audio_file(self, extension: str, mime_type: str) -> bool:
-        return (extension in settings.supported_audio_formats or 
-                (mime_type and mime_type.startswith('audio/')))
-    
-    def _is_video_file(self, extension: str, mime_type: str) -> bool:
-        return (extension in settings.supported_video_formats or 
-                (mime_type and mime_type.startswith('video/')))
-    
-    def _is_image_file(self, extension: str, mime_type: str) -> bool:
-    # FIX: Remove PDF from image formats
+    def _is_image_file(self, extension: str) -> bool:
+        # FIXED: Removed PDF from image formats
         image_formats = ['.jpg', '.jpeg', '.png', '.tiff', '.bmp', '.gif']
-        return (extension in image_formats or 
-                (mime_type and mime_type.startswith('image/')))
+        return extension in image_formats
+    
     async def _process_traditional_document(self, file_path: str, case_id: str) -> Dict[str, Any]:
         """Process traditional document formats with enhanced PDF support"""
         try:
@@ -88,7 +81,7 @@ async def process_document(self, file_path: str, case_id: str) -> Dict[str, Any]
             logger.info(f"Successfully extracted {len(content)} characters from {file_path}")
             
             return {
-                'id': f"doc_{case_id}_{os.path.basename(file_path)}",
+                'id': f"doc_{case_id}_{os.path.basename(file_path).replace(' ', '_')}",
                 'case_id': case_id,
                 'file_path': file_path,
                 'file_type': 'document',
@@ -110,10 +103,11 @@ async def process_document(self, file_path: str, case_id: str) -> Dict[str, Any]
         except Exception as e:
             logger.error(f"Error processing document: {str(e)}")
             return {
-                'id': f"doc_{case_id}_{os.path.basename(file_path)}",
+                'id': f"doc_{case_id}_{os.path.basename(file_path).replace(' ', '_')}",
                 'case_id': case_id,
                 'file_path': file_path,
                 'file_type': 'document',
+                'content': f"Error processing document: {str(e)}",
                 'error': str(e),
                 'processing_status': 'failed',
                 'processed_at': datetime.utcnow().isoformat()
@@ -144,7 +138,7 @@ async def process_document(self, file_path: str, case_id: str) -> Dict[str, Any]
                 return content.strip()
                 
         except ImportError:
-            logger.warning("PyPDF2 not available")
+            logger.warning("PyPDF2 not available - install with: pip install PyPDF2")
         except Exception as e:
             logger.warning(f"PyPDF2 extraction failed: {e}")
         
@@ -172,59 +166,10 @@ async def process_document(self, file_path: str, case_id: str) -> Dict[str, Any]
         except Exception as e:
             logger.warning(f"pdfplumber extraction failed: {e}")
         
-        # Method 3: Try using image OCR on PDF (for scanned PDFs)
-        try:
-            import fitz  # PyMuPDF
-            doc = fitz.open(file_path)
-            logger.info(f"PDF has {len(doc)} pages (PyMuPDF OCR fallback)")
-            
-            for page_num in range(len(doc)):
-                try:
-                    page = doc.load_page(page_num)
-                    text = page.get_text()
-                    
-                    if text.strip():
-                        content += f"\n--- Page {page_num + 1} ---\n"
-                        content += text + "\n"
-                    else:
-                        # If no text, try OCR on the page image
-                        logger.info(f"No text on page {page_num + 1}, trying OCR...")
-                        pix = page.get_pixmap()
-                        img_data = pix.tobytes("png")
-                        
-                        # Save temporary image and use OCR
-                        temp_img_path = os.path.join(settings.temp_directory, f"temp_page_{page_num}.png")
-                        with open(temp_img_path, "wb") as img_file:
-                            img_file.write(img_data)
-                        
-                        # Use our image processor for OCR
-                        ocr_result = await self.image_processor.process_image_file(temp_img_path, "temp")
-                        if ocr_result.get('ocr_results', {}).get('combined_text'):
-                            content += f"\n--- Page {page_num + 1} (OCR) ---\n"
-                            content += ocr_result['ocr_results']['combined_text'] + "\n"
-                        
-                        # Clean up temp file
-                        if os.path.exists(temp_img_path):
-                            os.unlink(temp_img_path)
-                            
-                except Exception as e:
-                    logger.warning(f"Error processing page {page_num + 1} with PyMuPDF: {e}")
-            
-            doc.close()
-            
-            if content.strip():
-                logger.info(f"PyMuPDF extracted {len(content)} characters")
-                return content.strip()
-                
-        except ImportError:
-            logger.warning("PyMuPDF not available - install with: pip install pymupdf")
-        except Exception as e:
-            logger.warning(f"PyMuPDF extraction failed: {e}")
-        
-        # If all methods fail
+        # If all methods fail, return error message but still allow document to be indexed
         if not content.strip():
             logger.error(f"Failed to extract text from PDF: {file_path}")
-            return f"Error: Could not extract text from PDF file {os.path.basename(file_path)}. This may be a scanned PDF requiring OCR."
+            return f"PDF file: {os.path.basename(file_path)} - Text extraction failed. This may be a scanned PDF requiring OCR. File is available for search by filename."
         
         return content.strip()
     

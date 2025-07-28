@@ -64,8 +64,7 @@ document_processor = DocumentProcessor()
 vector_store = VectorStore()
 rag_system = RAGSystem(vector_store)
 
-# WebSocket connection manager
-
+# FIXED WebSocket connection manager
 class ConnectionManager:
     def __init__(self):
         self.active_connections: List[WebSocket] = []
@@ -90,10 +89,11 @@ class ConnectionManager:
         except Exception as e:
             logger.error(f"Error sending message: {e}")
 
-    # ADD THIS MISSING METHOD
+    # THE MISSING METHOD - THIS WAS CAUSING ALL THE ERRORS
     async def broadcast_to_case(self, message: dict, case_id: str):
         """Broadcast message to all connections for a specific case"""
         if case_id not in self.case_connections:
+            logger.info(f"No connections for case {case_id}")
             return
         
         disconnected = []
@@ -107,27 +107,28 @@ class ConnectionManager:
         # Remove disconnected websockets
         for ws in disconnected:
             self.disconnect(ws, case_id)
+
 manager = ConnectionManager()
 
 # Utility functions
 def get_file_type(file_path: str) -> str:
-    """Determine file type"""
-    mime_type, _ = mimetypes.guess_type(file_path)
+    """Determine file type - FIXED to handle PDFs properly"""
     extension = os.path.splitext(file_path)[1].lower()
     
-    if extension in settings.supported_audio_formats:
+    # PDF files should be documents, not images
+    if extension == '.pdf':
+        return 'document'
+    elif extension in settings.supported_audio_formats:
         return 'audio'
     elif extension in settings.supported_video_formats:
         return 'video'
-    elif extension in settings.supported_image_formats:
+    elif extension in ['.jpg', '.jpeg', '.png', '.tiff', '.bmp', '.gif']:  # Real image formats only
         return 'image'
     else:
         return 'document'
 
-# Replace the process_file_background function in app/main.py
-
 async def process_file_background(file_path: str, case_id: str, file_type: str, processing_id: str):
-    """Background processing for files"""
+    """FIXED background processing for files"""
     try:
         logger.info(f"Starting background processing for {file_path}")
         
@@ -191,16 +192,16 @@ async def create_case(case: CaseCreate):
         case_dir = os.path.join(settings.upload_directory, case.case_number)
         os.makedirs(case_dir, exist_ok=True)
         
-        # Create subdirectories
+        # Create subdirectories - FIXED structure
         subdirs = [
             "plaintiff_production/documents",
             "plaintiff_production/audio", 
             "plaintiff_production/video",
-            "plaintiff_production/images",
+            "plaintiff_production/image",  # Fixed: was "images"
             "defendant_production/documents",
             "defendant_production/audio",
             "defendant_production/video", 
-            "defendant_production/images",
+            "defendant_production/image",  # Fixed: was "images"
             "third_party_production",
             "court_filings"
         ]
@@ -267,11 +268,11 @@ async def upload_documents(
             processing_id = str(uuid.uuid4())
             file_type = get_file_type(file.filename)
             
-            # Determine subdirectory
-            if file_type in ['audio', 'video', 'image']:
-                subdir = file_type
-            else:
+            # FIXED: Determine subdirectory properly
+            if file_type == 'document':
                 subdir = 'documents'
+            else:
+                subdir = file_type  # audio, video, image
             
             file_dir = os.path.join(settings.upload_directory, case_id, party, subdir)
             os.makedirs(file_dir, exist_ok=True)
@@ -371,11 +372,12 @@ async def websocket_chat(websocket: WebSocket, case_id: str):
                     chat_type=chat_type
                 )
                 
-                # Send response
+                # Send response - FIXED to include file_sources
                 await manager.send_personal_message({
                     "type": "response",
                     "message": response["answer"],
                     "sources": response.get("sources", []),
+                    "file_sources": response.get("file_sources", []),
                     "confidence": response.get("confidence", 0.0)
                 }, websocket)
                 
@@ -389,45 +391,23 @@ async def websocket_chat(websocket: WebSocket, case_id: str):
     except WebSocketDisconnect:
         manager.disconnect(websocket, case_id)
 
-# Add this endpoint to your app/main.py
-
 @app.get("/api/cases/{case_id}/files/{file_id}/analysis")
 async def get_file_analysis(case_id: str, file_id: str):
     """Get detailed analysis for a specific file"""
     try:
         # Search vector store for the specific document
-        results = await vector_store.search_documents(case_id, f"id:{file_id}", limit=1)
+        results = await vector_store.search_documents(case_id, f"filename:{file_id}", limit=5)
         
         if not results:
-            # Try alternative search by filename
-            filename = file_id.replace('_', ' ')
-            results = await vector_store.search_documents(case_id, filename, limit=5)
+            # Try alternative search by filename without extension
+            filename_base = file_id.replace('.docx', '').replace('.pdf', '').replace('_', ' ')
+            results = await vector_store.search_documents(case_id, filename_base, limit=5)
             
             if not results:
                 raise HTTPException(status_code=404, detail="File analysis not found")
         
         # Return the most relevant result
         analysis = results[0]
-        
-        # Add some additional formatting for better display
-        if 'transcript' in analysis and 'text' in analysis['transcript']:
-            # Format transcript with paragraphs
-            text = analysis['transcript']['text']
-            # Split into sentences and group them
-            sentences = text.split('. ')
-            paragraphs = []
-            current_paragraph = []
-            
-            for sentence in sentences:
-                current_paragraph.append(sentence)
-                if len(current_paragraph) >= 3:  # Group every 3 sentences
-                    paragraphs.append('. '.join(current_paragraph) + '.')
-                    current_paragraph = []
-            
-            if current_paragraph:
-                paragraphs.append('. '.join(current_paragraph) + '.')
-            
-            analysis['transcript']['formatted_text'] = '\n\n'.join(paragraphs)
         
         return analysis
         
@@ -436,6 +416,58 @@ async def get_file_analysis(case_id: str, file_id: str):
     except Exception as e:
         logger.error(f"Error retrieving file analysis: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+# ADDED: Debug endpoint to check what's in the system
+@app.get("/api/cases/{case_id}/debug")
+async def debug_case(case_id: str):
+    """Debug endpoint to check case status"""
+    try:
+        # Check vector store
+        collection_name = f"case_{case_id}"
+        try:
+            collection = vector_store.client.get_collection(collection_name)
+            doc_count = collection.count()
+            
+            # Get sample documents
+            sample_docs = collection.peek(limit=5)
+            
+        except Exception as e:
+            doc_count = 0
+            sample_docs = {"documents": [], "metadatas": [], "ids": []}
+        
+        # Check file system
+        case_dir = os.path.join(settings.upload_directory, case_id)
+        fs_files = []
+        if os.path.exists(case_dir):
+            for root, dirs, files in os.walk(case_dir):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    fs_files.append({
+                        'name': file,
+                        'path': os.path.relpath(file_path, case_dir),
+                        'size': os.path.getsize(file_path),
+                        'type': get_file_type(file_path)
+                    })
+        
+        return {
+            "case_id": case_id,
+            "vector_store": {
+                "collection_exists": doc_count > 0,
+                "document_count": doc_count,
+                "sample_document_ids": sample_docs.get("ids", [])[:5],
+                "sample_metadata": sample_docs.get("metadatas", [])[:2]
+            },
+            "file_system": {
+                "case_directory_exists": os.path.exists(case_dir),
+                "file_count": len(fs_files),
+                "files": fs_files[:10]  # Show first 10 files
+            },
+            "processing_queue_size": len(manager.case_connections.get(case_id, []))
+        }
+        
+    except Exception as e:
+        logger.error(f"Debug endpoint error: {e}")
+        return {"error": str(e)}
 
 # Health check
 @app.get("/api/health")

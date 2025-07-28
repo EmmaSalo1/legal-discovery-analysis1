@@ -942,3 +942,14 @@ A detailed migration guide is available here: https://github.com/openai/openai-p
 2025-07-28 10:28:07,992 - app.services.audio_processor - INFO - Loaded Whisper model: base
 2025-07-28 10:28:35,776 - app.main - INFO - Received chat message for case Test01: Who were the law enforcement officers that worked on this case
 2025-07-28 10:28:35,776 - app.main - ERROR - Error processing chat message: 'RAGSystem' object has no attribute 'chat_with_case'
+2025-07-28 10:36:49,721 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:36:50,103 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:37:07,805 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:37:08,182 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:37:30,663 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:37:31,021 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:38:02,943 - app.main - INFO - Received chat message for case Test01: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-28 10:38:02,944 - app.main - ERROR - Error processing chat message: 'RAGSystem' object has no attribute 'chat_with_case'
+2025-07-28 10:38:43,418 - app.main - INFO - Created case: Test
+2025-07-28 10:38:50,916 - app.main - INFO - Received chat message for case Test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-28 10:38:50,916 - app.main - ERROR - Error processing chat message: 'RAGSystem' object has no attribute 'chat_with_case'

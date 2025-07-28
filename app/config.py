@@ -22,10 +22,10 @@ class Settings(BaseSettings):
     temp_directory: str = "./data/temp_processing"
     max_file_size: int = 500000000  # 500MB
     
-    # Multimedia Processing
+    # Multimedia Processing - FIXED: Removed PDF from image formats
     supported_audio_formats: List[str] = [".mp3", ".wav", ".m4a", ".flac", ".ogg", ".aac"]
     supported_video_formats: List[str] = [".mp4", ".avi", ".mov", ".wmv", ".flv", ".mkv"]
-    supported_image_formats: List[str] = [".jpg", ".jpeg", ".png", ".tiff", ".bmp", ".pdf"]
+    supported_image_formats: List[str] = [".jpg", ".jpeg", ".png", ".tiff", ".bmp", ".gif"]  # Removed .pdf
     
     # OCR Settings
     tesseract_path: str = "/opt/homebrew/bin/tesseract"  # Mac Homebrew path
