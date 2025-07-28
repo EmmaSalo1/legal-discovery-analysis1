@@ -17,52 +17,76 @@ class VectorStore:
             settings=ChromaSettings(anonymized_telemetry=False)
         )
         
-    async def add_document(self, document_data: Dict, case_id: str) -> str:
-        """Add document to vector store with multimedia support"""
+    # Replace the add_document method in app/services/vector_store.py
+
+async def add_document(self, document_data: Dict, case_id: str) -> str:
+    """Add document to vector store with multimedia support"""
+    try:
+        # Get or create collection for the case
+        collection_name = f"case_{case_id}"
+        collection = self._get_or_create_collection(collection_name)
+        
+        # Extract text content based on document type
+        text_content = self._extract_text_content(document_data)
+        
+        if not text_content:
+            logger.warning(f"No text content found for document {document_data.get('id', 'unknown')}")
+            # Still add document with basic info for searchability
+            text_content = f"File: {document_data.get('metadata', {}).get('filename', 'Unknown')}"
+        
+        # Create enhanced metadata with search optimization
+        metadata = self._create_enhanced_metadata(document_data, case_id)
+        
+        doc_id = document_data.get('id', str(uuid.uuid4()))
+        
+        # Add to collection with proper error handling
         try:
-            # Get or create collection for the case
-            collection_name = f"case_{case_id}"
-            collection = self._get_or_create_collection(collection_name)
-            
-            # Extract text content based on document type
-            text_content = self._extract_text_content(document_data)
-            
-            if not text_content:
-                logger.warning(f"No text content found for document {document_data.get('id', 'unknown')}")
-                # Still create a minimal entry for searchability
-                text_content = f"File: {document_data.get('metadata', {}).get('filename', 'unknown')}"
-            
-            # Create enhanced metadata with search optimization
-            metadata = self._create_enhanced_metadata(document_data, case_id)
-            
-            doc_id = document_data.get('id', str(uuid.uuid4()))
-            
-            # IMPORTANT: Clean metadata for ChromaDB (remove None values and ensure strings)
-            clean_metadata = {}
-            for key, value in metadata.items():
-                if value is not None:
-                    if isinstance(value, (str, int, float, bool)):
-                        clean_metadata[key] = value
-                    else:
-                        clean_metadata[key] = str(value)
-            
-            # Add to collection
             collection.add(
                 documents=[text_content],
-                metadatas=[clean_metadata],
+                metadatas=[metadata],
                 ids=[doc_id]
             )
-            
-            # Store the full document data separately for retrieval
-            self._store_full_document(collection, doc_id, document_data)
-            
             logger.info(f"Successfully added document {doc_id} to vector store")
-            return doc_id
-            
         except Exception as e:
-            logger.error(f"Error adding document to vector store: {str(e)}")
-            raise
-    
+            logger.error(f"ChromaDB add failed: {e}")
+            # Try to upsert instead
+            collection.upsert(
+                documents=[text_content],
+                metadatas=[metadata],
+                ids=[doc_id]
+            )
+            logger.info(f"Upserted document {doc_id} to vector store")
+        
+        # Store full document data separately for retrieval
+        full_doc_id = f"{doc_id}_full"
+        full_metadata = {
+            "type": "full_document",
+            "original_id": doc_id,
+            "case_id": case_id,
+            "filename": document_data.get('metadata', {}).get('filename', 'Unknown')
+        }
+        
+        try:
+            collection.add(
+                documents=[json.dumps(document_data)],
+                metadatas=[full_metadata],
+                ids=[full_doc_id]
+            )
+        except:
+            # If document already exists, update it
+            collection.upsert(
+                documents=[json.dumps(document_data)],
+                metadatas=[full_metadata],
+                ids=[full_doc_id]
+            )
+        
+        logger.info(f"Added document {doc_id} to vector store for case {case_id}")
+        return doc_id
+        
+    except Exception as e:
+        logger.error(f"Error adding document to vector store: {str(e)}")
+        # Don't raise exception, just log and return the ID
+        return document_data.get('id', str(uuid.uuid4()))
     def _create_enhanced_metadata(self, document_data: Dict, case_id: str) -> Dict:
         """Create enhanced metadata for better search filtering"""
         metadata = {

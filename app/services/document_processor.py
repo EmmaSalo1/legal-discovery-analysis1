@@ -16,43 +16,36 @@ class DocumentProcessor:
         self.video_processor = VideoProcessor()
         self.image_processor = ImageProcessor()
         
-    async def process_document(self, file_path: str, case_id: str) -> Dict[str, Any]:
-        """Enhanced document processor supporting multimedia - FIXED VERSION"""
+    # Update the process_document method in app/services/document_processor.py
+
+async def process_document(self, file_path: str, case_id: str) -> Dict[str, Any]:
+    """Enhanced document processor supporting multimedia"""
     
     # Determine file type
-        mime_type, _ = mimetypes.guess_type(file_path)
-        file_extension = os.path.splitext(file_path)[1].lower()
+    mime_type, _ = mimetypes.guess_type(file_path)
+    file_extension = os.path.splitext(file_path)[1].lower()
     
-        logger.info(f"Processing file: {file_path} (type: {mime_type}, ext: {file_extension})")
+    logger.info(f"Processing file: {file_path} (type: {mime_type}, ext: {file_extension})")
     
-    # FIXED: Better file type detection
-        if self._is_audio_file(file_extension, mime_type):
-            return await self.audio_processor.process_audio_file(file_path, case_id)
+    # FIX: Handle PDF files properly - they should be documents, not images
+    if file_extension == '.pdf':
+        return await self._process_traditional_document(file_path, case_id)
     
-        elif self._is_video_file(file_extension, mime_type):
-            return await self.video_processor.process_video_file(file_path, case_id)
+    # Route to appropriate processor
+    elif self._is_audio_file(file_extension, mime_type):
+        return await self.audio_processor.process_audio_file(file_path, case_id)
     
-        elif self._is_image_file(file_extension, mime_type) or file_extension == '.pdf':
-        # FIXED: Handle PDFs properly - they might be scanned documents
-            if file_extension == '.pdf':
-            # Try document processing first, then image processing if needed
-                try:
-                    result = await self._process_traditional_document(file_path, case_id)
-                # If PDF has no extractable text, try OCR
-                    if not result.get('content') or len(result.get('content', '').strip()) < 50:
-                        logger.info(f"PDF {file_path} has little text, trying OCR...")
-                        return await self.image_processor.process_image_file(file_path, case_id)
-                    return result
-                except Exception as e:
-                    logger.warning(f"Document processing failed for PDF, trying OCR: {e}")
-                    return await self.image_processor.process_image_file(file_path, case_id)
-            else:
-                return await self.image_processor.process_image_file(file_path, case_id)
+    elif self._is_video_file(file_extension, mime_type):
+        return await self.video_processor.process_video_file(file_path, case_id)
     
-        else:
+    elif self._is_image_file(file_extension, mime_type):
+        return await self.image_processor.process_image_file(file_path, case_id)
+    
+    else:
         # Process traditional documents
-            return await self._process_traditional_document(file_path, case_id) 
-            await self._process_traditional_document(file_path, case_id)
+        return await self._process_traditional_document(file_path, case_id)
+
+
     
     def _is_audio_file(self, extension: str, mime_type: str) -> bool:
         return (extension in settings.supported_audio_formats or 
@@ -63,9 +56,10 @@ class DocumentProcessor:
                 (mime_type and mime_type.startswith('video/')))
     
     def _is_image_file(self, extension: str, mime_type: str) -> bool:
-        return (extension in settings.supported_image_formats or 
+    # FIX: Remove PDF from image formats
+        image_formats = ['.jpg', '.jpeg', '.png', '.tiff', '.bmp', '.gif']
+        return (extension in image_formats or 
                 (mime_type and mime_type.startswith('image/')))
-    
     async def _process_traditional_document(self, file_path: str, case_id: str) -> Dict[str, Any]:
         """Process traditional document formats with enhanced PDF support"""
         try:

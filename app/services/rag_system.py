@@ -13,7 +13,7 @@ class RAGSystem:
         self.vector_store = vector_store
         self.client = AsyncOpenAI(api_key=settings.openai_api_key)
         
-    async def chat_with_case(self, case_id: str, user_message: str, chat_type: str = "general") -> Dict:
+    async def _case(self, case_id: str, user_message: str, chat_type: str = "general") -> Dict:
         """Enhanced chat with improved source relevance filtering - FIXED VERSION"""
         try:
             logger.info(f"Processing chat request for case {case_id}: {user_message}")
@@ -485,3 +485,123 @@ Guidelines:
             avg_confidence = min(avg_confidence * 1.2, 1.0)
         
         return avg_confidence
+    # Add this debug method to your RAGSystem class in app/services/rag_system.py
+
+async def chat_with_case(self, case_id: str, user_message: str, chat_type: str = "general") -> Dict:
+    """Enhanced chat with improved debugging"""
+    try:
+        logger.info(f"Chat request for case {case_id}: {user_message}")
+        
+        # Search for relevant documents with debugging
+        search_results = await self.vector_store.search_documents(
+            case_id=case_id,
+            query=user_message,
+            limit=10
+        )
+        
+        logger.info(f"Found {len(search_results)} search results")
+        
+        # If no results, try a broader search
+        if not search_results:
+            logger.warning("No search results found, trying broader search")
+            # Try searching with just key words
+            words = user_message.split()
+            if len(words) > 2:
+                broader_query = " ".join(words[:2])  # Use first 2 words
+                search_results = await self.vector_store.search_documents(
+                    case_id=case_id,
+                    query=broader_query,
+                    limit=10
+                )
+                logger.info(f"Broader search found {len(search_results)} results")
+        
+        # Build context from search results
+        context_parts = []
+        file_sources = []
+        
+        for result in search_results[:5]:
+            file_path = result.get('file_path', '')
+            file_name = os.path.basename(file_path) if file_path else 'unknown'
+            
+            # Get content from the result
+            content = result.get('content', '')
+            if not content:
+                # Try to get content from metadata
+                metadata = result.get('metadata', {})
+                if 'content' in metadata:
+                    content = metadata['content']
+            
+            if content:
+                context_parts.append(f"File: {file_name}\nContent: {content[:500]}...")
+                file_sources.append({
+                    'name': file_name,
+                    'path': file_path,
+                    'type': result.get('file_type', 'document'),
+                    'id': result.get('id', ''),
+                    'confidence': 0.8,
+                    'relevance_score': result.get('similarity_score', 0.5)
+                })
+        
+        # Build system prompt
+        system_prompt = self._build_enhanced_system_prompt(chat_type)
+        
+        # Build user prompt
+        if context_parts:
+            context_text = "\n\n".join(context_parts)
+            user_prompt = f"""
+Question: {user_message}
+
+Relevant case files:
+{context_text}
+
+Please provide a clear answer based on the available information.
+"""
+        else:
+            # If no context found, explain what files are available
+            user_prompt = f"""
+Question: {user_message}
+
+I don't have specific content that matches your question. This might be because:
+1. The files are still being processed
+2. The content doesn't contain information related to your question
+3. You may need to upload more specific documents
+
+Please try asking about the files you've uploaded or wait for processing to complete.
+"""
+        
+        logger.info(f"Sending prompt to OpenAI with {len(context_parts)} context parts")
+        
+        # Call OpenAI
+        response = await self.client.chat.completions.create(
+            model=settings.openai_model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.3,
+            max_tokens=600
+        )
+        
+        answer = response.choices[0].message.content
+        
+        return {
+            "answer": answer,
+            "sources": [f.get('path', '') for f in file_sources],
+            "file_sources": file_sources,
+            "confidence": self._calculate_confidence(file_sources),
+            "context_used": len(context_parts) > 0,
+            "debug_info": {
+                "search_results_count": len(search_results),
+                "context_parts_count": len(context_parts)
+            }
+        }
+        
+    except Exception as e:
+        logger.error(f"Error in RAG chat: {str(e)}")
+        return {
+            "answer": f"I apologize, but I encountered an error while processing your request: {str(e)}",
+            "sources": [],
+            "file_sources": [],
+            "confidence": 0.0,
+            "error": str(e)
+        }

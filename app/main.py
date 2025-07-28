@@ -65,7 +65,6 @@ vector_store = VectorStore()
 rag_system = RAGSystem(vector_store)
 
 # WebSocket connection manager
-# Add this method to your ConnectionManager class in app/main.py
 
 class ConnectionManager:
     def __init__(self):
@@ -89,26 +88,25 @@ class ConnectionManager:
         try:
             await websocket.send_text(json.dumps(message))
         except Exception as e:
-            logger.error(f"Error sending WebSocket message: {e}")
+            logger.error(f"Error sending message: {e}")
 
     # ADD THIS MISSING METHOD
     async def broadcast_to_case(self, message: dict, case_id: str):
         """Broadcast message to all connections for a specific case"""
-        if case_id in self.case_connections:
-            disconnected = []
-            for connection in self.case_connections[case_id]:
-                try:
-                    await connection.send_text(json.dumps(message))
-                except Exception as e:
-                    logger.error(f"Error broadcasting to case {case_id}: {e}")
-                    disconnected.append(connection)
-            
-            # Clean up disconnected connections
-            for conn in disconnected:
-                if conn in self.case_connections[case_id]:
-                    self.case_connections[case_id].remove(conn)
-                if conn in self.active_connections:
-                    self.active_connections.remove(conn)
+        if case_id not in self.case_connections:
+            return
+        
+        disconnected = []
+        for websocket in self.case_connections[case_id]:
+            try:
+                await websocket.send_text(json.dumps(message))
+            except Exception as e:
+                logger.error(f"Error broadcasting to websocket: {e}")
+                disconnected.append(websocket)
+        
+        # Remove disconnected websockets
+        for ws in disconnected:
+            self.disconnect(ws, case_id)
 manager = ConnectionManager()
 
 # Utility functions
@@ -126,8 +124,10 @@ def get_file_type(file_path: str) -> str:
     else:
         return 'document'
 
+# Replace the process_file_background function in app/main.py
+
 async def process_file_background(file_path: str, case_id: str, file_type: str, processing_id: str):
-    """Background processing for files - FIXED VERSION"""
+    """Background processing for files"""
     try:
         logger.info(f"Starting background processing for {file_path}")
         
@@ -138,16 +138,26 @@ async def process_file_background(file_path: str, case_id: str, file_type: str, 
         if result.get('processing_status') == 'completed':
             doc_id = await vector_store.add_document(result, case_id)
             logger.info(f"Added document {doc_id} to vector store for case {case_id}")
-        
-        # Notify completion via WebSocket
-        await manager.broadcast_to_case({
-            'type': 'processing_complete',
-            'processing_id': processing_id,
-            'status': 'completed' if result.get('processing_status') == 'completed' else 'failed',
-            'result': result
-        }, case_id)
-        
-        logger.info(f"Background processing completed for {file_path}")
+            
+            # Notify completion via WebSocket
+            await manager.broadcast_to_case({
+                'type': 'processing_complete',
+                'processing_id': processing_id,
+                'status': 'completed',
+                'result': {
+                    'filename': result.get('metadata', {}).get('filename', 'Unknown'),
+                    'file_type': result.get('file_type', 'unknown'),
+                    'summary': result.get('summary', 'Processing completed')
+                }
+            }, case_id)
+        else:
+            logger.error(f"Document processing failed for {file_path}")
+            await manager.broadcast_to_case({
+                'type': 'processing_complete',
+                'processing_id': processing_id,
+                'status': 'failed',
+                'error': 'Document processing failed'
+            }, case_id)
         
     except Exception as e:
         logger.error(f"Background processing failed for {file_path}: {str(e)}")

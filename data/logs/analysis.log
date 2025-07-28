@@ -912,3 +912,33 @@ A detailed migration guide is available here: https://github.com/openai/openai-p
 2025-07-28 10:18:17,001 - app.services.vector_store - INFO - Searching with query: ''
 2025-07-28 10:18:17,091 - app.services.vector_store - INFO - Raw search returned 39 results
 2025-07-28 10:18:26,004 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-28 10:21:45,590 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:21:46,020 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:21:52,884 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:21:53,281 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:21:55,436 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:21:55,840 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:21:57,890 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:21:58,260 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:23:03,352 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:23:03,743 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:23:56,629 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:23:57,007 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:25:15,456 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:25:15,848 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:25:35,550 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:25:35,900 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:25:49,714 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:25:50,062 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:25:51,868 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:25:52,211 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:25:53,982 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:25:54,330 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:26:15,811 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:26:16,163 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:28:05,438 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:28:05,812 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:28:07,634 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:28:07,992 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:28:35,776 - app.main - INFO - Received chat message for case Test01: Who were the law enforcement officers that worked on this case
+2025-07-28 10:28:35,776 - app.main - ERROR - Error processing chat message: 'RAGSystem' object has no attribute 'chat_with_case'
