@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Discovery Analysis System</title>
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+    <style>
+        .landing-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .landing-content {
+            max-width: 600px;
+            padding: 2rem;
+        }
+        
+        .landing-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .landing-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta-section {
+            margin-top: 2rem;
+        }
+        
+        .cta-button {
+            background: #27ae60;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+        
+        .cta-button:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .cta-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <div class="landing-content">
+            <h1 class="landing-title">Legal Discovery Analysis</h1>
+            <p class="landing-subtitle">
+                Advanced AI-powered multimedia analysis for legal discovery. 
+                Process audio, video, images, and documents with professional-grade tools.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎵</div>
+                    <h3>Audio Analysis</h3>
+                    <p>Automatic transcription and speaker identification</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎥</div>
+                    <h3>Video Processing</h3>
+                    <p>Frame extraction and audio analysis</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📷</div>
+                    <h3>Image OCR</h3>
+                    <p>Text extraction from scanned documents</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Assistant</h3>
+                    <p>Chat with your case files using GPT</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart Search</h3>
+                    <p>Semantic search across all content</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Privilege Protection</h3>
+                    <p>Automatic privilege detection</p>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <a href="#" onclick="createNewCase()" class="cta-button">Create New Case</a>
+                <a href="#" onclick="showCaseSelector()" class="cta-button cta-secondary">Open Existing Case</a>
+            </div>
+            
+            <div id="case-input" style="display: none; margin-top: 2rem;">
+                <input type="text" id="case-number" placeholder="Enter case number..." 
+                       style="padding: 0.75rem; font-size: 1rem; border-radius: 4px; border: none; margin-right: 1rem; width: 200px;">
+                <button onclick="submitCase()" class="cta-button">Start Analysis</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createNewCase() {
+            document.getElementById('case-input').style.display = 'block';
+            document.getElementById('case-number').focus();
+        }
+        
+        function showCaseSelector() {
+            // For now, just prompt for case number
+            // In a full implementation, this would show existing cases
+            const caseNumber = prompt('Enter existing case number:');
+            if (caseNumber) {
+                window.location.href = `/case/${caseNumber}`;
+            }
+        }
+        
+        function submitCase() {
+            const caseNumber = document.getElementById('case-number').value.trim();
+            if (!caseNumber) {
+                alert('Please enter a case number');
+                return;
+            }
+            
+            // Create the case and redirect
+            fetch('/api/cases/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    case_number: caseNumber,
+                    case_name: `Case ${caseNumber}`,
+                    description: 'Legal discovery analysis case'
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = `/case/${caseNumber}`;
+                } else {
+                    return response.json().then(error => {
+                        throw new Error(error.detail || 'Failed to create case');
+                    });
+                }
+            })
+            .catch(error => {
+                alert(`Error creating case: ${error.message}`);
+            });
+        }
+        
+        // Allow Enter key to submit
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && document.getElementById('case-input').style.display !== 'none') {
+                submitCase();
+            }
+        });
+    </script>
+</body>
+</html>

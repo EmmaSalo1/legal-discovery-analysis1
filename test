@@ -1,0 +1,24 @@
+# test_installation.py
+try:
+    import fastapi
+    print("✅ FastAPI installed")
+    
+    import whisper
+    print("✅ Whisper installed")
+    
+    import cv2
+    print("✅ OpenCV installed")
+    
+    import librosa
+    print("✅ Librosa installed")
+    
+    import chromadb
+    print("✅ ChromaDB installed")
+    
+    import spacy
+    print("✅ spaCy installed")
+    
+    print("\n🎉 All core dependencies installed successfully!")
+    
+except ImportError as e:
+    print(f"❌ Missing dependency: {e}")

@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./discovery_sets:/app/discovery_sets
+      - ./analysis_outputs:/app/analysis_outputs
+      - ./data:/app/data
+      - ./legal_discovery.db:/app/legal_discovery.db
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=sqlite:///./legal_discovery.db
+      - ENABLE_OCR=true
+      - ENABLE_AUDIO_TRANSCRIPTION=true
+
+  chroma:
+    image: chromadb/chroma:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+
+volumes:
+  chroma_data:

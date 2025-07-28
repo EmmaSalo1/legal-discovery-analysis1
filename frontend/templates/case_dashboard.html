@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Discovery Analysis - Case Dashboard</title>
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Legal Discovery Analysis System</h1>
+            <div class="case-info">
+                <span id="case-id">{{ case_id if case_id else "Select a Case" }}</span>
+            </div>
+        </header>
+
+        <nav class="dashboard-nav">
+            <ul>
+                <li><a href="/" class="nav-link active">Dashboard</a></li>
+                <li><a href="#" class="nav-link" onclick="showUploadModal()">Upload Files</a></li>
+                <li><a href="#" class="nav-link" onclick="showSearchModal()">Search</a></li>
+            </ul>
+        </nav>
+
+        <main class="dashboard-main">
+            <!-- Case Statistics -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Files</h3>
+                        <span class="stat-number" id="total-files">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Audio Files</h3>
+                        <span class="stat-number" id="audio-files">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Video Files</h3>
+                        <span class="stat-number" id="video-files">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Image Files</h3>
+                        <span class="stat-number" id="image-files">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Documents</h3>
+                        <span class="stat-number" id="document-files">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Processing Status</h3>
+                        <span class="stat-number" id="processing-status">Ready</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- File Upload Area -->
+            <section class="upload-section">
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" width="48" height="48">
+                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                        </svg>
+                        <h3>Upload Evidence Files</h3>
+                        <p>Drag and drop files here or click to select</p>
+                        <p class="supported-formats">Supports: Documents, Audio, Video, Images</p>
+                        <input type="file" id="file-input" multiple accept=".pdf,.docx,.txt,.mp3,.wav,.mp4,.avi,.jpg,.png,.tiff">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Processing Queue -->
+            <section class="processing-section">
+                <h2>🔄 Processing Queue</h2>
+                <div class="processing-queue" id="processing-queue">
+                    <p class="no-processing">No files currently processing</p>
+                </div>
+            </section>
+
+            <!-- Recent Files -->
+            <section class="files-section">
+                <div class="section-header">
+                    <h2>📁 Case Files</h2>
+                    <div class="section-actions">
+                        <button onclick="refreshFileList()" class="btn-secondary">Refresh</button>
+                        <select id="file-type-filter" onchange="filterFiles()">
+                            <option value="">All Types</option>
+                            <option value="audio">Audio</option>
+                            <option value="video">Video</option>
+                            <option value="image">Image</option>
+                            <option value="document">Document</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="files-grid" id="files-grid">
+                    <!-- Files will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Chat Interface - MOVED BACK TO BOTTOM -->
+            <section class="chat-section">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h3>🤖 AI Assistant</h3>
+                        <div class="chat-controls">
+                            <div class="chat-status" id="chat-status">Connected</div>
+                            <button class="minimize-chat" onclick="toggleChat()" id="minimize-btn">−</button>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message bot-message">
+                            <p>Hello! I'm your AI assistant for legal discovery analysis. Upload files above and I can help you:</p>
+                            <ul>
+                                <li>Analyze document content and transcripts</li>
+                                <li>Answer questions about your evidence</li>
+                                <li>Identify potential privilege issues</li>
+                                <li>Find contradictions or key information</li>
+                            </ul>
+                            <p>Start by uploading some files, then ask me anything! 📤</p>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chat-input" placeholder="Ask about your case evidence..." autocomplete="off">
+                        <button id="chat-send" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Upload Files</h2>
+                <span class="close" onclick="closeUploadModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="upload-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="party-select">Party:</label>
+                        <select id="party-select" name="party">
+                            <option value="plaintiff_production">Plaintiff Production</option>
+                            <option value="defendant_production">Defendant Production</option>
+                            <option value="third_party_production">Third Party Production</option>
+                            <option value="court_filings">Court Filings</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="document-type-select">Document Type:</label>
+                        <select id="document-type-select" name="document_type">
+                            <option value="general">General</option>
+                            <option value="evidence">Evidence</option>
+                            <option value="deposition">Deposition</option>
+                            <option value="correspondence">Correspondence</option>
+                            <option value="contracts">Contracts</option>
+                            <option value="financial">Financial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-file-input">Select Files:</label>
+                        <input type="file" id="modal-file-input" name="files" multiple 
+                               accept=".pdf,.docx,.txt,.mp3,.wav,.m4a,.flac,.mp4,.avi,.mov,.jpg,.jpeg,.png,.tiff,.bmp">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" onclick="closeUploadModal()" class="btn-secondary">Cancel</button>
+                        <button type="submit" class="btn-primary">Upload Files</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Search Case Files</h2>
+                <span class="close" onclick="closeSearchModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="search-form">
+                    <input type="text" id="search-input" placeholder="Search across all case content...">
+                    <div class="search-filters">
+                        <label>
+                            <input type="checkbox" value="audio" checked> Audio Transcripts
+                        </label>
+                        <label>
+                            <input type="checkbox" value="video" checked> Video Content
+                        </label>
+                        <label>
+                            <input type="checkbox" value="image" checked> Image OCR
+                        </label>
+                        <label>
+                            <input type="checkbox" value="document" checked> Documents
+                        </label>
+                    </div>
+                    <button onclick="performSearch()" class="btn-primary">Search</button>
+                </div>
+                <div id="search-results" class="search-results">
+                    <!-- Search results will appear here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/discovery-app.js"></script>
+    <script>
+        // Chat minimize/maximize functionality
+        function toggleChat() {
+            const chatMessages = document.getElementById('chat-messages');
+            const minimizeBtn = document.getElementById('minimize-btn');
+            
+            if (chatMessages.style.display === 'none') {
+                chatMessages.style.display = 'block';
+                minimizeBtn.textContent = '−';
+                minimizeBtn.title = 'Minimize chat';
+            } else {
+                chatMessages.style.display = 'none';
+                minimizeBtn.textContent = '+';
+                minimizeBtn.title = 'Maximize chat';
+            }
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+        });
+    </script>
+</body>
+</html>
