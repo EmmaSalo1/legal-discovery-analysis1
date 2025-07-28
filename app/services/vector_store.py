@@ -1,7 +1,9 @@
 import chromadb
 from chromadb.config import Settings as ChromaSettings
 import uuid
+import json
 from typing import Dict, List, Any, Optional
+from datetime import datetime
 import logging
 import re
 from app.config import settings
@@ -27,24 +29,34 @@ class VectorStore:
             
             if not text_content:
                 logger.warning(f"No text content found for document {document_data.get('id', 'unknown')}")
-                return document_data.get('id', str(uuid.uuid4()))
+                # Still create a minimal entry for searchability
+                text_content = f"File: {document_data.get('metadata', {}).get('filename', 'unknown')}"
             
             # Create enhanced metadata with search optimization
             metadata = self._create_enhanced_metadata(document_data, case_id)
             
             doc_id = document_data.get('id', str(uuid.uuid4()))
             
+            # IMPORTANT: Clean metadata for ChromaDB (remove None values and ensure strings)
+            clean_metadata = {}
+            for key, value in metadata.items():
+                if value is not None:
+                    if isinstance(value, (str, int, float, bool)):
+                        clean_metadata[key] = value
+                    else:
+                        clean_metadata[key] = str(value)
+            
             # Add to collection
             collection.add(
                 documents=[text_content],
-                metadatas=[metadata],
+                metadatas=[clean_metadata],
                 ids=[doc_id]
             )
             
-            # Also store the full document data for retrieval
+            # Store the full document data separately for retrieval
             self._store_full_document(collection, doc_id, document_data)
             
-            logger.info(f"Added document {doc_id} to vector store")
+            logger.info(f"Successfully added document {doc_id} to vector store")
             return doc_id
             
         except Exception as e:
@@ -97,13 +109,13 @@ class VectorStore:
             # Store full document as separate entry for retrieval
             full_doc_id = f"{doc_id}_full"
             collection.add(
-                documents=[str(document_data)],  # Store as string for now
+                documents=[json.dumps(document_data)],  # Store as JSON string
                 metadatas=[{"type": "full_document", "original_id": doc_id}],
                 ids=[full_doc_id]
             )
         except Exception as e:
             logger.warning(f"Could not store full document data: {e}")
-    
+
     async def search_documents(self, case_id: str, query: str, limit: int = 10) -> List[Dict]:
         """Enhanced search with better relevance filtering"""
         try:
@@ -111,12 +123,22 @@ class VectorStore:
             
             try:
                 collection = self.client.get_collection(collection_name)
-            except:
-                logger.warning(f"Collection {collection_name} not found")
+            except Exception as e:
+                logger.warning(f"Collection {collection_name} not found: {e}")
                 return []
+            
+            # DEBUG: Check what's in the collection
+            try:
+                all_docs = collection.get(limit=5)  # Get first 5 docs for debugging
+                logger.info(f"Collection {collection_name} has {len(all_docs['ids'])} documents")
+                if all_docs['ids']:
+                    logger.info(f"Sample document IDs: {all_docs['ids'][:3]}")
+            except Exception as e:
+                logger.error(f"Error checking collection contents: {e}")
             
             # Preprocess query for better search
             processed_query = self._preprocess_query(query)
+            logger.info(f"Searching with query: '{processed_query}'")
             
             # Perform similarity search with higher limit to filter from
             results = collection.query(
@@ -125,6 +147,8 @@ class VectorStore:
                 include=["documents", "metadatas", "distances"],
                 where={"type": {"$ne": "full_document"}}  # Exclude full document entries
             )
+            
+            logger.info(f"Raw search returned {len(results['documents'][0]) if results['documents'] else 0} results")
             
             # Format and filter results
             formatted_results = []
@@ -151,6 +175,17 @@ class VectorStore:
                         # Filter by content quality
                         if self._has_relevant_content(full_doc_data, query):
                             formatted_results.append(full_doc_data)
+                    else:
+                        # Fallback: create basic result from search data
+                        basic_result = {
+                            'id': results['ids'][0][i],
+                            'content': doc,
+                            'metadata': metadata,
+                            'similarity_score': similarity_score,
+                            'file_type': metadata.get('file_type', 'document'),
+                            'file_path': metadata.get('file_path', ''),
+                        }
+                        formatted_results.append(basic_result)
             
             # Sort by similarity and content relevance
             formatted_results.sort(key=lambda x: x['similarity_score'], reverse=True)
@@ -195,10 +230,9 @@ class VectorStore:
             
             if full_results['documents'] and full_results['documents'][0]:
                 # Parse stored document data
-                import ast
                 doc_str = full_results['documents'][0][0]
                 try:
-                    return ast.literal_eval(doc_str)
+                    return json.loads(doc_str)
                 except:
                     pass
             

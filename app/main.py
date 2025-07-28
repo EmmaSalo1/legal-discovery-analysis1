@@ -65,6 +65,8 @@ vector_store = VectorStore()
 rag_system = RAGSystem(vector_store)
 
 # WebSocket connection manager
+# Add this method to your ConnectionManager class in app/main.py
+
 class ConnectionManager:
     def __init__(self):
         self.active_connections: List[WebSocket] = []
@@ -78,13 +80,35 @@ class ConnectionManager:
         self.case_connections[case_id].append(websocket)
 
     def disconnect(self, websocket: WebSocket, case_id: str):
-        self.active_connections.remove(websocket)
-        if case_id in self.case_connections:
+        if websocket in self.active_connections:
+            self.active_connections.remove(websocket)
+        if case_id in self.case_connections and websocket in self.case_connections[case_id]:
             self.case_connections[case_id].remove(websocket)
 
     async def send_personal_message(self, message: dict, websocket: WebSocket):
-        await websocket.send_text(json.dumps(message))
+        try:
+            await websocket.send_text(json.dumps(message))
+        except Exception as e:
+            logger.error(f"Error sending WebSocket message: {e}")
 
+    # ADD THIS MISSING METHOD
+    async def broadcast_to_case(self, message: dict, case_id: str):
+        """Broadcast message to all connections for a specific case"""
+        if case_id in self.case_connections:
+            disconnected = []
+            for connection in self.case_connections[case_id]:
+                try:
+                    await connection.send_text(json.dumps(message))
+                except Exception as e:
+                    logger.error(f"Error broadcasting to case {case_id}: {e}")
+                    disconnected.append(connection)
+            
+            # Clean up disconnected connections
+            for conn in disconnected:
+                if conn in self.case_connections[case_id]:
+                    self.case_connections[case_id].remove(conn)
+                if conn in self.active_connections:
+                    self.active_connections.remove(conn)
 manager = ConnectionManager()
 
 # Utility functions
@@ -103,14 +127,17 @@ def get_file_type(file_path: str) -> str:
         return 'document'
 
 async def process_file_background(file_path: str, case_id: str, file_type: str, processing_id: str):
-    """Background processing for files"""
+    """Background processing for files - FIXED VERSION"""
     try:
+        logger.info(f"Starting background processing for {file_path}")
+        
         # Process the file
         result = await document_processor.process_document(file_path, case_id)
         
         # Add to vector store if successful
         if result.get('processing_status') == 'completed':
-            await vector_store.add_document(result, case_id)
+            doc_id = await vector_store.add_document(result, case_id)
+            logger.info(f"Added document {doc_id} to vector store for case {case_id}")
         
         # Notify completion via WebSocket
         await manager.broadcast_to_case({
@@ -120,8 +147,10 @@ async def process_file_background(file_path: str, case_id: str, file_type: str, 
             'result': result
         }, case_id)
         
+        logger.info(f"Background processing completed for {file_path}")
+        
     except Exception as e:
-        logger.error(f"Background processing failed: {str(e)}")
+        logger.error(f"Background processing failed for {file_path}: {str(e)}")
         await manager.broadcast_to_case({
             'type': 'processing_complete',
             'processing_id': processing_id,

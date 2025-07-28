@@ -17,27 +17,42 @@ class DocumentProcessor:
         self.image_processor = ImageProcessor()
         
     async def process_document(self, file_path: str, case_id: str) -> Dict[str, Any]:
-        """Enhanced document processor supporting multimedia"""
-        
-        # Determine file type
+        """Enhanced document processor supporting multimedia - FIXED VERSION"""
+    
+    # Determine file type
         mime_type, _ = mimetypes.guess_type(file_path)
         file_extension = os.path.splitext(file_path)[1].lower()
-        
+    
         logger.info(f"Processing file: {file_path} (type: {mime_type}, ext: {file_extension})")
-        
-        # Route to appropriate processor
+    
+    # FIXED: Better file type detection
         if self._is_audio_file(file_extension, mime_type):
             return await self.audio_processor.process_audio_file(file_path, case_id)
-        
+    
         elif self._is_video_file(file_extension, mime_type):
             return await self.video_processor.process_video_file(file_path, case_id)
-        
-        elif self._is_image_file(file_extension, mime_type):
-            return await self.image_processor.process_image_file(file_path, case_id)
-        
+    
+        elif self._is_image_file(file_extension, mime_type) or file_extension == '.pdf':
+        # FIXED: Handle PDFs properly - they might be scanned documents
+            if file_extension == '.pdf':
+            # Try document processing first, then image processing if needed
+                try:
+                    result = await self._process_traditional_document(file_path, case_id)
+                # If PDF has no extractable text, try OCR
+                    if not result.get('content') or len(result.get('content', '').strip()) < 50:
+                        logger.info(f"PDF {file_path} has little text, trying OCR...")
+                        return await self.image_processor.process_image_file(file_path, case_id)
+                    return result
+                except Exception as e:
+                    logger.warning(f"Document processing failed for PDF, trying OCR: {e}")
+                    return await self.image_processor.process_image_file(file_path, case_id)
+            else:
+                return await self.image_processor.process_image_file(file_path, case_id)
+    
         else:
-            # Process traditional documents
-            return await self._process_traditional_document(file_path, case_id)
+        # Process traditional documents
+            return await self._process_traditional_document(file_path, case_id) 
+            await self._process_traditional_document(file_path, case_id)
     
     def _is_audio_file(self, extension: str, mime_type: str) -> bool:
         return (extension in settings.supported_audio_formats or 
