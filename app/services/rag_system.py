@@ -14,31 +14,55 @@ class RAGSystem:
         self.client = AsyncOpenAI(api_key=settings.openai_api_key)
         
     async def chat_with_case(self, case_id: str, user_message: str, chat_type: str = "general") -> Dict:
-        """Enhanced chat with improved source relevance filtering"""
+        """Enhanced chat with improved source relevance filtering - FIXED VERSION"""
         try:
-            # Search for relevant documents
+            logger.info(f"Processing chat request for case {case_id}: {user_message}")
+            
+            # Search for relevant documents with LOWER threshold
             search_results = await self.vector_store.search_documents(
                 case_id=case_id,
                 query=user_message,
-                limit=15  # Get more candidates to filter from
+                limit=20  # Get more candidates
             )
             
-            # Filter and rank results by relevance
+            logger.info(f"Vector search returned {len(search_results)} results")
+            
+            # If no results, try a broader search
+            if not search_results:
+                logger.warning("No results from initial search, trying broader search")
+                # Try searching for individual words
+                words = user_message.split()
+                for word in words:
+                    if len(word) > 3:  # Only search meaningful words
+                        broader_results = await self.vector_store.search_documents(
+                            case_id=case_id,
+                            query=word,
+                            limit=10
+                        )
+                        search_results.extend(broader_results)
+                        if len(search_results) >= 5:
+                            break
+            
+            # Filter and rank results by relevance with MUCH lower threshold
             relevant_results = await self._filter_relevant_results(user_message, search_results)
             
-            # Prepare context from only the most relevant sources
+            logger.info(f"After relevance filtering: {len(relevant_results)} results")
+            
+            # Prepare context from the most relevant sources
             context_parts = []
             file_sources = []
             
-            for result in relevant_results[:5]:  # Use only top 5 most relevant
+            # Use MORE results and LOWER threshold
+            for result in relevant_results[:10]:  # Use top 10 instead of 5
                 file_path = result.get('file_path', '')
                 file_name = os.path.basename(file_path) if file_path else 'unknown'
                 file_type = result.get('file_type', 'document')
                 
-                # Extract content and check relevance
+                # Extract content with MUCH lower relevance threshold
                 content_info = await self._extract_relevant_content(result, user_message)
                 
-                if content_info['content'] and content_info['relevance_score'] > 0.3:  # Minimum relevance threshold
+                # EXTREMELY low threshold - almost everything should pass now
+                if content_info['content'] and content_info['relevance_score'] > 0.01:  # Changed from 0.1 to 0.01
                     file_info = {
                         'name': file_name,
                         'path': file_path,
@@ -53,28 +77,63 @@ class RAGSystem:
                     context_parts.append(f"File: {file_name}\nContent: {content_info['content']}")
                     file_sources.append(file_info)
             
+            logger.info(f"Using {len(context_parts)} files for context")
+            
             # Sort file sources by relevance
             file_sources.sort(key=lambda x: x['relevance_score'], reverse=True)
             
             # Build enhanced system prompt
             system_prompt = self._build_enhanced_system_prompt(chat_type)
             
-            # Build user prompt with filtered context
+            # Build user prompt with context - ALWAYS provide available files info
             if context_parts:
                 context_text = "\n\n".join(context_parts)
                 user_prompt = f"""
 Question: {user_message}
 
-Relevant case files with content:
+Available case files with relevant content:
 {context_text}
 
-Please provide a clear, concise answer based ONLY on the information that directly relates to the question. If some files don't contain relevant information for this specific question, don't mention them in your response.
+Please provide a helpful answer based on the available information. If the specific information requested isn't available, explain what files are available and suggest alternative questions.
 """
             else:
-                user_prompt = f"""
+                # IMPROVED fallback response with actual file list
+                try:
+                    # Get list of available files
+                    all_results = await self.vector_store.search_documents(case_id, "", limit=50)
+                    file_list = []
+                    seen_files = set()
+                    
+                    for result in all_results:
+                        filename = result.get('metadata', {}).get('filename') or os.path.basename(result.get('file_path', ''))
+                        if filename and filename not in seen_files:
+                            file_list.append(filename)
+                            seen_files.add(filename)
+                    
+                    if file_list:
+                        files_text = "\n".join([f"- {f}" for f in file_list[:20]])  # Show first 20
+                        user_prompt = f"""
 Question: {user_message}
 
-I don't have any relevant content available to answer this specific question. Please let the user know what files are available and suggest they may need to upload more specific documents or ask a different question.
+I don't have specific content that directly answers your question, but I have access to these case files:
+
+{files_text}
+
+Please let the user know what files are available and suggest they ask more specific questions about these files, or ask me to summarize the content of specific files.
+"""
+                    else:
+                        user_prompt = f"""
+Question: {user_message}
+
+I don't have access to any case files for this case. Please make sure files have been uploaded and processed correctly.
+"""
+                        
+                except Exception as e:
+                    logger.error(f"Error getting file list: {e}")
+                    user_prompt = f"""
+Question: {user_message}
+
+I'm having trouble accessing the case files. Please check that files have been uploaded and processed correctly.
 """
             
             # Call OpenAI
@@ -84,27 +143,32 @@ I don't have any relevant content available to answer this specific question. Pl
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                temperature=0.2,  # Lower temperature for more focused responses
+                temperature=0.2,
                 max_tokens=600
             )
             
             answer = response.choices[0].message.content
             
-            # Only return sources that were actually relevant
-            relevant_sources = [f for f in file_sources if f['relevance_score'] > 0.5]
+            # Return sources that were actually used (extremely low threshold)
+            relevant_sources = [f for f in file_sources if f['relevance_score'] > 0.01]  # Changed from 0.1 to 0.01
             
             return {
                 "answer": answer,
                 "sources": [f.get('path', '') for f in relevant_sources],
                 "file_sources": relevant_sources,
                 "confidence": self._calculate_confidence(relevant_sources),
-                "context_used": len(context_parts) > 0
+                "context_used": len(context_parts) > 0,
+                "debug_info": {
+                    "total_search_results": len(search_results),
+                    "relevant_results": len(relevant_results),
+                    "context_parts": len(context_parts)
+                }
             }
             
         except Exception as e:
             logger.error(f"Error in RAG chat: {str(e)}")
             return {
-                "answer": "I apologize, but I encountered an error while processing your request. Please try again.",
+                "answer": "I apologize, but I encountered an error while processing your request. Please try again or check the system logs for more details.",
                 "sources": [],
                 "file_sources": [],
                 "confidence": 0.0,
@@ -112,24 +176,34 @@ I don't have any relevant content available to answer this specific question. Pl
             }
     
     async def _filter_relevant_results(self, query: str, search_results: List[Dict]) -> List[Dict]:
-        """Filter search results by relevance to the specific query"""
+        """Filter search results by relevance - EXTREMELY permissive"""
         if not search_results:
             return []
         
         query_lower = query.lower()
         query_words = set(re.findall(r'\w+', query_lower))
         
-        # Remove common stop words that don't help with relevance
-        stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'what', 'how', 'when', 'where', 'why', 'who', 'is', 'are', 'was', 'were', 'do', 'does', 'did', 'have', 'has', 'had', 'can', 'could', 'should', 'would', 'will'}
+        # Remove fewer stop words to catch more connections
+        stop_words = {'the', 'a', 'an', 'and', 'or', 'but'}
         query_words = query_words - stop_words
+        
+        # Add semantic expansion for legal terms
+        expanded_query_words = self._expand_legal_query(query_words)
         
         scored_results = []
         
         for result in search_results:
-            relevance_score = await self._calculate_content_relevance(result, query_words, query_lower)
+            relevance_score = await self._calculate_content_relevance(result, expanded_query_words, query_lower)
             
-            if relevance_score > 0.1:  # Minimum threshold
+            # EXTREMELY low threshold - almost everything passes
+            if relevance_score > 0.01:  # Reduced from 0.05 to 0.01
                 result['calculated_relevance'] = relevance_score
+                scored_results.append(result)
+        
+        # If still no results, include everything with any score
+        if not scored_results and search_results:
+            for result in search_results:
+                result['calculated_relevance'] = 0.1  # Give everything a base score
                 scored_results.append(result)
         
         # Sort by relevance score
@@ -137,8 +211,33 @@ I don't have any relevant content available to answer this specific question. Pl
         
         return scored_results
     
+    def _expand_legal_query(self, query_words: set) -> set:
+        """Expand query with legal synonyms and related terms"""
+        expanded_words = set(query_words)
+        
+        # Legal term expansions
+        legal_expansions = {
+            'witness': ['interview', 'statement', 'testimony', 'deposition', 'account'],
+            'tip': ['report', 'information', 'lead', 'tip', 'cjis', 'investigative'],
+            'tips': ['reports', 'information', 'leads', 'tips', 'cjis', 'investigative'],
+            'information': ['data', 'details', 'facts', 'evidence', 'content'],
+            'phone': ['cell', 'mobile', 'telephone', 'call', 'contact', 'lg', 'iphone'],
+            'report': ['document', 'file', 'analysis', 'summary', 'study'],
+            'interview': ['conversation', 'discussion', 'questioning', 'statement'],
+            'evidence': ['proof', 'documentation', 'material', 'exhibit'],
+            'investigation': ['inquiry', 'probe', 'examination', 'review'],
+            'suspect': ['person', 'individual', 'subject', 'defendant'],
+            'alibi': ['whereabouts', 'location', 'timeline', 'schedule']
+        }
+        
+        for word in list(query_words):
+            if word in legal_expansions:
+                expanded_words.update(legal_expansions[word])
+        
+        return expanded_words
+    
     async def _calculate_content_relevance(self, result: Dict, query_words: set, query_lower: str) -> float:
-        """Calculate how relevant a document is to the specific query"""
+        """Calculate how relevant a document is - EXTREMELY permissive scoring"""
         relevance_score = 0.0
         
         # Get all searchable text from the document
@@ -166,6 +265,10 @@ I don't have any relevant content available to answer this specific question. Pl
         if file_path:
             searchable_texts.append(os.path.basename(file_path))
         
+        # Check metadata filename
+        if 'metadata' in result and result['metadata'].get('filename'):
+            searchable_texts.append(result['metadata']['filename'])
+        
         # Calculate relevance based on word matches and context
         for text in searchable_texts:
             if not text:
@@ -175,33 +278,53 @@ I don't have any relevant content available to answer this specific question. Pl
             
             # Exact phrase match (high score)
             if query_lower in text_lower:
-                relevance_score += 2.0
+                relevance_score += 3.0  # Increased from 2.0
             
-            # Individual word matches
+            # Individual word matches - VERY generous scoring
             text_words = set(re.findall(r'\w+', text_lower))
             word_matches = query_words.intersection(text_words)
             
             if word_matches:
-                # Score based on percentage of query words found
-                word_match_ratio = len(word_matches) / len(query_words) if query_words else 0
-                relevance_score += word_match_ratio * 1.0
+                # Much more generous scoring for word matches
+                word_match_ratio = len(word_matches) / max(len(query_words), 1)
+                relevance_score += word_match_ratio * 2.0  # Increased from 1.5
                 
-                # Bonus for multiple word matches in close proximity
-                for word in word_matches:
-                    if text_lower.count(word) > 1:
-                        relevance_score += 0.1
+                # Additional bonus for multiple matches
+                if len(word_matches) > 1:
+                    relevance_score += 1.0  # Increased from 0.5
+                
+                # Bonus for each matched word
+                relevance_score += len(word_matches) * 0.3
+            
+            # Partial word matches (for related terms)
+            for query_word in query_words:
+                if len(query_word) > 3:  # Only for meaningful words
+                    for text_word in text_words:
+                        if query_word in text_word or text_word in query_word:
+                            relevance_score += 0.2
         
-        # Filename relevance bonus
+        # Filename relevance bonus - VERY generous
         filename = os.path.basename(result.get('file_path', ''))
         filename_lower = filename.lower()
         for word in query_words:
             if word in filename_lower:
-                relevance_score += 0.3
+                relevance_score += 1.0  # Increased from 0.5
+            # Partial filename matches
+            elif len(word) > 3:
+                for filename_part in filename_lower.split():
+                    if word in filename_part or filename_part in word:
+                        relevance_score += 0.5
         
-        return min(relevance_score, 3.0)  # Cap at 3.0
+        # Special bonus for legal document patterns in filename
+        legal_patterns = ['tip', 'report', 'interview', 'cjis', 'statement', 'witness', 'investigation']
+        for pattern in legal_patterns:
+            if pattern in filename_lower:
+                relevance_score += 0.5
+        
+        return min(relevance_score, 10.0)  # Increased cap from 5.0 to 10.0
     
     async def _extract_relevant_content(self, result: Dict, query: str) -> Dict:
-        """Extract the most relevant content from a document for the specific query"""
+        """Extract the most relevant content - MORE permissive"""
         file_type = result.get('file_type', 'document')
         query_lower = query.lower()
         
@@ -213,6 +336,8 @@ I don't have any relevant content available to answer this specific question. Pl
         }
         
         # Extract content based on file type
+        full_text = ''
+        
         if file_type == 'audio' and 'transcript' in result:
             full_text = result['transcript'].get('text', '')
             content_info['content_type'] = 'transcript'
@@ -232,36 +357,38 @@ I don't have any relevant content available to answer this specific question. Pl
         elif file_type == 'document' and 'content' in result:
             full_text = result.get('content', '')
             content_info['content_type'] = 'document_text'
-            content_info['confidence'] = 0.9  # High confidence for extracted text
-        
-        else:
-            return content_info
+            content_info['confidence'] = 0.9
         
         if not full_text:
-            return content_info
+            # Fallback to any available text
+            if 'summary' in result:
+                full_text = result['summary']
+                content_info['content_type'] = 'summary'
+                content_info['confidence'] = 0.7
         
-        # Find the most relevant excerpt
-        relevant_excerpt = self._find_relevant_excerpt(full_text, query_lower)
-        content_info['content'] = relevant_excerpt
-        
-        # Calculate relevance score for this specific content
-        content_info['relevance_score'] = self._score_content_relevance(relevant_excerpt, query_lower)
+        if full_text:
+            # Get relevant excerpt - MORE generous
+            relevant_excerpt = self._find_relevant_excerpt(full_text, query_lower)
+            content_info['content'] = relevant_excerpt
+            
+            # More generous relevance scoring
+            content_info['relevance_score'] = self._score_content_relevance(relevant_excerpt, query_lower)
         
         return content_info
     
     def _find_relevant_excerpt(self, text: str, query_lower: str) -> str:
-        """Find the most relevant excerpt from the text"""
+        """Find relevant excerpt - return MORE content"""
         if not text or not query_lower:
-            return text[:400] + "..." if len(text) > 400 else text
+            return text[:800] + "..." if len(text) > 800 else text  # Increased from 400
         
         # If query is found in text, extract around it
         text_lower = text.lower()
         query_pos = text_lower.find(query_lower)
         
         if query_pos != -1:
-            # Extract context around the query
-            start = max(0, query_pos - 200)
-            end = min(len(text), query_pos + len(query_lower) + 200)
+            # Extract MORE context around the query
+            start = max(0, query_pos - 300)  # Increased from 200
+            end = min(len(text), query_pos + len(query_lower) + 300)  # Increased from 200
             excerpt = text[start:end]
             
             # Add ellipsis if truncated
@@ -272,14 +399,14 @@ I don't have any relevant content available to answer this specific question. Pl
                 
             return excerpt
         
-        # If no exact match, look for individual words
+        # If no exact match, look for individual words and return MORE content
         query_words = re.findall(r'\w+', query_lower)
         best_excerpt = ""
         best_score = 0
         
-        # Split text into chunks and score each
+        # Split text into larger chunks
         words = text.split()
-        chunk_size = 100
+        chunk_size = 150  # Increased from 100
         
         for i in range(0, len(words), chunk_size // 2):  # Overlapping chunks
             chunk = " ".join(words[i:i + chunk_size])
@@ -291,10 +418,10 @@ I don't have any relevant content available to answer this specific question. Pl
                 best_score = score
                 best_excerpt = chunk
         
-        return best_excerpt if best_excerpt else text[:400] + "..." if len(text) > 400 else text
+        return best_excerpt if best_excerpt else text[:800] + "..." if len(text) > 800 else text
     
     def _score_content_relevance(self, content: str, query_lower: str) -> float:
-        """Score how relevant the content is to the query"""
+        """Score content relevance - MORE generous"""
         if not content or not query_lower:
             return 0.0
         
@@ -304,7 +431,7 @@ I don't have any relevant content available to answer this specific question. Pl
         if query_lower in content_lower:
             return 1.0
         
-        # Individual word matches
+        # Individual word matches - more generous
         query_words = re.findall(r'\w+', query_lower)
         content_words = re.findall(r'\w+', content_lower)
         
@@ -312,20 +439,25 @@ I don't have any relevant content available to answer this specific question. Pl
             return 0.0
         
         matches = sum(1 for word in query_words if word in content_words)
-        return matches / len(query_words)
+        base_score = matches / len(query_words)
+        
+        # Bonus for multiple matches
+        if matches > 1:
+            base_score += 0.2
+        
+        return min(base_score, 1.0)
     
     def _build_enhanced_system_prompt(self, chat_type: str) -> str:
         """Build enhanced system prompt for better responses"""
         base_prompt = """You are an AI assistant specialized in legal discovery analysis. 
 
-IMPORTANT: Only reference files and information that directly relate to the user's question. Do not mention files that don't contain relevant information for the specific question asked.
+IMPORTANT: Always provide helpful responses based on available information. If you don't have specific information to answer a question, explain what files are available and suggest alternative approaches.
 
 Guidelines:
-- Provide clear, concise answers based only on relevant content
-- Focus on the actual substance that answers the question
-- If you don't have relevant information, say so clearly
-- Avoid mentioning files that don't relate to the specific question
-- Be direct and helpful in your analysis"""
+- Provide clear, useful answers based on available content
+- If specific information isn't available, explain what is available
+- Be direct and helpful in your analysis
+- Suggest specific follow-up questions when appropriate"""
         
         if chat_type == "privilege_review":
             base_prompt += "\n\nFocus: Identify attorney-client privileged communications or work product."
@@ -337,7 +469,7 @@ Guidelines:
         return base_prompt
     
     def _calculate_confidence(self, file_sources: List[Dict]) -> float:
-        """Calculate confidence based on relevant sources only"""
+        """Calculate confidence - more generous"""
         if not file_sources:
             return 0.0
         
@@ -346,4 +478,10 @@ Guidelines:
             for source in file_sources
         )
         
-        return min(total_confidence / len(file_sources), 1.0)
+        avg_confidence = total_confidence / len(file_sources)
+        
+        # Boost confidence if we have multiple sources
+        if len(file_sources) > 1:
+            avg_confidence = min(avg_confidence * 1.2, 1.0)
+        
+        return avg_confidence

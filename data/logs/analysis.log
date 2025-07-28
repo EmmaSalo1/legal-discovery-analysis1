@@ -675,3 +675,240 @@ A detailed migration guide is available here: https://github.com/openai/openai-p
 2025-07-28 09:49:59,623 - app.services.vector_store - INFO - Searching with query: 'files have i uploaded'
 2025-07-28 09:49:59,744 - app.services.vector_store - INFO - Raw search returned 39 results
 2025-07-28 09:50:01,536 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-28 09:53:38,802 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:53:39,221 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 09:54:01,387 - app.main - INFO - Received chat message for case Test01: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-28 09:54:01,387 - app.services.rag_system - INFO - Processing chat request for case Test01: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-28 09:54:01,425 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:01,425 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:01,425 - app.services.vector_store - INFO - Searching with query: 'tell me about the file phone call from winters to holeman re_ request to re interview brad holder on april 12 2017 docx'
+2025-07-28 09:54:01,656 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 09:54:01,656 - app.services.rag_system - INFO - Vector search returned 0 results
+2025-07-28 09:54:01,656 - app.services.rag_system - WARNING - No results from initial search, trying broader search
+2025-07-28 09:54:01,657 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:01,657 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:01,657 - app.services.vector_store - INFO - Searching with query: 'tell'
+2025-07-28 09:54:01,749 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:01,749 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:01,749 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:01,749 - app.services.vector_store - INFO - Searching with query: 'about'
+2025-07-28 09:54:01,842 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:01,842 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:01,842 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:01,842 - app.services.vector_store - INFO - Searching with query: 'file'
+2025-07-28 09:54:01,937 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:01,937 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:01,938 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:01,938 - app.services.vector_store - INFO - Searching with query: 'phone'
+2025-07-28 09:54:02,032 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:02,032 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:02,032 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:02,033 - app.services.vector_store - INFO - Searching with query: 'call'
+2025-07-28 09:54:02,131 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:02,132 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:02,132 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:02,132 - app.services.vector_store - INFO - Searching with query: 'from'
+2025-07-28 09:54:02,223 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:02,224 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:02,224 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:02,224 - app.services.vector_store - INFO - Searching with query: 'winters'
+2025-07-28 09:54:02,322 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:02,322 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:02,322 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:02,322 - app.services.vector_store - INFO - Searching with query: 'holeman'
+2025-07-28 09:54:02,419 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:02,419 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:02,419 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:02,419 - app.services.vector_store - INFO - Searching with query: 'request'
+2025-07-28 09:54:02,522 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:02,523 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:02,523 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:02,523 - app.services.vector_store - INFO - Searching with query: 're interview'
+2025-07-28 09:54:02,622 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:02,623 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:02,623 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:02,623 - app.services.vector_store - INFO - Searching with query: 'brad'
+2025-07-28 09:54:02,719 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:02,720 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:02,720 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:02,720 - app.services.vector_store - INFO - Searching with query: 'holder'
+2025-07-28 09:54:02,814 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:02,815 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:02,815 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:02,815 - app.services.vector_store - INFO - Searching with query: 'april'
+2025-07-28 09:54:02,912 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:02,913 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:02,913 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:02,913 - app.services.vector_store - INFO - Searching with query: '2017 docx'
+2025-07-28 09:54:03,003 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:54:03,004 - app.services.rag_system - INFO - After relevance filtering: 0 results
+2025-07-28 09:54:03,004 - app.services.rag_system - INFO - Using 0 files for context
+2025-07-28 09:54:03,004 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:03,004 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:03,004 - app.services.vector_store - INFO - Searching with query: ''
+2025-07-28 09:54:03,096 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 09:54:18,559 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-28 09:54:37,345 - app.main - INFO - Received chat message for case Test01: Tell me about the file "Mullin discovers 1st DVR malfunction on Aug 10, 2017.docx"
+2025-07-28 09:54:37,345 - app.services.rag_system - INFO - Processing chat request for case Test01: Tell me about the file "Mullin discovers 1st DVR malfunction on Aug 10, 2017.docx"
+2025-07-28 09:54:37,347 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:54:37,347 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:54:37,347 - app.services.vector_store - INFO - Searching with query: 'tell me about the file mullin discovers 1st dvr malfunction on aug 10 2017 docx'
+2025-07-28 09:54:37,474 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 09:54:37,656 - app.services.rag_system - INFO - Vector search returned 2 results
+2025-07-28 09:54:37,656 - app.services.rag_system - INFO - After relevance filtering: 2 results
+2025-07-28 09:54:37,657 - app.services.rag_system - INFO - Using 2 files for context
+2025-07-28 09:54:56,976 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-28 09:55:39,426 - app.main - INFO - Received chat message for case Test01: Were there any tips from witnesses?
+2025-07-28 09:55:39,427 - app.services.rag_system - INFO - Processing chat request for case Test01: Were there any tips from witnesses?
+2025-07-28 09:55:39,431 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:55:39,431 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:55:39,431 - app.services.vector_store - INFO - Searching with query: 'there any tips from witnesses'
+2025-07-28 09:55:39,568 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 09:55:39,568 - app.services.rag_system - INFO - Vector search returned 0 results
+2025-07-28 09:55:39,568 - app.services.rag_system - WARNING - No results from initial search, trying broader search
+2025-07-28 09:55:39,569 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:55:39,569 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:55:39,569 - app.services.vector_store - INFO - Searching with query: 'were'
+2025-07-28 09:55:39,660 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:55:39,660 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:55:39,660 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:55:39,660 - app.services.vector_store - INFO - Searching with query: 'there'
+2025-07-28 09:55:39,750 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:55:39,751 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:55:39,751 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:55:39,751 - app.services.vector_store - INFO - Searching with query: 'tips'
+2025-07-28 09:55:39,842 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:55:39,842 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:55:39,842 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:55:39,842 - app.services.vector_store - INFO - Searching with query: 'from'
+2025-07-28 09:55:39,933 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:55:39,933 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:55:39,933 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:55:39,933 - app.services.vector_store - INFO - Searching with query: 'witnesses'
+2025-07-28 09:55:40,024 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:55:40,024 - app.services.rag_system - INFO - After relevance filtering: 0 results
+2025-07-28 09:55:40,024 - app.services.rag_system - INFO - Using 0 files for context
+2025-07-28 09:55:40,025 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:55:40,025 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:55:40,025 - app.services.vector_store - INFO - Searching with query: ''
+2025-07-28 09:55:40,115 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 09:55:49,828 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-28 09:57:22,077 - app.main - INFO - Received chat message for case Test01: Summarize information gained from phone extractions
+2025-07-28 09:57:22,077 - app.services.rag_system - INFO - Processing chat request for case Test01: Summarize information gained from phone extractions
+2025-07-28 09:57:22,078 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:57:22,078 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:57:22,078 - app.services.vector_store - INFO - Searching with query: 'summarize information gained from phone extractions'
+2025-07-28 09:57:22,206 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 09:57:22,207 - app.services.rag_system - INFO - Vector search returned 0 results
+2025-07-28 09:57:22,207 - app.services.rag_system - WARNING - No results from initial search, trying broader search
+2025-07-28 09:57:22,207 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:57:22,207 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:57:22,207 - app.services.vector_store - INFO - Searching with query: 'summarize'
+2025-07-28 09:57:22,312 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:57:22,313 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:57:22,313 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:57:22,313 - app.services.vector_store - INFO - Searching with query: 'information'
+2025-07-28 09:57:22,407 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:57:22,408 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:57:22,408 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:57:22,408 - app.services.vector_store - INFO - Searching with query: 'gained'
+2025-07-28 09:57:22,507 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:57:22,508 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:57:22,508 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:57:22,508 - app.services.vector_store - INFO - Searching with query: 'from'
+2025-07-28 09:57:22,597 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:57:22,598 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:57:22,598 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:57:22,598 - app.services.vector_store - INFO - Searching with query: 'phone'
+2025-07-28 09:57:22,687 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:57:22,688 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:57:22,688 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:57:22,688 - app.services.vector_store - INFO - Searching with query: 'extractions'
+2025-07-28 09:57:22,778 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 09:57:22,778 - app.services.rag_system - INFO - After relevance filtering: 0 results
+2025-07-28 09:57:22,778 - app.services.rag_system - INFO - Using 0 files for context
+2025-07-28 09:57:22,778 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 09:57:22,778 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 09:57:22,778 - app.services.vector_store - INFO - Searching with query: ''
+2025-07-28 09:57:22,870 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 09:57:43,049 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-28 10:17:01,350 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:17:01,722 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:17:29,770 - app.main - INFO - Received chat message for case Test01: What information was provided through tips?
+2025-07-28 10:17:29,771 - app.services.rag_system - INFO - Processing chat request for case Test01: What information was provided through tips?
+2025-07-28 10:17:29,800 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:17:29,800 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:17:29,800 - app.services.vector_store - INFO - Searching with query: 'information provided through tips'
+2025-07-28 10:17:30,027 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 10:17:30,027 - app.services.rag_system - INFO - Vector search returned 0 results
+2025-07-28 10:17:30,027 - app.services.rag_system - WARNING - No results from initial search, trying broader search
+2025-07-28 10:17:30,028 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:17:30,028 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:17:30,028 - app.services.vector_store - INFO - Searching with query: 'what'
+2025-07-28 10:17:30,121 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:17:30,122 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:17:30,122 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:17:30,122 - app.services.vector_store - INFO - Searching with query: 'information'
+2025-07-28 10:17:30,212 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:17:30,213 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:17:30,213 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:17:30,213 - app.services.vector_store - INFO - Searching with query: 'provided'
+2025-07-28 10:17:30,300 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:17:30,301 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:17:30,301 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:17:30,301 - app.services.vector_store - INFO - Searching with query: 'through'
+2025-07-28 10:17:30,394 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:17:30,394 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:17:30,394 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:17:30,394 - app.services.vector_store - INFO - Searching with query: 'tips'
+2025-07-28 10:17:30,482 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:17:30,482 - app.services.rag_system - INFO - After relevance filtering: 0 results
+2025-07-28 10:17:30,482 - app.services.rag_system - INFO - Using 0 files for context
+2025-07-28 10:17:30,483 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:17:30,483 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:17:30,483 - app.services.vector_store - INFO - Searching with query: ''
+2025-07-28 10:17:30,573 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 10:17:49,551 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-28 10:18:16,222 - app.main - INFO - Received chat message for case Test01: Who were the law enforcement officers that worked on this case
+2025-07-28 10:18:16,223 - app.services.rag_system - INFO - Processing chat request for case Test01: Who were the law enforcement officers that worked on this case
+2025-07-28 10:18:16,225 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:18:16,225 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:18:16,225 - app.services.vector_store - INFO - Searching with query: 'the law enforcement officers that worked on this case'
+2025-07-28 10:18:16,354 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 10:18:16,354 - app.services.rag_system - INFO - Vector search returned 0 results
+2025-07-28 10:18:16,354 - app.services.rag_system - WARNING - No results from initial search, trying broader search
+2025-07-28 10:18:16,355 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:18:16,355 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:18:16,355 - app.services.vector_store - INFO - Searching with query: 'were'
+2025-07-28 10:18:16,448 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:18:16,449 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:18:16,449 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:18:16,449 - app.services.vector_store - INFO - Searching with query: 'enforcement'
+2025-07-28 10:18:16,539 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:18:16,540 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:18:16,540 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:18:16,540 - app.services.vector_store - INFO - Searching with query: 'officers'
+2025-07-28 10:18:16,629 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:18:16,630 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:18:16,630 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:18:16,630 - app.services.vector_store - INFO - Searching with query: 'that'
+2025-07-28 10:18:16,726 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:18:16,727 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:18:16,727 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:18:16,727 - app.services.vector_store - INFO - Searching with query: 'worked'
+2025-07-28 10:18:16,817 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:18:16,817 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:18:16,817 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:18:16,817 - app.services.vector_store - INFO - Searching with query: 'this'
+2025-07-28 10:18:16,906 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:18:16,907 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:18:16,907 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:18:16,907 - app.services.vector_store - INFO - Searching with query: 'case'
+2025-07-28 10:18:17,000 - app.services.vector_store - INFO - Raw search returned 30 results
+2025-07-28 10:18:17,001 - app.services.rag_system - INFO - After relevance filtering: 0 results
+2025-07-28 10:18:17,001 - app.services.rag_system - INFO - Using 0 files for context
+2025-07-28 10:18:17,001 - app.services.vector_store - INFO - Collection case_Test01 has 5 documents
+2025-07-28 10:18:17,001 - app.services.vector_store - INFO - Sample document IDs: ['doc_Test01_2_13 Timeline.docx', 'doc_Test01_2_13 Timeline.docx_full', 'image_Test01_3 girls_ we “just missed” the girls on Feb 13, 2017.png']
+2025-07-28 10:18:17,001 - app.services.vector_store - INFO - Searching with query: ''
+2025-07-28 10:18:17,091 - app.services.vector_store - INFO - Raw search returned 39 results
+2025-07-28 10:18:26,004 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
