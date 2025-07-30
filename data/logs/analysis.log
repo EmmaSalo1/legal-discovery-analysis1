@@ -953,3 +953,330 @@ A detailed migration guide is available here: https://github.com/openai/openai-p
 2025-07-28 10:38:43,418 - app.main - INFO - Created case: Test
 2025-07-28 10:38:50,916 - app.main - INFO - Received chat message for case Test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
 2025-07-28 10:38:50,916 - app.main - ERROR - Error processing chat message: 'RAGSystem' object has no attribute 'chat_with_case'
+2025-07-28 10:48:32,558 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 10:48:32,953 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:05:07,796 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:05:08,175 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:05:18,224 - app.main - INFO - Received chat message for case Test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-28 11:05:18,225 - app.services.rag_system - INFO - Processing chat message for case Test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-28 11:05:18,225 - app.services.rag_system - ERROR - Error in RAG chat: 'VectorStore' object has no attribute 'search_documents'
+2025-07-28 11:06:38,533 - app.main - INFO - Received chat message for case Test: What have I uploaded
+2025-07-28 11:06:38,535 - app.services.rag_system - INFO - Processing chat message for case Test: What have I uploaded
+2025-07-28 11:06:38,535 - app.services.rag_system - ERROR - Error in RAG chat: 'VectorStore' object has no attribute 'search_documents'
+2025-07-28 11:11:02,909 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:11:03,270 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:11:03,476 - app.main - INFO - OpenAI client initialized successfully
+2025-07-28 11:11:03,912 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:11:06,873 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:11:15,473 - app.main - INFO - Received chat message for case Test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-28 11:11:15,473 - app.main - INFO - Processing chat for case Test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-28 11:11:15,473 - app.main - ERROR - Vector search failed: 'VectorStore' object has no attribute 'search_documents'
+2025-07-28 11:11:15,473 - app.main - INFO - Sent response for case Test
+2025-07-28 11:11:34,074 - app.main - INFO - Created case: Test_1
+2025-07-28 11:11:34,106 - app.main - INFO - WebSocket connected for case Test_1
+2025-07-28 11:11:40,807 - app.main - INFO - Starting background processing for ./discovery_sets/Test_1/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-28 11:11:40,807 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test_1/plaintiff_production/documents/2_13 Timeline.docx (ext: .docx)
+2025-07-28 11:11:40,807 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test_1/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-28 11:11:41,043 - app.services.document_processor - INFO - Successfully extracted 134457 characters from ./discovery_sets/Test_1/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-28 11:11:41,044 - app.main - ERROR - Background processing failed for ./discovery_sets/Test_1/plaintiff_production/documents/2_13 Timeline.docx: 'VectorStore' object has no attribute 'add_document'
+2025-07-28 11:11:44,399 - app.main - INFO - Starting background processing for ./discovery_sets/Test_1/plaintiff_production/documents/Appellate CCS.docx
+2025-07-28 11:11:44,399 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test_1/plaintiff_production/documents/Appellate CCS.docx (ext: .docx)
+2025-07-28 11:11:44,399 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test_1/plaintiff_production/documents/Appellate CCS.docx
+2025-07-28 11:11:44,419 - app.services.document_processor - INFO - Successfully extracted 3285 characters from ./discovery_sets/Test_1/plaintiff_production/documents/Appellate CCS.docx
+2025-07-28 11:11:44,419 - app.main - ERROR - Background processing failed for ./discovery_sets/Test_1/plaintiff_production/documents/Appellate CCS.docx: 'VectorStore' object has no attribute 'add_document'
+2025-07-28 11:11:50,369 - app.main - INFO - Starting background processing for ./discovery_sets/Test_1/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 11:11:50,369 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test_1/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (ext: .docx)
+2025-07-28 11:11:50,369 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test_1/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 11:11:50,377 - app.services.document_processor - INFO - Successfully extracted 1938 characters from ./discovery_sets/Test_1/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 11:11:50,378 - app.main - ERROR - Background processing failed for ./discovery_sets/Test_1/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx: 'VectorStore' object has no attribute 'add_document'
+2025-07-28 11:11:53,689 - app.main - INFO - Starting background processing for ./discovery_sets/Test_1/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-28 11:11:53,690 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test_1/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx (ext: .docx)
+2025-07-28 11:11:53,690 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test_1/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-28 11:11:53,694 - app.services.document_processor - INFO - Successfully extracted 1270 characters from ./discovery_sets/Test_1/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-28 11:11:53,694 - app.main - ERROR - Background processing failed for ./discovery_sets/Test_1/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx: 'VectorStore' object has no attribute 'add_document'
+2025-07-28 11:11:57,716 - app.main - INFO - Starting background processing for ./discovery_sets/Test_1/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-28 11:11:57,716 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test_1/plaintiff_production/documents/Bunner 2_15 copy.docx (ext: .docx)
+2025-07-28 11:11:57,716 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test_1/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-28 11:11:57,767 - app.services.document_processor - INFO - Successfully extracted 15826 characters from ./discovery_sets/Test_1/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-28 11:11:57,767 - app.main - ERROR - Background processing failed for ./discovery_sets/Test_1/plaintiff_production/documents/Bunner 2_15 copy.docx: 'VectorStore' object has no attribute 'add_document'
+2025-07-28 11:12:01,988 - app.main - INFO - Starting background processing for ./discovery_sets/Test_1/plaintiff_production/documents/Bunner report re_ LG phone on Oct 12, 2017.docx
+2025-07-28 11:12:01,988 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test_1/plaintiff_production/documents/Bunner report re_ LG phone on Oct 12, 2017.docx (ext: .docx)
+2025-07-28 11:12:01,988 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test_1/plaintiff_production/documents/Bunner report re_ LG phone on Oct 12, 2017.docx
+2025-07-28 11:12:02,032 - app.services.document_processor - INFO - Successfully extracted 23132 characters from ./discovery_sets/Test_1/plaintiff_production/documents/Bunner report re_ LG phone on Oct 12, 2017.docx
+2025-07-28 11:12:02,032 - app.main - ERROR - Background processing failed for ./discovery_sets/Test_1/plaintiff_production/documents/Bunner report re_ LG phone on Oct 12, 2017.docx: 'VectorStore' object has no attribute 'add_document'
+2025-07-28 11:12:09,900 - app.main - INFO - Received chat message for case Test_1: Tell me about the file "Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx"
+2025-07-28 11:12:09,901 - app.main - INFO - Processing chat for case Test_1: Tell me about the file "Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx"
+2025-07-28 11:12:09,901 - app.main - ERROR - Vector search failed: 'VectorStore' object has no attribute 'search_documents'
+2025-07-28 11:12:09,901 - app.main - INFO - Sent response for case Test_1
+2025-07-28 11:14:00,575 - app.main - INFO - Received chat message for case Test_1: What files have I uploaded
+2025-07-28 11:14:00,577 - app.main - INFO - Processing chat for case Test_1: What files have I uploaded
+2025-07-28 11:14:00,577 - app.main - ERROR - Vector search failed: 'VectorStore' object has no attribute 'search_documents'
+2025-07-28 11:14:00,577 - app.main - INFO - Sent response for case Test_1
+2025-07-28 11:25:35,648 - app.main - INFO - WebSocket disconnected for case Test_1
+2025-07-28 11:25:35,649 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:25:35,649 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:25:41,589 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:25:41,602 - app.main - INFO - WebSocket connected for case Test_1
+2025-07-28 11:25:41,617 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:30:09,463 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:30:09,464 - app.main - INFO - WebSocket disconnected for case Test_1
+2025-07-28 11:30:09,464 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:30:26,159 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:30:26,523 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:30:26,601 - app.main - INFO - ChromaDB initialized at ./data/vector_db
+2025-07-28 11:30:26,719 - app.main - INFO - OpenAI client initialized successfully
+2025-07-28 11:30:26,722 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:30:26,735 - app.main - INFO - WebSocket connected for case Test_1
+2025-07-28 11:30:26,749 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:30:39,721 - app.main - INFO - Received chat message for case Test_1: What files have been uploaded
+2025-07-28 11:30:39,723 - app.main - INFO - Processing chat for case Test_1: What files have been uploaded
+2025-07-28 11:30:39,728 - app.main - WARNING - Collection case_Test_1 not found
+2025-07-28 11:30:39,728 - app.main - INFO - Found 0 search results
+2025-07-28 11:30:39,728 - app.main - INFO - Sent response for case Test_1 with 0 sources
+2025-07-28 11:30:46,566 - app.main - INFO - Received chat message for case Test_1: Tell me about the file "Bunner 2_15 copy.docx"
+2025-07-28 11:30:46,566 - app.main - INFO - Processing chat for case Test_1: Tell me about the file "Bunner 2_15 copy.docx"
+2025-07-28 11:30:46,567 - app.main - WARNING - Collection case_Test_1 not found
+2025-07-28 11:30:46,567 - app.main - INFO - Found 0 search results
+2025-07-28 11:30:46,567 - app.main - INFO - Sent response for case Test_1 with 0 sources
+2025-07-28 11:30:50,951 - app.main - INFO - WebSocket disconnected for case Test_1
+2025-07-28 11:31:06,948 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:31:06,948 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:31:20,304 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:31:20,636 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:31:20,677 - app.main - INFO - ChromaDB initialized at ./data/vector_db
+2025-07-28 11:31:20,790 - app.main - INFO - OpenAI client initialized successfully
+2025-07-28 11:31:21,968 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:31:24,623 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:31:29,556 - app.main - INFO - Created case: 01
+2025-07-28 11:31:29,682 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 11:31:34,707 - app.main - INFO - Uploaded and queued for processing: 2_13 Timeline.docx
+2025-07-28 11:31:34,709 - app.main - INFO - Starting background processing for ./discovery_sets/01/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-28 11:31:34,709 - app.services.document_processor - INFO - Processing file: ./discovery_sets/01/plaintiff_production/documents/2_13 Timeline.docx (ext: .docx)
+2025-07-28 11:31:34,709 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/01/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-28 11:31:34,923 - app.services.document_processor - INFO - Successfully extracted 134457 characters from ./discovery_sets/01/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-28 11:31:34,923 - app.main - INFO - Adding document to vector store for case 01
+2025-07-28 11:31:34,929 - app.main - INFO - Created new collection: case_01
+2025-07-28 11:31:34,929 - app.main - INFO - Extracted 135499 characters of content for document file
+2025-07-28 11:31:35,245 - app.main - INFO - Successfully added document doc_01_2_13_Timeline.docx to collection case_01
+2025-07-28 11:31:35,412 - app.main - INFO - Stored full document data for doc_01_2_13_Timeline.docx
+2025-07-28 11:31:35,412 - app.main - INFO - Successfully processed and added ./discovery_sets/01/plaintiff_production/documents/2_13 Timeline.docx to vector store
+2025-07-28 11:31:52,208 - app.main - INFO - Received chat message for case 01: What files have I uploaded
+2025-07-28 11:31:52,210 - app.main - INFO - Processing chat for case 01: What files have I uploaded
+2025-07-28 11:31:52,210 - app.main - INFO - Searching in collection: case_01
+2025-07-28 11:31:52,363 - app.main - INFO - Returning 1 search results for case 01
+2025-07-28 11:31:52,363 - app.main - INFO - Found 1 search results
+2025-07-28 11:31:52,363 - app.main - INFO - Sent response for case 01 with 0 sources
+2025-07-28 11:31:58,260 - app.main - INFO - Received chat message for case 01: Tell me about the file ".DS_Store"
+2025-07-28 11:31:58,260 - app.main - INFO - Processing chat for case 01: Tell me about the file ".DS_Store"
+2025-07-28 11:31:58,260 - app.main - INFO - Searching in collection: case_01
+2025-07-28 11:31:58,359 - app.main - INFO - Returning 1 search results for case 01
+2025-07-28 11:31:58,359 - app.main - INFO - Found 1 search results
+2025-07-28 11:31:58,359 - app.main - INFO - Sent response for case 01 with 0 sources
+2025-07-28 11:32:00,905 - app.main - INFO - Received chat message for case 01: Tell me about the file "2_13 Timeline.docx"
+2025-07-28 11:32:00,905 - app.main - INFO - Processing chat for case 01: Tell me about the file "2_13 Timeline.docx"
+2025-07-28 11:32:00,906 - app.main - INFO - Searching in collection: case_01
+2025-07-28 11:32:01,029 - app.main - INFO - Returning 1 search results for case 01
+2025-07-28 11:32:01,030 - app.main - INFO - Found 1 search results
+2025-07-28 11:32:01,030 - app.main - INFO - Sent response for case 01 with 0 sources
+2025-07-28 11:32:38,633 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 11:32:38,635 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:32:38,635 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:32:56,067 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:32:56,432 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:32:56,513 - app.main - INFO - ChromaDB initialized at ./data/vector_db
+2025-07-28 11:32:56,633 - app.main - INFO - OpenAI client initialized successfully
+2025-07-28 11:32:56,695 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 11:32:56,706 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:32:58,651 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:33:22,144 - app.main - INFO - Created case: 01
+2025-07-28 11:33:22,249 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 11:33:28,282 - app.main - INFO - Received chat message for case 01: Tell me about the file "2_13 Timeline.docx"
+2025-07-28 11:33:28,282 - app.main - INFO - Processing chat for case 01: Tell me about the file "2_13 Timeline.docx"
+2025-07-28 11:33:28,291 - app.main - INFO - Searching in collection: case_01
+2025-07-28 11:33:28,582 - app.main - INFO - Returning 1 search results for case 01
+2025-07-28 11:33:28,583 - app.main - INFO - Found 1 search results
+2025-07-28 11:33:28,583 - app.main - INFO - Sent response for case 01 with 0 sources
+2025-07-28 11:33:52,674 - app.main - INFO - Uploaded and queued for processing: Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 11:33:52,675 - app.main - INFO - Starting background processing for ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 11:33:52,675 - app.services.document_processor - INFO - Processing file: ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (ext: .docx)
+2025-07-28 11:33:52,675 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 11:33:52,733 - app.services.document_processor - INFO - Successfully extracted 1938 characters from ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-28 11:33:52,733 - app.main - INFO - Adding document to vector store for case 01
+2025-07-28 11:33:52,733 - app.main - INFO - Using existing collection: case_01
+2025-07-28 11:33:52,733 - app.main - INFO - Extracted 2143 characters of content for document file
+2025-07-28 11:33:52,883 - app.main - INFO - Successfully added document doc_01_Brad_Holder_2nd_interview_at_Logansport_PD_sometime_in_August_of_2017.docx to collection case_01
+2025-07-28 11:33:52,998 - app.main - INFO - Stored full document data for doc_01_Brad_Holder_2nd_interview_at_Logansport_PD_sometime_in_August_of_2017.docx
+2025-07-28 11:33:52,998 - app.main - INFO - Successfully processed and added ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx to vector store
+2025-07-28 11:34:38,471 - app.main - INFO - Received chat message for case 01: 1.1" 200 OK INFO:     127.0.0.1:55665 - "GET /api/cases/01/files HTTP/1.1" 200 OK INFO:     127.0.0.1:55667 - "WebSocket /ws/chat/01" [accepted] 2025-07-28 11:33:22,249 - app.main - INFO - WebSocket connected for case 01 INFO:     connection open 2025-07-28 11:33:28,282 - app.main - INFO - Received chat message for case 01: Tell me about the file "2_13 Timeline.docx" 2025-07-28 11:33:28,282 - app.main - INFO - Processing chat for case 01: Tell me about the file "2_13 Timeline.docx" 2025-07-28 11:33:28,291 - app.main - INFO - Searching in collection: case_01 2025-07-28 11:33:28,582 - app.main - INFO - Returning 1 search results for case 01 2025-07-28 11:33:28,583 - app.main - INFO - Found 1 search results 2025-07-28 11:33:28,583 - app.main - INFO - Sent response for case 01 with 0 sources 2025-07-28 11:33:52,674 - app.main - INFO - Uploaded and queued for processing: Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx INFO:     127.0.0.1:55666 - "POST /api/cases/01/documents/upload HTTP/1.1" 200 OK 2025-07-28 11:33:52,675 - app.main - INFO - Starting background processing for ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx 2025-07-28 11:33:52,675 - app.services.document_processor - INFO - Processing file: ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (ext: .docx) 2025-07-28 11:33:52,675 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx 2025-07-28 11:33:52,733 - app.services.document_processor - INFO - Successfully extracted 1938 characters from ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx 2025-07-28 11:33:52,733 - app.main - INFO - Adding document to vector store for case 01 2025-07-28 11:33:52,733 - app.main - INFO - Using existing collection: case_01 2025-07-28 11:33:52,733 - app.main - INFO - Extracted 2143 characters of content for document file 2025-07-28 11:33:52,883 - app.main - INFO - Successfully added document doc_01_Brad_Holder_2nd_interview_at_Logansport_PD_sometime_in_August_of_2017.docx to collection case_01 2025-07-28 11:33:52,998 - app.main - INFO - Stored full document data for doc_01_Brad_Holder_2nd_interview_at_Logansport_PD_sometime_in_August_of_2017.docx 2025-07-28 11:33:52,998 - app.main - INFO - Successfully processed and added ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx to vector store INFO:     127.0.0.1:55666 - "GET /api/cases/01/files HTTP/1.1" 200 OK
+2025-07-28 11:34:38,472 - app.main - INFO - Processing chat for case 01: 1.1" 200 OK INFO:     127.0.0.1:55665 - "GET /api/cases/01/files HTTP/1.1" 200 OK INFO:     127.0.0.1:55667 - "WebSocket /ws/chat/01" [accepted] 2025-07-28 11:33:22,249 - app.main - INFO - WebSocket connected for case 01 INFO:     connection open 2025-07-28 11:33:28,282 - app.main - INFO - Received chat message for case 01: Tell me about the file "2_13 Timeline.docx" 2025-07-28 11:33:28,282 - app.main - INFO - Processing chat for case 01: Tell me about the file "2_13 Timeline.docx" 2025-07-28 11:33:28,291 - app.main - INFO - Searching in collection: case_01 2025-07-28 11:33:28,582 - app.main - INFO - Returning 1 search results for case 01 2025-07-28 11:33:28,583 - app.main - INFO - Found 1 search results 2025-07-28 11:33:28,583 - app.main - INFO - Sent response for case 01 with 0 sources 2025-07-28 11:33:52,674 - app.main - INFO - Uploaded and queued for processing: Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx INFO:     127.0.0.1:55666 - "POST /api/cases/01/documents/upload HTTP/1.1" 200 OK 2025-07-28 11:33:52,675 - app.main - INFO - Starting background processing for ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx 2025-07-28 11:33:52,675 - app.services.document_processor - INFO - Processing file: ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (ext: .docx) 2025-07-28 11:33:52,675 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx 2025-07-28 11:33:52,733 - app.services.document_processor - INFO - Successfully extracted 1938 characters from ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx 2025-07-28 11:33:52,733 - app.main - INFO - Adding document to vector store for case 01 2025-07-28 11:33:52,733 - app.main - INFO - Using existing collection: case_01 2025-07-28 11:33:52,733 - app.main - INFO - Extracted 2143 characters of content for document file 2025-07-28 11:33:52,883 - app.main - INFO - Successfully added document doc_01_Brad_Holder_2nd_interview_at_Logansport_PD_sometime_in_August_of_2017.docx to collection case_01 2025-07-28 11:33:52,998 - app.main - INFO - Stored full document data for doc_01_Brad_Holder_2nd_interview_at_Logansport_PD_sometime_in_August_of_2017.docx 2025-07-28 11:33:52,998 - app.main - INFO - Successfully processed and added ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx to vector store INFO:     127.0.0.1:55666 - "GET /api/cases/01/files HTTP/1.1" 200 OK
+2025-07-28 11:34:38,473 - app.main - INFO - Searching in collection: case_01
+2025-07-28 11:34:38,600 - app.main - INFO - Returning 2 search results for case 01
+2025-07-28 11:34:38,600 - app.main - INFO - Found 2 search results
+2025-07-28 11:34:38,601 - app.main - INFO - Sent response for case 01 with 0 sources
+2025-07-28 11:37:09,396 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:37:09,398 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 11:37:09,398 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:37:09,398 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 11:37:11,724 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:37:12,094 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:37:12,139 - app.main - INFO - ChromaDB initialized at ./data/vector_db
+2025-07-28 11:37:12,259 - app.main - INFO - OpenAI client initialized successfully
+2025-07-28 11:37:15,744 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:37:16,089 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:37:16,124 - app.main - INFO - ChromaDB initialized at ./data/vector_db
+2025-07-28 11:37:16,215 - app.main - INFO - OpenAI client initialized successfully
+2025-07-28 11:37:16,218 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:37:16,231 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:37:16,244 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 11:37:16,257 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 11:37:26,755 - app.main - INFO - Received chat message for case 01: Tell me about the file "2_13 Timeline.docx"
+2025-07-28 11:37:26,756 - app.main - INFO - Processing chat for case 01: Tell me about the file "2_13 Timeline.docx"
+2025-07-28 11:37:26,757 - app.main - INFO - Searching in collection: case_01
+2025-07-28 11:37:26,996 - app.main - INFO - Returning 2 search results for case 01
+2025-07-28 11:37:26,996 - app.main - INFO - Found 2 search results
+2025-07-28 11:37:26,996 - app.main - INFO - Result 0: filename=Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx, similarity=0, content_length=1938
+2025-07-28 11:37:26,996 - app.main - INFO - Result 1: filename=2_13 Timeline.docx, similarity=0, content_length=134457
+2025-07-28 11:37:26,996 - app.main - INFO - Added Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx to context (similarity: 0)
+2025-07-28 11:37:26,996 - app.main - INFO - Added 2_13 Timeline.docx to context (similarity: 0)
+2025-07-28 11:37:26,996 - app.main - INFO - Built context from 2 parts, 2 file sources
+2025-07-28 11:37:26,996 - app.main - INFO - Sending to OpenAI: 1004 characters
+2025-07-28 11:37:27,514 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-07-28 11:37:27,515 - app.main - ERROR - OpenAI API call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************Bi0A. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-07-28 11:37:27,515 - app.main - INFO - Sent response for case 01 with 2 sources
+2025-07-28 11:37:29,569 - app.main - INFO - Searching in collection: case_01
+2025-07-28 11:37:29,685 - app.main - INFO - Returning 1 search results for case 01
+2025-07-28 11:37:45,144 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 11:37:47,886 - app.main - INFO - Created case: test
+2025-07-28 11:37:47,926 - app.main - INFO - WebSocket connected for case test
+2025-07-28 11:37:53,001 - app.main - INFO - Received chat message for case test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-28 11:37:53,001 - app.main - INFO - Processing chat for case test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-28 11:37:53,002 - app.main - WARNING - Collection case_test not found
+2025-07-28 11:37:53,002 - app.main - INFO - Found 0 search results
+2025-07-28 11:37:53,002 - app.main - INFO - Built context from 0 parts, 0 file sources
+2025-07-28 11:37:53,003 - app.main - INFO - Sent response for case test with 0 sources
+2025-07-28 11:38:13,422 - app.main - INFO - Received chat message for case test: Summarize the Winters report
+2025-07-28 11:38:13,422 - app.main - INFO - Processing chat for case test: Summarize the Winters report
+2025-07-28 11:38:13,423 - app.main - WARNING - Collection case_test not found
+2025-07-28 11:38:13,424 - app.main - INFO - Found 0 search results
+2025-07-28 11:38:13,424 - app.main - INFO - Built context from 0 parts, 0 file sources
+2025-07-28 11:38:13,424 - app.main - INFO - Sent response for case test with 0 sources
+2025-07-28 11:38:21,828 - app.main - INFO - WebSocket disconnected for case test
+2025-07-28 11:38:24,057 - app.main - INFO - Created case: 01
+2025-07-28 11:38:24,088 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 11:38:29,421 - app.main - INFO - Received chat message for case 01: Tell me about the file "Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx"
+2025-07-28 11:38:29,421 - app.main - INFO - Processing chat for case 01: Tell me about the file "Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx"
+2025-07-28 11:38:29,422 - app.main - INFO - Searching in collection: case_01
+2025-07-28 11:38:29,542 - app.main - INFO - Returning 2 search results for case 01
+2025-07-28 11:38:29,542 - app.main - INFO - Found 2 search results
+2025-07-28 11:38:29,542 - app.main - INFO - Result 0: filename=Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx, similarity=0.14077508449554443, content_length=1938
+2025-07-28 11:38:29,542 - app.main - INFO - Result 1: filename=2_13 Timeline.docx, similarity=0, content_length=134457
+2025-07-28 11:38:29,542 - app.main - INFO - Added Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx to context (similarity: 0.14077508449554443)
+2025-07-28 11:38:29,542 - app.main - INFO - Added 2_13 Timeline.docx to context (similarity: 0)
+2025-07-28 11:38:29,542 - app.main - INFO - Built context from 2 parts, 2 file sources
+2025-07-28 11:38:29,542 - app.main - INFO - Sending to OpenAI: 1060 characters
+2025-07-28 11:38:29,828 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-07-28 11:38:29,829 - app.main - ERROR - OpenAI API call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************Bi0A. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-07-28 11:38:29,829 - app.main - INFO - Sent response for case 01 with 2 sources
+2025-07-28 11:40:59,819 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 11:40:59,820 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:40:59,820 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:40:59,820 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 11:41:03,827 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:41:04,193 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:41:04,237 - app.main - INFO - ChromaDB initialized at ./data/vector_db
+2025-07-28 11:41:04,361 - app.main - INFO - OpenAI client initialized successfully
+2025-07-28 11:41:04,825 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:41:05,627 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 11:41:05,641 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:41:05,656 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 11:41:10,931 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 11:41:10,931 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:41:10,931 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 11:41:10,931 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:41:42,574 - app.main - INFO - OpenAI API key configured: sk-proj-yI...
+2025-07-28 11:41:42,574 - app.main - INFO - OpenAI model: gpt-4-turbo-preview
+2025-07-28 11:41:42,589 - app.main - ERROR - Failed to initialize OpenAI client: name 'self' is not defined
+2025-07-28 11:42:17,311 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:42:17,683 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:42:17,756 - app.main - INFO - ChromaDB initialized at ./data/vector_db
+2025-07-28 11:42:17,849 - app.main - INFO - OpenAI API key configured: sk-proj-yI...
+2025-07-28 11:42:17,849 - app.main - INFO - OpenAI model: gpt-4-turbo-preview
+2025-07-28 11:42:17,869 - app.main - INFO - OpenAI client initialized successfully
+2025-07-28 11:42:19,559 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:42:19,901 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 11:42:19,937 - app.main - INFO - ChromaDB initialized at ./data/vector_db
+2025-07-28 11:42:20,005 - app.main - INFO - OpenAI API key configured: sk-proj-yI...
+2025-07-28 11:42:20,005 - app.main - INFO - OpenAI model: gpt-4-turbo-preview
+2025-07-28 11:42:20,021 - app.main - INFO - OpenAI client initialized successfully
+2025-07-28 11:42:20,024 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 11:42:20,036 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:42:20,050 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 11:42:20,061 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 11:42:23,965 - app.main - INFO - Received chat message for case 01: Tell me about the file "2_13 Timeline.docx"
+2025-07-28 11:42:23,966 - app.main - INFO - Processing chat for case 01: Tell me about the file "2_13 Timeline.docx"
+2025-07-28 11:42:23,971 - app.main - INFO - Searching in collection: case_01
+2025-07-28 11:42:24,230 - app.main - INFO - Returning 2 search results for case 01
+2025-07-28 11:42:24,230 - app.main - INFO - Found 2 search results
+2025-07-28 11:42:24,230 - app.main - INFO - Result 0: filename=Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx, similarity=0, content_length=1938
+2025-07-28 11:42:24,230 - app.main - INFO - Result 1: filename=2_13 Timeline.docx, similarity=0, content_length=134457
+2025-07-28 11:42:24,231 - app.main - INFO - Added Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx to context (similarity: 0)
+2025-07-28 11:42:24,231 - app.main - INFO - Added 2_13 Timeline.docx to context (similarity: 0)
+2025-07-28 11:42:24,231 - app.main - INFO - Built context from 2 parts, 2 file sources
+2025-07-28 11:42:24,231 - app.main - INFO - Sending to OpenAI: 1004 characters
+2025-07-28 11:42:24,749 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-07-28 11:42:24,750 - app.main - ERROR - OpenAI API call failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************Bi0A. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-07-28 11:42:24,751 - app.main - INFO - Sent response for case 01 with 2 sources
+2025-07-28 11:42:28,635 - app.main - INFO - Searching in collection: case_01
+2025-07-28 11:42:28,766 - app.main - INFO - Returning 1 search results for case 01
+2025-07-28 11:45:21,351 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 11:45:21,352 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 11:45:21,352 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 11:45:21,352 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 12:02:33,296 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 12:02:33,646 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-28 12:02:33,725 - app.main - INFO - ChromaDB initialized at ./data/vector_db
+2025-07-28 12:02:33,836 - app.main - INFO - OpenAI API key configured: sk-proj-yI...
+2025-07-28 12:02:33,836 - app.main - INFO - OpenAI model: gpt-4-turbo-preview
+2025-07-28 12:02:33,859 - app.main - INFO - OpenAI client initialized successfully
+2025-07-28 12:02:34,960 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 12:02:34,972 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 12:02:38,444 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 12:04:55,897 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 12:04:55,898 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 12:04:55,898 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 12:05:00,905 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 12:05:00,918 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 12:05:00,931 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 13:27:20,658 - app.main - INFO - Received chat message for case 01: Tell me about the file "Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx"
+2025-07-28 13:27:20,659 - app.main - INFO - Processing chat for case 01: Tell me about the file "Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx"
+2025-07-28 13:27:20,667 - app.main - INFO - Searching in collection: case_01
+2025-07-28 13:27:20,896 - app.main - INFO - Returning 2 search results for case 01
+2025-07-28 13:27:20,896 - app.main - INFO - Found 2 search results
+2025-07-28 13:27:20,896 - app.main - INFO - Result 0: filename=Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx, similarity=0.14077508449554443, content_length=1938
+2025-07-28 13:27:20,896 - app.main - INFO - Result 1: filename=2_13 Timeline.docx, similarity=0, content_length=134457
+2025-07-28 13:27:20,896 - app.main - INFO - Added Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx to context (similarity: 0.14077508449554443)
+2025-07-28 13:27:20,896 - app.main - INFO - Added 2_13 Timeline.docx to context (similarity: 0)
+2025-07-28 13:27:20,896 - app.main - INFO - Built context from 2 parts, 2 file sources
+2025-07-28 13:27:20,896 - app.main - INFO - Sending to OpenAI: 1060 characters
+2025-07-28 13:27:21,014 - openai._base_client - INFO - Retrying request to /chat/completions in 0.499208 seconds
+2025-07-28 13:27:21,516 - openai._base_client - INFO - Retrying request to /chat/completions in 0.824915 seconds
+2025-07-28 13:27:22,345 - app.main - ERROR - OpenAI API call failed: Connection error.
+2025-07-28 13:27:22,346 - app.main - INFO - Sent response for case 01 with 2 sources
+2025-07-28 13:27:42,385 - app.main - INFO - Searching in collection: case_01
+2025-07-28 13:27:42,498 - app.main - INFO - Returning 1 search results for case 01
+2025-07-28 13:28:23,159 - app.main - INFO - Searching in collection: case_01
+2025-07-28 13:28:23,277 - app.main - INFO - Returning 1 search results for case 01
+2025-07-28 13:37:44,061 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 13:37:44,090 - app.main - INFO - WebSocket connected for case test-001
+2025-07-28 13:57:09,781 - app.main - INFO - WebSocket disconnected for case test-001
+2025-07-28 13:57:09,782 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 13:57:09,782 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 13:57:15,368 - app.main - INFO - WebSocket connected for case test-001
+2025-07-28 13:57:15,379 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 13:57:15,392 - app.main - INFO - WebSocket connected for case Test
+2025-07-28 14:04:28,789 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-28 14:04:28,790 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-28 14:04:28,790 - app.main - INFO - WebSocket disconnected for case test-001
+2025-07-28 14:04:34,282 - app.main - INFO - WebSocket connected for case 01
+2025-07-28 14:04:34,295 - app.main - INFO - WebSocket connected for case test-001
+2025-07-28 14:04:34,311 - app.main - INFO - WebSocket connected for case Test
