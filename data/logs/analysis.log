@@ -1280,3 +1280,208 @@ A detailed migration guide is available here: https://github.com/openai/openai-p
 2025-07-28 14:04:34,282 - app.main - INFO - WebSocket connected for case 01
 2025-07-28 14:04:34,295 - app.main - INFO - WebSocket connected for case test-001
 2025-07-28 14:04:34,311 - app.main - INFO - WebSocket connected for case Test
+2025-07-30 11:14:46,760 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-30 11:14:46,761 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-30 11:14:46,761 - app.main - INFO - WebSocket disconnected for case test-001
+2025-07-30 12:29:04,634 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 12:29:04,998 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 12:29:05,113 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 12:29:05,203 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 12:29:05,276 - app.services.vector_store - INFO - Initialized ChromaDB at ./data/vector_db
+2025-07-30 12:36:35,163 - app.main - INFO - Created case: Test
+2025-07-30 12:37:00,298 - app.main - INFO - Received chat message for case Test: What information was gathered from phone extractions?
+2025-07-30 12:37:00,610 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 12:37:00,611 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 12:37:02,124 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-07-30 12:37:02,127 - app.services.rag_system - ERROR - Error in RAG chat: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************Bi0A. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-07-30 12:37:09,123 - app.main - INFO - Received chat message for case Test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-30 12:37:09,286 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 12:37:09,286 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 12:37:09,558 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-07-30 12:37:09,560 - app.services.rag_system - ERROR - Error in RAG chat: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************Bi0A. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-07-30 12:47:25,582 - app.main - INFO - Received chat message for case Test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-30 12:47:25,741 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 12:47:25,741 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 12:47:26,631 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-07-30 12:47:26,632 - app.services.rag_system - ERROR - Error in RAG chat: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************Bi0A. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-07-30 12:54:42,015 - app.main - INFO - Queued processing for 2_13 Timeline.docx (type: document)
+2025-07-30 12:54:42,035 - app.main - INFO - Starting background processing for ./discovery_sets/Test/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-30 12:54:42,035 - app.services.document_processor - INFO - Processing file: ./discovery_sets/Test/plaintiff_production/documents/2_13 Timeline.docx (ext: .docx)
+2025-07-30 12:54:42,036 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/Test/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-30 12:54:42,253 - app.services.document_processor - INFO - Successfully extracted 134457 characters from ./discovery_sets/Test/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-30 12:54:42,650 - app.services.vector_store - INFO - Added document doc_Test_2_13_Timeline.docx to vector store
+2025-07-30 12:54:42,650 - app.main - INFO - Added document to vector store with ID: doc_Test_2_13_Timeline.docx
+2025-07-30 12:54:42,656 - app.main - INFO - Completed processing for ./discovery_sets/Test/plaintiff_production/documents/2_13 Timeline.docx
+2025-07-30 12:55:01,904 - app.main - INFO - Received chat message for case Test: What files have I uploaded
+2025-07-30 12:55:02,048 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 12:55:02,048 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 12:55:02,631 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-07-30 12:55:02,632 - app.services.rag_system - ERROR - Error in RAG chat: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************Bi0A. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-07-30 12:56:01,434 - app.main - INFO - Created case: 01
+2025-07-30 12:56:08,874 - app.main - INFO - Queued processing for Anna Williams February 13, 2017 interview.docx (type: document)
+2025-07-30 12:56:08,875 - app.main - INFO - Starting background processing for ./discovery_sets/01/plaintiff_production/documents/Anna Williams February 13, 2017 interview.docx
+2025-07-30 12:56:08,875 - app.services.document_processor - INFO - Processing file: ./discovery_sets/01/plaintiff_production/documents/Anna Williams February 13, 2017 interview.docx (ext: .docx)
+2025-07-30 12:56:08,875 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/01/plaintiff_production/documents/Anna Williams February 13, 2017 interview.docx
+2025-07-30 12:56:08,879 - app.services.document_processor - INFO - Successfully extracted 194 characters from ./discovery_sets/01/plaintiff_production/documents/Anna Williams February 13, 2017 interview.docx
+2025-07-30 12:56:09,143 - app.services.vector_store - INFO - Added document doc_01_Anna_Williams_February_13,_2017_interview.docx to vector store
+2025-07-30 12:56:09,143 - app.main - INFO - Added document to vector store with ID: doc_01_Anna_Williams_February_13,_2017_interview.docx
+2025-07-30 12:56:09,143 - app.main - INFO - Completed processing for ./discovery_sets/01/plaintiff_production/documents/Anna Williams February 13, 2017 interview.docx
+2025-07-30 12:56:15,739 - app.main - INFO - Queued processing for Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (type: document)
+2025-07-30 12:56:15,739 - app.main - INFO - Starting background processing for ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-30 12:56:15,739 - app.services.document_processor - INFO - Processing file: ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (ext: .docx)
+2025-07-30 12:56:15,739 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-30 12:56:15,746 - app.services.document_processor - INFO - Successfully extracted 1938 characters from ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-30 12:56:15,989 - app.services.vector_store - INFO - Added document doc_01_Brad_Holder_2nd_interview_at_Logansport_PD_sometime_in_August_of_2017.docx to vector store
+2025-07-30 12:56:15,989 - app.main - INFO - Added document to vector store with ID: doc_01_Brad_Holder_2nd_interview_at_Logansport_PD_sometime_in_August_of_2017.docx
+2025-07-30 12:56:15,989 - app.main - INFO - Completed processing for ./discovery_sets/01/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-30 12:56:19,671 - app.main - INFO - Queued processing for Bunner 2_15 copy.docx (type: document)
+2025-07-30 12:56:19,671 - app.main - INFO - Starting background processing for ./discovery_sets/01/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-30 12:56:19,671 - app.services.document_processor - INFO - Processing file: ./discovery_sets/01/plaintiff_production/documents/Bunner 2_15 copy.docx (ext: .docx)
+2025-07-30 12:56:19,671 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/01/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-30 12:56:19,721 - app.services.document_processor - INFO - Successfully extracted 15826 characters from ./discovery_sets/01/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-30 12:56:19,939 - app.services.vector_store - INFO - Added document doc_01_Bunner_2_15_copy.docx to vector store
+2025-07-30 12:56:19,939 - app.main - INFO - Added document to vector store with ID: doc_01_Bunner_2_15_copy.docx
+2025-07-30 12:56:19,940 - app.main - INFO - Completed processing for ./discovery_sets/01/plaintiff_production/documents/Bunner 2_15 copy.docx
+2025-07-30 12:56:35,593 - app.main - INFO - Received chat message for case 01: Tell me about the file "Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx"
+2025-07-30 12:56:35,848 - app.services.rag_system - INFO - Found 1 initial search results
+2025-07-30 12:56:35,848 - app.services.rag_system - INFO - Filtered to 1 relevant results
+2025-07-30 12:56:37,122 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-07-30 12:56:37,123 - app.services.rag_system - ERROR - Error in RAG chat: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************Bi0A. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-07-30 14:08:38,549 - app.main - INFO - Received chat message for case 01: What files have I uploaded
+2025-07-30 14:08:38,694 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 14:08:38,694 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 14:08:40,079 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-07-30 14:08:40,081 - app.services.rag_system - ERROR - Error in RAG chat: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************Bi0A. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-07-30 14:13:23,162 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 14:13:23,518 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 14:13:23,614 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 14:13:23,674 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 14:13:23,722 - app.services.vector_store - INFO - Initialized ChromaDB at ./data/vector_db
+2025-07-30 14:13:50,263 - app.main - INFO - Created case: test
+2025-07-30 14:13:55,173 - app.main - INFO - Received chat message for case test: Tell me about the file "phone call from Winters to Holeman re_ request to re-interview Brad Holder on April 12, 2017.docx"
+2025-07-30 14:13:55,175 - app.services.vector_store - WARNING - Collection case_test not found
+2025-07-30 14:13:55,175 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 14:13:55,175 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 14:13:57,491 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:13:57,500 - app.services.rag_system - INFO - Returning response with 0 sources
+2025-07-30 14:14:32,272 - app.main - INFO - Queued processing for Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx (type: document)
+2025-07-30 14:14:32,272 - app.main - INFO - Starting background processing for ./discovery_sets/test/plaintiff_production/documents/Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx
+2025-07-30 14:14:32,272 - app.services.document_processor - INFO - Processing file: ./discovery_sets/test/plaintiff_production/documents/Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx (ext: .docx)
+2025-07-30 14:14:32,272 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/test/plaintiff_production/documents/Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx
+2025-07-30 14:14:32,338 - app.services.document_processor - INFO - Successfully extracted 473 characters from ./discovery_sets/test/plaintiff_production/documents/Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx
+2025-07-30 14:14:32,688 - app.services.vector_store - INFO - Added document doc_test_Tip_report_CJIS-3225_and_INVEST_Lead-DIN-940_re__Brad_Holder_on_Aug_14,_2017.docx to vector store
+2025-07-30 14:14:32,688 - app.main - INFO - Added document to vector store with ID: doc_test_Tip_report_CJIS-3225_and_INVEST_Lead-DIN-940_re__Brad_Holder_on_Aug_14,_2017.docx
+2025-07-30 14:14:32,688 - app.main - INFO - Completed processing for ./discovery_sets/test/plaintiff_production/documents/Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx
+2025-07-30 14:15:23,333 - app.main - INFO - Received chat message for case test: Tell me about the file "Tip report CJIS-3225 and INVEST Lead-DIN-940 re_ Brad Holder on Aug 14, 2017.docx"
+2025-07-30 14:15:23,478 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 14:15:23,478 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 14:15:25,164 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:15:25,167 - app.services.rag_system - INFO - Returning response with 0 sources
+2025-07-30 14:15:51,040 - app.main - INFO - Received chat message for case test: Tell me about how phones were used in this matter
+2025-07-30 14:15:51,153 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 14:15:51,153 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 14:15:52,692 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:15:52,694 - app.services.rag_system - INFO - Returning response with 0 sources
+2025-07-30 14:16:16,414 - app.main - INFO - Created case: testing
+2025-07-30 14:16:22,498 - app.main - INFO - Queued processing for Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (type: document)
+2025-07-30 14:16:22,498 - app.main - INFO - Starting background processing for ./discovery_sets/testing/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-30 14:16:22,498 - app.services.document_processor - INFO - Processing file: ./discovery_sets/testing/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (ext: .docx)
+2025-07-30 14:16:22,498 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/testing/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-30 14:16:22,506 - app.services.document_processor - INFO - Successfully extracted 1938 characters from ./discovery_sets/testing/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-30 14:16:22,754 - app.services.vector_store - INFO - Added document doc_testing_Brad_Holder_2nd_interview_at_Logansport_PD_sometime_in_August_of_2017.docx to vector store
+2025-07-30 14:16:22,754 - app.main - INFO - Added document to vector store with ID: doc_testing_Brad_Holder_2nd_interview_at_Logansport_PD_sometime_in_August_of_2017.docx
+2025-07-30 14:16:22,754 - app.main - INFO - Completed processing for ./discovery_sets/testing/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-30 14:16:51,389 - app.main - INFO - Queued processing for CCS.docx (type: document)
+2025-07-30 14:16:51,389 - app.main - INFO - Starting background processing for ./discovery_sets/testing/plaintiff_production/documents/CCS.docx
+2025-07-30 14:16:51,389 - app.services.document_processor - INFO - Processing file: ./discovery_sets/testing/plaintiff_production/documents/CCS.docx (ext: .docx)
+2025-07-30 14:16:51,389 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/testing/plaintiff_production/documents/CCS.docx
+2025-07-30 14:16:51,589 - app.services.document_processor - INFO - Successfully extracted 247387 characters from ./discovery_sets/testing/plaintiff_production/documents/CCS.docx
+2025-07-30 14:16:52,103 - app.services.vector_store - INFO - Added document doc_testing_CCS.docx to vector store
+2025-07-30 14:16:52,103 - app.main - INFO - Added document to vector store with ID: doc_testing_CCS.docx
+2025-07-30 14:16:52,110 - app.main - INFO - Completed processing for ./discovery_sets/testing/plaintiff_production/documents/CCS.docx
+2025-07-30 14:17:07,451 - app.main - INFO - Received chat message for case testing: What files have I uploaded
+2025-07-30 14:17:07,600 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 14:17:07,600 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 14:17:09,619 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:17:09,622 - app.services.rag_system - INFO - Returning response with 0 sources
+2025-07-30 15:05:34,070 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 15:05:34,165 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 15:05:34,448 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-30 15:05:34,954 - app.services.vector_store - INFO - Initialized ChromaDB at ./data/vector_db
+2025-07-30 15:06:00,567 - app.main - INFO - Created case: testing1
+2025-07-30 15:06:08,549 - app.main - INFO - Queued processing for Appellate CCS.docx (type: document)
+2025-07-30 15:06:08,549 - app.main - INFO - Starting background processing for ./discovery_sets/testing1/plaintiff_production/documents/Appellate CCS.docx
+2025-07-30 15:06:08,549 - app.services.document_processor - INFO - Processing file: ./discovery_sets/testing1/plaintiff_production/documents/Appellate CCS.docx (ext: .docx)
+2025-07-30 15:06:08,549 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/testing1/plaintiff_production/documents/Appellate CCS.docx
+2025-07-30 15:06:09,284 - app.services.document_processor - INFO - Successfully extracted 3285 characters from ./discovery_sets/testing1/plaintiff_production/documents/Appellate CCS.docx
+2025-07-30 15:06:10,240 - app.services.vector_store - INFO - Added document doc_testing1_Appellate_CCS.docx to vector store
+2025-07-30 15:06:10,240 - app.main - INFO - Added document to vector store with ID: doc_testing1_Appellate_CCS.docx
+2025-07-30 15:06:10,240 - app.main - INFO - Completed processing for ./discovery_sets/testing1/plaintiff_production/documents/Appellate CCS.docx
+2025-07-30 15:06:21,411 - app.main - INFO - Queued processing for Blocher report re_ AT&T pings on Feb 13, 2017.docx (type: document)
+2025-07-30 15:06:21,412 - app.main - INFO - Starting background processing for ./discovery_sets/testing1/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-30 15:06:21,412 - app.services.document_processor - INFO - Processing file: ./discovery_sets/testing1/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx (ext: .docx)
+2025-07-30 15:06:21,412 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/testing1/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-30 15:06:21,418 - app.services.document_processor - INFO - Successfully extracted 1270 characters from ./discovery_sets/testing1/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-30 15:06:21,691 - app.services.vector_store - INFO - Added document doc_testing1_Blocher_report_re__AT&T_pings_on_Feb_13,_2017.docx to vector store
+2025-07-30 15:06:21,691 - app.main - INFO - Added document to vector store with ID: doc_testing1_Blocher_report_re__AT&T_pings_on_Feb_13,_2017.docx
+2025-07-30 15:06:21,691 - app.main - INFO - Completed processing for ./discovery_sets/testing1/plaintiff_production/documents/Blocher report re_ AT&T pings on Feb 13, 2017.docx
+2025-07-30 15:07:20,626 - app.main - INFO - Received chat message for case testing1: What files have I uploaded
+2025-07-30 15:07:20,792 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 15:07:20,792 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 15:07:22,561 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 15:07:22,571 - app.services.rag_system - INFO - Returning response with 0 sources
+2025-07-30 15:08:16,336 - app.main - INFO - Received chat message for case testing1: Tell me about the file "Blocher report re_ AT&T pings on Feb 13, 2017.docx"
+2025-07-30 15:08:16,496 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 15:08:16,496 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 15:08:18,174 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 15:08:18,178 - app.services.rag_system - INFO - Returning response with 0 sources
+2025-07-30 15:13:44,016 - app.main - INFO - Queued processing for test_upload.txt (type: document)
+2025-07-30 15:13:44,017 - app.main - INFO - Starting background processing for ./discovery_sets/testing1/plaintiff_production/documents/test_upload.txt
+2025-07-30 15:13:44,017 - app.services.document_processor - INFO - Processing file: ./discovery_sets/testing1/plaintiff_production/documents/test_upload.txt (ext: .txt)
+2025-07-30 15:13:44,017 - app.services.document_processor - INFO - Processing .txt document: ./discovery_sets/testing1/plaintiff_production/documents/test_upload.txt
+2025-07-30 15:13:44,017 - app.services.document_processor - INFO - Successfully read TXT file with utf-8 encoding
+2025-07-30 15:13:44,017 - app.services.document_processor - INFO - Successfully extracted 22 characters from ./discovery_sets/testing1/plaintiff_production/documents/test_upload.txt
+2025-07-30 15:13:44,239 - app.services.vector_store - INFO - Added document doc_testing1_test_upload.txt to vector store
+2025-07-30 15:13:44,239 - app.main - INFO - Added document to vector store with ID: doc_testing1_test_upload.txt
+2025-07-30 15:13:44,239 - app.main - INFO - Completed processing for ./discovery_sets/testing1/plaintiff_production/documents/test_upload.txt
+2025-07-30 15:15:53,860 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 15:15:53,957 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 15:15:53,999 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-30 15:15:54,024 - app.services.vector_store - INFO - Initialized ChromaDB at ./data/vector_db
+2025-07-30 15:16:33,432 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 15:16:33,518 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 15:16:33,547 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-30 15:16:33,571 - app.services.vector_store - INFO - Initialized ChromaDB at ./data/vector_db
+2025-07-30 15:17:33,463 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 15:17:33,571 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 15:17:33,610 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-30 15:17:33,635 - app.services.vector_store - INFO - Initialized ChromaDB at ./data/vector_db
+2025-07-30 15:17:37,701 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 15:17:37,769 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 15:17:37,797 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-30 15:17:37,821 - app.services.vector_store - INFO - Initialized ChromaDB at ./data/vector_db
+2025-07-30 15:18:39,247 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 15:18:39,312 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 15:18:39,342 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-30 15:18:39,366 - app.services.vector_store - INFO - Initialized ChromaDB at ./data/vector_db
+2025-07-30 15:19:12,611 - app.main - INFO - Processing upload: Bunner report re_ LG phone on Feb 15, 2017.docx, type: document
+2025-07-30 15:19:12,613 - app.main - INFO - Queuing background task for Bunner report re_ LG phone on Feb 15, 2017.docx
+2025-07-30 15:19:12,613 - app.main - INFO - Starting background processing for ./discovery_sets/testing1/plaintiff_production/documents/Bunner report re_ LG phone on Feb 15, 2017.docx
+2025-07-30 15:19:12,613 - app.services.document_processor - INFO - Processing file: ./discovery_sets/testing1/plaintiff_production/documents/Bunner report re_ LG phone on Feb 15, 2017.docx (ext: .docx)
+2025-07-30 15:19:12,613 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/testing1/plaintiff_production/documents/Bunner report re_ LG phone on Feb 15, 2017.docx
+2025-07-30 15:19:12,679 - app.services.document_processor - INFO - Successfully extracted 13811 characters from ./discovery_sets/testing1/plaintiff_production/documents/Bunner report re_ LG phone on Feb 15, 2017.docx
+2025-07-30 15:19:13,040 - app.services.vector_store - INFO - Added document doc_testing1_Bunner_report_re__LG_phone_on_Feb_15,_2017.docx to vector store
+2025-07-30 15:19:13,040 - app.main - INFO - Added document to vector store with ID: doc_testing1_Bunner_report_re__LG_phone_on_Feb_15,_2017.docx
+2025-07-30 15:19:13,040 - app.main - INFO - Completed processing for ./discovery_sets/testing1/plaintiff_production/documents/Bunner report re_ LG phone on Feb 15, 2017.docx
+2025-07-30 15:19:13,040 - app.main - INFO - Background task queued for Bunner report re_ LG phone on Feb 15, 2017.docx
+2025-07-30 15:19:13,040 - app.main - INFO - Queued processing for Bunner report re_ LG phone on Feb 15, 2017.docx (type: document)
+2025-07-30 15:25:43,833 - app.main - INFO - Received chat message for case testing1: What files have I uploaded
+2025-07-30 15:25:43,999 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 15:25:43,999 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 15:25:46,194 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 15:25:46,204 - app.services.rag_system - INFO - Returning response with 0 sources
+2025-07-30 15:25:51,883 - app.main - INFO - Received chat message for case testing1: Tell me about the file "test_upload.txt"
+2025-07-30 15:25:52,128 - app.services.rag_system - INFO - Found 0 initial search results
+2025-07-30 15:25:52,128 - app.services.rag_system - INFO - Filtered to 0 relevant results
+2025-07-30 15:25:53,209 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 15:25:53,212 - app.services.rag_system - INFO - Returning response with 0 sources

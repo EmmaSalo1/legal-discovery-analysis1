@@ -4,7 +4,7 @@ import mimetypes
 import logging
 from typing import Dict, Any, List
 from app.services.audio_processor import AudioProcessor
-from app.services.video_processor import VideoProcessor
+# from app.services.video_processor import VideoProcessor
 from app.services.image_processor import ImageProcessor
 from app.config import settings
 
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 class DocumentProcessor:
     def __init__(self):
         self.audio_processor = AudioProcessor()
-        self.video_processor = VideoProcessor()
+       # self.video_processor = VideoProcessor()
         self.image_processor = ImageProcessor()
         
     async def process_document(self, file_path: str, case_id: str) -> Dict[str, Any]:
@@ -32,8 +32,8 @@ class DocumentProcessor:
         elif self._is_audio_file(file_extension):
             return await self.audio_processor.process_audio_file(file_path, case_id)
         
-        elif self._is_video_file(file_extension):
-            return await self.video_processor.process_video_file(file_path, case_id)
+      #  elif self._is_video_file(file_extension):
+       #     return await self.video_processor.process_video_file(file_path, case_id)
         
         elif self._is_image_file(file_extension):
             return await self.image_processor.process_image_file(file_path, case_id)

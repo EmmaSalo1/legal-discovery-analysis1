@@ -22,13 +22,13 @@ class Settings(BaseSettings):
     temp_directory: str = "./data/temp_processing"
     max_file_size: int = 500000000  # 500MB
     
-    # Multimedia Processing - FIXED: Removed PDF from image formats
+    # Multimedia Processing
     supported_audio_formats: List[str] = [".mp3", ".wav", ".m4a", ".flac", ".ogg", ".aac"]
     supported_video_formats: List[str] = [".mp4", ".avi", ".mov", ".wmv", ".flv", ".mkv"]
-    supported_image_formats: List[str] = [".jpg", ".jpeg", ".png", ".tiff", ".bmp", ".gif"]  # Removed .pdf
+    supported_image_formats: List[str] = [".jpg", ".jpeg", ".png", ".tiff", ".bmp"]  # Removed .pdf
     
-    # OCR Settings
-    tesseract_path: str = "/opt/homebrew/bin/tesseract"  # Mac Homebrew path
+    # OCR Settings - Try multiple possible paths
+    tesseract_path: str = None  # Will be auto-detected
     ocr_language: str = "eng"
     ocr_confidence_threshold: float = 60.0
     
@@ -48,6 +48,29 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
     log_file: str = "./data/logs/analysis.log"
     multimedia_log_file: str = "./data/logs/multimedia_processing.log"
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # Auto-detect Tesseract path if not set
+        if not self.tesseract_path:
+            self.tesseract_path = self._find_tesseract()
+    
+    def _find_tesseract(self) -> str:
+        """Auto-detect Tesseract installation path"""
+        possible_paths = [
+            "/opt/homebrew/bin/tesseract",  # Mac M1/M2 Homebrew
+            "/usr/local/bin/tesseract",     # Mac Intel Homebrew
+            "/usr/bin/tesseract",           # Linux
+            "tesseract",                    # Windows (in PATH)
+            "C:\\Program Files\\Tesseract-OCR\\tesseract.exe",  # Windows default
+        ]
+        
+        for path in possible_paths:
+            if os.path.exists(path) or path == "tesseract":
+                return path
+        
+        # If not found, return None and disable OCR
+        return None
     
     class Config:
         env_file = ".env"
