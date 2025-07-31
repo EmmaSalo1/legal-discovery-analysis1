@@ -1560,3 +1560,12 @@ A detailed migration guide is available here: https://github.com/openai/openai-p
 2025-07-31 11:52:56,319 - app.services.rag_system - ERROR - Error searching multimedia content: EnhancedVectorStore.search_documents() got an unexpected keyword argument 'file_types'
 2025-07-31 11:52:56,319 - app.services.rag_system - INFO - Found 0 multimedia search results
 2025-07-31 11:52:57,824 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-31 12:18:45,481 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-31 12:19:12,366 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-31 12:28:39,455 - app.main - INFO - WebSocket disconnected for case 123
+2025-07-31 12:28:45,116 - app.main - INFO - WebSocket connected for case 123
+2025-07-31 12:47:58,823 - app.main - INFO - WebSocket disconnected for case 123
+2025-07-31 12:48:04,466 - app.main - INFO - WebSocket connected for case 123
+2025-07-31 12:51:42,127 - app.main - INFO - WebSocket disconnected for case 123
+2025-07-31 12:51:47,828 - app.main - INFO - WebSocket connected for case 123
+2025-07-31 12:54:36,129 - app.main - INFO - WebSocket disconnected for case 123
