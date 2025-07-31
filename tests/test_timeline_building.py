@@ -7,10 +7,9 @@ class TestTimelineBuilder:
     def timeline_builder(self):
         return TimelineBuilder()
     
-    @pytest.mark.asyncio
-    async def test_build_timeline(self, timeline_builder):
+    def test_build_timeline(self, timeline_builder):
         """Test timeline building functionality"""
-        result = await timeline_builder.build_timeline("test_case_001")
+        result = asyncio.run(timeline_builder.build_timeline("test_case_001"))
         
         assert isinstance(result, list)
         if len(result) > 0:
