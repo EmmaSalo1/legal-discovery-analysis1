@@ -1,3 +1,5 @@
+# Update your app/config.py for M4 MacBook Pro optimization
+
 import os
 from pydantic_settings import BaseSettings
 from typing import List
@@ -10,9 +12,9 @@ class Settings(BaseSettings):
     openai_api_key: str = "your_openai_api_key_here"
     openai_model: str = "gpt-4-turbo-preview"
     
-    # Whisper Configuration
-    whisper_model: str = "base"  # tiny, base, small, medium, large
-    whisper_device: str = "cpu"  # cpu or mps (for Mac M1/M2)
+    # Whisper Configuration (M4 optimized)
+    whisper_model: str = "base"  # Use base model for better M4 performance
+    whisper_device: str = "cpu"  # CPU more stable on M4 than MPS
     
     # ChromaDB
     chroma_persist_directory: str = "./data/vector_db"
@@ -22,23 +24,24 @@ class Settings(BaseSettings):
     temp_directory: str = "./data/temp_processing"
     max_file_size: int = 500000000  # 500MB
     
-    # Multimedia Processing
+    # Multimedia Processing (M4 optimized)
     supported_audio_formats: List[str] = [".mp3", ".wav", ".m4a", ".flac", ".ogg", ".aac"]
     supported_video_formats: List[str] = [".mp4", ".avi", ".mov", ".wmv", ".flv", ".mkv"]
-    supported_image_formats: List[str] = [".jpg", ".jpeg", ".png", ".tiff", ".bmp"]  # Removed .pdf
+    supported_image_formats: List[str] = [".jpg", ".jpeg", ".png", ".tiff", ".bmp", ".pdf"]
     
-    # OCR Settings - Try multiple possible paths
-    tesseract_path: str = None  # Will be auto-detected
+    # OCR Settings (M4 paths)
+    tesseract_path: str = "/opt/homebrew/bin/tesseract"  # M4 Homebrew path
     ocr_language: str = "eng"
     ocr_confidence_threshold: float = 60.0
     
-    # Audio Processing
+    # Audio Processing (M4 optimized)
     audio_chunk_length: int = 30  # seconds
     silence_threshold: float = -40.0  # dB
     
-    # Video Processing
+    # Video Processing (M4 optimized - prefer FFmpeg)
     video_frame_interval: int = 30  # Extract frame every N seconds
     max_video_duration: int = 7200  # 2 hours max
+    prefer_ffmpeg: bool = True  # Use FFmpeg over MoviePy on M4
     
     # Background Processing
     redis_url: str = "redis://localhost:6379/0"
@@ -49,30 +52,24 @@ class Settings(BaseSettings):
     log_file: str = "./data/logs/analysis.log"
     multimedia_log_file: str = "./data/logs/multimedia_processing.log"
     
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        # Auto-detect Tesseract path if not set
-        if not self.tesseract_path:
-            self.tesseract_path = self._find_tesseract()
-    
-    def _find_tesseract(self) -> str:
-        """Auto-detect Tesseract installation path"""
-        possible_paths = [
-            "/opt/homebrew/bin/tesseract",  # Mac M1/M2 Homebrew
-            "/usr/local/bin/tesseract",     # Mac Intel Homebrew
-            "/usr/bin/tesseract",           # Linux
-            "tesseract",                    # Windows (in PATH)
-            "C:\\Program Files\\Tesseract-OCR\\tesseract.exe",  # Windows default
-        ]
-        
-        for path in possible_paths:
-            if os.path.exists(path) or path == "tesseract":
-                return path
-        
-        # If not found, return None and disable OCR
-        return None
+    # M4 Specific Settings
+    apple_silicon_optimized: bool = True
+    use_mps_if_available: bool = False  # Disable MPS for stability
+    cpu_processing_preferred: bool = True
     
     class Config:
         env_file = ".env"
 
 settings = Settings()
+
+# M4-specific helpers
+def is_apple_silicon():
+    """Check if running on Apple Silicon"""
+    import platform
+    return platform.machine() == 'arm64' and platform.system() == 'Darwin'
+
+def get_optimal_processing_device():
+    """Get optimal processing device for M4"""
+    if is_apple_silicon():
+        return "cpu" 
+    return "cpu"  # Default to CPU for compatibility

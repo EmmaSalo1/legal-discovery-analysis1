@@ -1485,3 +1485,40 @@ A detailed migration guide is available here: https://github.com/openai/openai-p
 2025-07-30 15:25:52,128 - app.services.rag_system - INFO - Filtered to 0 relevant results
 2025-07-30 15:25:53,209 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-07-30 15:25:53,212 - app.services.rag_system - INFO - Returning response with 0 sources
+2025-07-30 15:33:24,346 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-30 15:33:24,442 - app.services.image_processor - INFO - Tesseract OCR initialized at: /opt/homebrew/bin/tesseract
+2025-07-30 15:33:24,484 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-07-30 15:33:24,510 - app.services.vector_store - INFO - Initialized ChromaDB at ./data/vector_db
+2025-07-31 11:39:01,069 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-31 11:39:45,335 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-31 11:39:45,729 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-31 11:39:48,433 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-31 11:39:48,795 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-31 11:39:48,898 - app.services.image_processor - INFO - Tesseract OCR available
+2025-07-31 11:39:48,898 - app.services.image_processor - INFO - Available OCR engines: ['tesseract', 'easyocr']
+2025-07-31 11:39:48,928 - easyocr.easyocr - WARNING - Downloading detection model, please wait. This may take several minutes depending upon your network connection.
+2025-07-31 11:39:50,834 - easyocr.easyocr - INFO - Download complete
+2025-07-31 11:39:50,834 - easyocr.easyocr - WARNING - Downloading recognition model, please wait. This may take several minutes depending upon your network connection.
+2025-07-31 11:39:51,530 - easyocr.easyocr - INFO - Download complete.
+2025-07-31 11:39:53,058 - app.services.image_processor - INFO - EasyOCR reader initialized
+2025-07-31 11:39:53,258 - app.services.video_processor - INFO - Available video backends: ['opencv', 'ffmpeg', 'moviepy']
+2025-07-31 11:39:53,315 - app.services.image_processor - INFO - Tesseract OCR available
+2025-07-31 11:39:53,316 - app.services.image_processor - INFO - Available OCR engines: ['tesseract', 'easyocr']
+2025-07-31 11:39:54,783 - app.services.image_processor - INFO - EasyOCR reader initialized
+2025-07-31 11:39:54,783 - app.services.document_processor - INFO - Enhanced Document Processor initialized with multimedia support
+2025-07-31 11:39:54,870 - app.services.vector_store - INFO - Enhanced Vector Store initialized with multimedia support
+2025-07-31 11:39:54,887 - app.services.rag_system - INFO - Enhanced RAG System initialized with multimedia support
+2025-07-31 11:39:56,745 - app.main - INFO - WebSocket connected for case Test
+2025-07-31 11:39:56,758 - app.main - INFO - WebSocket connected for case 01
+2025-07-31 11:41:59,159 - app.main - INFO - Created enhanced case structure: Test
+2025-07-31 11:41:59,201 - app.main - INFO - WebSocket connected for case Test
+2025-07-31 11:42:15,321 - app.main - INFO - Received multimedia chat message for case Test: What files have been uploaded
+2025-07-31 11:42:15,321 - app.services.rag_system - INFO - Processing multimedia chat for case Test: What files have been uploaded
+2025-07-31 11:42:15,321 - app.services.rag_system - ERROR - Error searching multimedia content: 'EnhancedVectorStore' object has no attribute 'search_documents'
+2025-07-31 11:42:15,321 - app.services.rag_system - INFO - Found 0 multimedia search results
+2025-07-31 11:42:16,743 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-31 11:42:24,031 - app.main - INFO - Received multimedia chat message for case Test: Tell me about the file "3 girls_ we “just missed” the girls on Feb 13, 2017.png"
+2025-07-31 11:42:24,031 - app.services.rag_system - INFO - Processing multimedia chat for case Test: Tell me about the file "3 girls_ we “just missed” the girls on Feb 13, 2017.png"
+2025-07-31 11:42:24,032 - app.services.rag_system - ERROR - Error searching multimedia content: 'EnhancedVectorStore' object has no attribute 'search_documents'
+2025-07-31 11:42:24,032 - app.services.rag_system - INFO - Found 0 multimedia search results
+2025-07-31 11:42:26,057 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"

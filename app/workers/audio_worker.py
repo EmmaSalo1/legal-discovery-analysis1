@@ -1,7 +1,7 @@
 from celery import current_task
 import logging
 from app.workers.celery_app import celery_app
-from app.services.audio_processor import AudioProcessor
+from app.services.audio_processor import EnhancedAudioProcessor
 
 logger = logging.getLogger(__name__)
 
@@ -11,7 +11,7 @@ def process_audio_file_task(self, file_path: str, case_id: str):
     try:
         self.update_state(state='PROGRESS', meta={'progress': 0, 'status': 'Starting audio processing'})
         
-        processor = AudioProcessor()
+        processor = EnhancedAudioProcessor()
         
         self.update_state(state='PROGRESS', meta={'progress': 50, 'status': 'Transcribing audio'})
         
