@@ -1,7 +1,6 @@
 import pytest
 import asyncio
 from app.services.evidence_analyzer import EvidenceAnalyzer
-from app.services.vector_store import VectorStore
 
 class TestEvidenceAnalyzer:
     @pytest.fixture
@@ -26,17 +25,15 @@ class TestEvidenceAnalyzer:
             ]
         }
     
-    @pytest.mark.asyncio
-    async def test_analyze_evidence(self, evidence_analyzer, sample_case_data):
+    def test_analyze_evidence(self, evidence_analyzer, sample_case_data):
         """Test evidence analysis functionality"""
-        result = await evidence_analyzer.analyze_evidence(sample_case_data["case_id"])
+        result = asyncio.run(evidence_analyzer.analyze_evidence(sample_case_data["case_id"]))
         
         assert "key_evidence" in result
         assert "evidence_timeline" in result
         assert "credibility_assessment" in result
     
-    @pytest.mark.asyncio
-    async def test_financial_pattern_detection(self, evidence_analyzer):
+    def test_financial_pattern_detection(self, evidence_analyzer):
         """Test detection of financial patterns"""
         financial_docs = [
             "Payment of $10,000 due January 1",

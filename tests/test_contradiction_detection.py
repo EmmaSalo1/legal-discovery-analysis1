@@ -7,10 +7,9 @@ class TestContradictionDetector:
     def contradiction_detector(self):
         return ContradictionDetector()
     
-    @pytest.mark.asyncio
-    async def test_find_contradictions(self, contradiction_detector):
+    def test_find_contradictions(self, contradiction_detector):
         """Test contradiction detection functionality"""
-        result = await contradiction_detector.find_contradictions("test_case_001")
+        result = asyncio.run(contradiction_detector.find_contradictions("test_case_001"))
         
         assert isinstance(result, list)
         if len(result) > 0:

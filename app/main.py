@@ -106,6 +106,16 @@ class ConnectionManager:
             for ws in disconnected:
                 self.disconnect(ws, case_id)
 
+    async def broadcast_to_case(self, message: dict, case_id: str):
+        """Send a message to all active WebSocket connections for a case."""
+        connections = self.case_connections.get(case_id, [])
+        for connection in list(connections):
+            try:
+                await connection.send_text(json.dumps(message))
+            except Exception as e:
+                logger.error(f"WebSocket broadcast error: {e}")
+                self.disconnect(connection, case_id)
+
 manager = ConnectionManager()
 
 # Enhanced utility functions
