@@ -1522,3 +1522,41 @@ A detailed migration guide is available here: https://github.com/openai/openai-p
 2025-07-31 11:42:24,032 - app.services.rag_system - ERROR - Error searching multimedia content: 'EnhancedVectorStore' object has no attribute 'search_documents'
 2025-07-31 11:42:24,032 - app.services.rag_system - INFO - Found 0 multimedia search results
 2025-07-31 11:42:26,057 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-31 11:50:51,891 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-31 11:50:51,894 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-31 11:50:51,894 - app.main - INFO - WebSocket disconnected for case 01
+2025-07-31 11:51:09,578 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-31 11:51:09,969 - app.services.audio_processor - INFO - Loaded Whisper model: base
+2025-07-31 11:51:10,069 - app.services.image_processor - INFO - Tesseract OCR available
+2025-07-31 11:51:10,069 - app.services.image_processor - INFO - Available OCR engines: ['tesseract', 'easyocr']
+2025-07-31 11:51:11,737 - app.services.image_processor - INFO - EasyOCR reader initialized
+2025-07-31 11:51:11,925 - app.services.video_processor - INFO - Available video backends: ['opencv', 'ffmpeg', 'moviepy']
+2025-07-31 11:51:11,985 - app.services.image_processor - INFO - Tesseract OCR available
+2025-07-31 11:51:11,985 - app.services.image_processor - INFO - Available OCR engines: ['tesseract', 'easyocr']
+2025-07-31 11:51:13,602 - app.services.image_processor - INFO - EasyOCR reader initialized
+2025-07-31 11:51:13,602 - app.services.document_processor - INFO - Enhanced Document Processor initialized with multimedia support
+2025-07-31 11:51:13,721 - app.services.rag_system - INFO - Enhanced RAG System initialized with multimedia support
+2025-07-31 11:51:13,726 - app.main - INFO - WebSocket connected for case 01
+2025-07-31 11:51:13,737 - app.main - INFO - WebSocket connected for case Test
+2025-07-31 11:51:13,749 - app.main - INFO - WebSocket connected for case Test
+2025-07-31 11:51:44,688 - app.main - INFO - Received multimedia chat message for case Test: Tell me about the file "3 girls_ we “just missed” the girls on Feb 13, 2017.png"
+2025-07-31 11:51:44,689 - app.services.rag_system - INFO - Processing multimedia chat for case Test: Tell me about the file "3 girls_ we “just missed” the girls on Feb 13, 2017.png"
+2025-07-31 11:51:44,689 - app.services.rag_system - ERROR - Error searching multimedia content: EnhancedVectorStore.search_documents() got an unexpected keyword argument 'file_types'
+2025-07-31 11:51:44,689 - app.services.rag_system - INFO - Found 0 multimedia search results
+2025-07-31 11:51:46,046 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-31 11:52:09,004 - app.main - INFO - WebSocket disconnected for case Test
+2025-07-31 11:52:29,142 - app.main - INFO - Created enhanced case structure: 123
+2025-07-31 11:52:29,185 - app.main - INFO - WebSocket connected for case 123
+2025-07-31 11:52:34,188 - app.main - INFO - Uploaded and queued for processing: Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (document)
+2025-07-31 11:52:34,189 - app.main - INFO - Starting background processing: ./discovery_sets/123/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (type: document)
+2025-07-31 11:52:34,189 - app.services.document_processor - INFO - Processing file: ./discovery_sets/123/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx (type: application/vnd.openxmlformats-officedocument.wordprocessingml.document, ext: .docx)
+2025-07-31 11:52:34,189 - app.services.document_processor - INFO - Processing .docx document: ./discovery_sets/123/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-31 11:52:34,293 - app.services.document_processor - INFO - Successfully extracted 1938 characters from ./discovery_sets/123/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-31 11:52:34,763 - app.services.vector_store - INFO - Added document doc_123_Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx to vector store
+2025-07-31 11:52:34,763 - app.main - INFO - Added to vector store with ID: doc_123_Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-31 11:52:34,763 - app.main - INFO - Background processing completed successfully: ./discovery_sets/123/plaintiff_production/documents/Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx
+2025-07-31 11:52:56,318 - app.main - INFO - Received multimedia chat message for case 123: Tell me about the file "Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx"
+2025-07-31 11:52:56,318 - app.services.rag_system - INFO - Processing multimedia chat for case 123: Tell me about the file "Brad Holder 2nd interview at Logansport PD sometime in August of 2017.docx"
+2025-07-31 11:52:56,319 - app.services.rag_system - ERROR - Error searching multimedia content: EnhancedVectorStore.search_documents() got an unexpected keyword argument 'file_types'
+2025-07-31 11:52:56,319 - app.services.rag_system - INFO - Found 0 multimedia search results
+2025-07-31 11:52:57,824 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
