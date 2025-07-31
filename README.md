@@ -43,3 +43,12 @@ cd legal-discovery-analysis
 cp .env.example .env
 # Edit .env with your configuration
 docker-compose up --build
+```
+
+#### Option 2: Deploy to a remote host
+
+To make the application accessible from any network, you can run it on a small
+cloud server or a Platform-as-a-Service provider that supports Docker. Clone the
+repository on the server, configure the environment variables in `.env`, and run
+`docker-compose up --build -d`. See [docs/DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md)
+for a step-by-step deployment walkthrough.
