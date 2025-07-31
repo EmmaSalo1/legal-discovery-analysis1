@@ -7,10 +7,9 @@ class TestPrivilegeScanner:
     def privilege_scanner(self):
         return PrivilegeScanner()
     
-    @pytest.mark.asyncio
-    async def test_scan_for_privilege(self, privilege_scanner):
+    def test_scan_for_privilege(self, privilege_scanner):
         """Test privilege scanning functionality"""
-        result = await privilege_scanner.scan_for_privilege("test_case_001")
+        result = asyncio.run(privilege_scanner.scan_for_privilege("test_case_001"))
         
         assert "potentially_privileged_documents" in result
         assert "privilege_statistics" in result
