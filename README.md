@@ -43,14 +43,23 @@ cd legal-discovery-analysis
 cp .env.example .env
 # Edit .env with your configuration
 docker-compose up --build
+```
 
 ### Render Deployment Notes
 - Set `TESSERACT_PATH` to `/usr/bin/tesseract` on Render or other Linux hosts.
+- **Install required system packages on Debian-based hosts:**
+  - `libgl1` (for OpenCV)
+  - `ffmpeg` (for video/audio processing)
+  - `tesseract-ocr` (for OCR)
+  - Example:
+    ```bash
+    apt-get update && apt-get install -y libgl1 ffmpeg tesseract-ocr
+    ```
+    Include these in your custom Docker build or install them on the host before running the containers.
 - Run the Celery worker alongside the API:
   ```bash
   docker-compose up worker
   ```
-```
 
 #### Option 2: Deploy to a remote host
 
