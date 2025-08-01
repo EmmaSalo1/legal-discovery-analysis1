@@ -92,29 +92,20 @@ class ConnectionManager:
             logger.error(f"Error sending personal message: {e}")
 
     async def broadcast_to_case(self, message: dict, case_id: str):
-        """Broadcast message to all connections for a specific case"""
-        if case_id in self.case_connections:
-            disconnected = []
-            for websocket in self.case_connections[case_id]:
-                try:
-                    await websocket.send_text(json.dumps(message))
-                except Exception as e:
-                    logger.error(f"Error broadcasting to case {case_id}: {e}")
-                    disconnected.append(websocket)
-            
-            # Remove disconnected websockets
-            for ws in disconnected:
-                self.disconnect(ws, case_id)
-
-    async def broadcast_to_case(self, message: dict, case_id: str):
-        """Send a message to all active WebSocket connections for a case."""
+        """Broadcast a message to all active connections for a case."""
         connections = self.case_connections.get(case_id, [])
+        disconnected = []
+
         for connection in list(connections):
             try:
                 await connection.send_text(json.dumps(message))
             except Exception as e:
-                logger.error(f"WebSocket broadcast error: {e}")
-                self.disconnect(connection, case_id)
+                logger.error(f"Error broadcasting to case {case_id}: {e}")
+                disconnected.append(connection)
+
+        # Clean up any connections that failed during broadcast
+        for ws in disconnected:
+            self.disconnect(ws, case_id)
 
 manager = ConnectionManager()
 
