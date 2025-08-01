@@ -111,8 +111,14 @@ class EnhancedVectorStore:
         except Exception as e:
             logger.warning(f"Could not store full document data: {e}")
     
-    async def search_documents(self, case_id: str, query: str, limit: int = 10) -> List[Dict]:
-        """Enhanced search with better relevance filtering"""
+    async def search_documents(
+        self,
+        case_id: str,
+        query: str,
+        limit: int = 10,
+        file_types: Optional[List[str]] = None,
+    ) -> List[Dict]:
+        """Enhanced search with better relevance filtering and optional file type filtering"""
         try:
             collection_name = f"case_{case_id}"
             
@@ -161,7 +167,11 @@ class EnhancedVectorStore:
             
             # Sort by similarity and content relevance
             formatted_results.sort(key=lambda x: x['similarity_score'], reverse=True)
-            
+
+            # Optionally filter by file type
+            if file_types:
+                formatted_results = [doc for doc in formatted_results if doc.get('file_type') in file_types]
+
             # Return top results
             return formatted_results[:limit]
             
