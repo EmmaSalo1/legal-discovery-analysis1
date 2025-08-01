@@ -1,5 +1,6 @@
 from celery import current_task
 import logging
+import asyncio
 from app.workers.celery_app import celery_app
 from app.services.image_processor import ImageProcessor
 
@@ -15,7 +16,8 @@ def process_image_file_task(self, file_path: str, case_id: str):
         
         self.update_state(state='PROGRESS', meta={'progress': 50, 'status': 'Performing OCR'})
         
-        result = processor.process_image_file(file_path, case_id)
+        # Process the file asynchronously
+        result = asyncio.run(processor.process_image_file(file_path, case_id))
         
         self.update_state(state='PROGRESS', meta={'progress': 100, 'status': 'Image processing complete'})
         
