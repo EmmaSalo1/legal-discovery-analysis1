@@ -29,8 +29,9 @@ class Settings(BaseSettings):
     supported_video_formats: List[str] = [".mp4", ".avi", ".mov", ".wmv", ".flv", ".mkv"]
     supported_image_formats: List[str] = [".jpg", ".jpeg", ".png", ".tiff", ".bmp", ".pdf"]
     
-    # OCR Settings (M4 paths)
-    tesseract_path: str = "/opt/homebrew/bin/tesseract"  # M4 Homebrew path
+    # OCR Settings
+    # Default to the typical Linux path; override in .env for macOS/Homebrew.
+    tesseract_path: str = "/usr/bin/tesseract"
     ocr_language: str = "eng"
     ocr_confidence_threshold: float = 60.0
     

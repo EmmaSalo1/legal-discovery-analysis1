@@ -18,7 +18,9 @@ sudo apt-get install -y docker docker-compose
 git clone <repository-url>
 cd legal-discovery-analysis
 cp .env.example .env
-# Edit .env and set your OPENAI_API_KEY and any other secrets
+# Edit .env and set your OPENAI_API_KEY and any other secrets.
+# On Render, tesseract is usually located at `/usr/bin/tesseract`, so update
+# `TESSERACT_PATH` accordingly.
 ```
 
 ## 4. Start the application
