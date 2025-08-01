@@ -16,12 +16,31 @@ services:
       - ENABLE_OCR=true
       - ENABLE_AUDIO_TRANSCRIPTION=true
 
+  worker:
+    build: .
+    command: celery -A app.workers.celery_app worker --loglevel=info
+    depends_on:
+      - redis
+    volumes:
+      - ./discovery_sets:/app/discovery_sets
+      - ./analysis_outputs:/app/analysis_outputs
+      - ./data:/app/data
+      - ./legal_discovery.db:/app/legal_discovery.db
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=sqlite:///./legal_discovery.db
+
   chroma:
     image: chromadb/chroma:latest
     ports:
       - "8001:8000"
     volumes:
       - chroma_data:/chroma/chroma
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
 
 volumes:
   chroma_data:

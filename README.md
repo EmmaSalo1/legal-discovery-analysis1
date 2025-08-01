@@ -43,6 +43,13 @@ cd legal-discovery-analysis
 cp .env.example .env
 # Edit .env with your configuration
 docker-compose up --build
+
+### Render Deployment Notes
+- Set `TESSERACT_PATH` to `/usr/bin/tesseract` on Render or other Linux hosts.
+- Run the Celery worker alongside the API:
+  ```bash
+  docker-compose up worker
+  ```
 ```
 
 #### Option 2: Deploy to a remote host
