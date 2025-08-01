@@ -64,3 +64,4 @@ striprtf>=0.0.26  # For RTF files
 setuptools>=68.0.0
 wheel>=0.41.0
 cython>=3.0.0  # Helps with some native extensions
+pytest-asyncio
