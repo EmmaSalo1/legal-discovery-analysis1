@@ -6,6 +6,7 @@ Tests all major components to ensure proper installation
 import os
 import sys
 import asyncio
+import pytest
 from pathlib import Path
 
 def test_basic_imports():
@@ -196,6 +197,7 @@ def test_database_setup():
         print(f"❌ Database test failed: {e}")
         return False
 
+@pytest.mark.asyncio
 async def test_app_components():
     """Test main application components"""
     print("\n🏗️  Testing application components...")
