@@ -30,7 +30,7 @@ openpyxl
 
 # Image Processing & OCR
 pillow
-opencv-python
+opencv-python-headless
 pytesseract
 easyocr
 
